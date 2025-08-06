@@ -1,7 +1,58 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
+use App\Models\Post;
 
-Route::get('/', function () {
-    return view('welcome');
+// RUTAS PÚBLICAS
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/post/{slug}', [HomeController::class, 'showPost'])->name('post.show');
+
+// RUTAS DE NEWSLETTER (públicas)
+Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+Route::post('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'processUnsubscribe'])->name('newsletter.unsubscribe.process');
+Route::get('/newsletter/resubscribe/{token}', [NewsletterController::class, 'resubscribe'])->name('newsletter.resubscribe');
+
+// RUTAS ADMINISTRATIVAS (requieren autenticación)
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard principal
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+    
+    // Gestión de Posts con Livewire
+    Route::get('/posts', function () {
+        return view('admin.posts.index');
+    })->name('posts.index');
+    
+    Route::get('/posts/create', function () {
+        return view('admin.posts.create');
+    })->name('posts.create');
+    
+    Route::get('/posts/{post}/edit', function (Post $post) {
+        return view('admin.posts.edit', ['post' => $post]);
+    })->name('posts.edit');
+    
+    // Gestión de Newsletter con Livewire
+    Route::get('/newsletters', function () {
+        return view('admin.newsletters.index');
+    })->name('newsletters.index');
+    
+    // Gestión de Comentarios
+    Route::get('/comments', function () {
+        return view('admin.comments');
+    })->name('comments.index');
+    
+    // Gestión de Reseñas
+    Route::get('/reviews', function () {
+        return view('admin.reviews');
+    })->name('reviews.index');
+});
+
+// Dashboard estándar de Jetstream
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
