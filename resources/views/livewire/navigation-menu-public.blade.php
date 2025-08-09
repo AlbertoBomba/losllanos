@@ -19,7 +19,7 @@
                             <!-- Dropdown Menu -->
                             <div class="absolute top-full left-0 mt-2 w-56 bg-[#f5f1e3] rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                                 <div class="py-2">
-                                    <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
+                                    <a href="{{ route('productos.aves-de-caza') }}" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
                                         <i class="fas fa-dove mr-3"></i>
                                         Aves de caza
                                     </a>
@@ -30,7 +30,6 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Servicios</a>
                         <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">¿Quiénes somos?</a>
                         <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">"Reseñas"</a>
                     </div>
@@ -65,10 +64,10 @@
                             Productos
                             <i class="fas fa-chevron-down text-sm transition-transform" id="mobileDropdownIcon"></i>
                         </button>
-                        <div class="ml-4 mt-2 space-y-2 opacity-0 invisible max-h-0 overflow-hidden transition-all duration-300 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg p-2" id="mobileDropdown">
-                            <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                        <div class="ml-4 mt-2  space-y-2 opacity-0 invisible max-h-0 overflow-hidden transition-all duration-300  backdrop-blur-sm rounded-lg p-2" id="mobileDropdown">
+                            <a href="{{ route('productos.aves-de-caza') }}" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                                 <i class="fas fa-dove mr-3"></i>
-                                Aves de caza
+                                <p class="text-gray-700 ">>Aves de caza</p>
                             </a>
                             <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                                 <i class="fas fa-crosshairs mr-3"></i>
@@ -76,10 +75,6 @@
                             </a>
                         </div>
                     </div>
-                    
-                    <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
-                        Servicios
-                    </a>
                     <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                         ¿Quiénes somos?
                     </a>

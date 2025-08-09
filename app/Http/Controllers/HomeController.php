@@ -59,4 +59,14 @@ class HomeController extends Controller
         // dd($post);
         return view('frontend.blog', compact('post'));
     }
+
+    public function showAvesCaza()
+    {
+        return view('frontend.aves');
+    }
+
+     public function products()
+    {
+        return view('frontend.products');
+    }
 }
