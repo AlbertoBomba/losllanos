@@ -10,14 +10,16 @@ class ReviewsSection extends Component
     public $reviews;
     public $averageRating;
     public $totalReviews;
+    public $avgRate;
 
     public function mount()
     {
         // Obtener las últimas 5 reseñas aprobadas
         $this->reviews = Review::approved()
             ->latest()
-            ->limit(5)
             ->get();
+
+        $this->avgRate = round($this->reviews->avg('rating'), 1);
 
         // Calcular estadísticas
         $approvedReviews = Review::approved();

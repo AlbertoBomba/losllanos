@@ -1,4 +1,4 @@
-<div class="space-y-6">
+<div class="bg-white rounded-2xl shadow-xl overflow-hidden p-8">
     <!-- Título de la sección -->
     <div class="border-b border-gray-200 pb-4">
         <h3 class="text-lg font-semibold text-gray-900">
@@ -6,76 +6,8 @@
         </h3>
     </div>
 
-    <!-- Mensajes -->
-    @if (session()->has('comment_success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-            {{ session('comment_success') }}
-        </div>
-    @endif
-
-    @if (session()->has('comment_info'))
-        <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded">
-            {{ session('comment_info') }}
-        </div>
-    @endif
-
-    @if (session()->has('comment_warning'))
-        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-            {{ session('comment_warning') }}
-        </div>
-    @endif
-
-    @if (session()->has('comment_error'))
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            {{ session('comment_error') }}
-        </div>
-    @endif
-
-    <!-- Formulario para nuevo comentario -->
-    <div class="bg-gray-50 rounded-lg p-6">
-        <h4 class="text-md font-medium text-gray-900 mb-4">Agregar comentario</h4>
-        
-        <form wire:submit.prevent="submitComment" class="space-y-4">
-            @if (!Auth::check())
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="author_name" class="block text-sm font-medium text-gray-700">Nombre</label>
-                        <input wire:model="author_name" type="text" id="author_name" 
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        @error('author_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                    </div>
-                    <div>
-                        <label for="author_email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input wire:model="author_email" type="email" id="author_email" 
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        @error('author_email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-            @else
-                <div class="text-sm text-gray-600">
-                    Comentando como <strong>{{ Auth::user()->name }}</strong>
-                </div>
-            @endif
-
-            <div>
-                <label for="content" class="block text-sm font-medium text-gray-700">Comentario</label>
-                <textarea wire:model="content" id="content" rows="4"
-                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Escribe tu comentario..."></textarea>
-                @error('content') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="flex justify-end">
-                <button type="submit" 
-                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Publicar comentario
-                </button>
-            </div>
-        </form>
-    </div>
-
     <!-- Lista de comentarios -->
-    <div class="space-y-6">
+    <div class="space-y-6 mb-6">
         @forelse($comments as $comment)
             <div class="bg-white border border-gray-200 rounded-lg p-6">
                 <!-- Comentario principal -->
@@ -169,5 +101,72 @@
                 No hay comentarios aún. ¡Sé el primero en comentar!
             </div>
         @endforelse
+    </div>
+
+    <!-- Mensajes -->
+    @if (session()->has('comment_success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+            {{ session('comment_success') }}
+        </div>
+    @endif
+
+    @if (session()->has('comment_info'))
+        <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded">
+            {{ session('comment_info') }}
+        </div>
+    @endif
+
+    @if (session()->has('comment_warning'))
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+            {{ session('comment_warning') }}
+        </div>
+    @endif
+
+    @if (session()->has('comment_error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            {{ session('comment_error') }}
+        </div>
+    @endif
+
+    <!-- Formulario para nuevo comentario -->
+    <div class="bg-gray-50 rounded-lg p-6 mt-4">
+        <h4 class="text-md font-medium text-gray-900 mb-4">Agregar comentario</h4>
+        <form wire:submit.prevent="submitComment" class="space-y-4">
+            @if (!Auth::check())
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="author_name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                        <input wire:model="author_name" type="text" id="author_name" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        @error('author_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <label for="author_email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input wire:model="author_email" type="email" id="author_email" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        @error('author_email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+            @else
+                <div class="text-sm text-gray-600">
+                    Comentando como <strong>{{ Auth::user()->name }}</strong>
+                </div>
+            @endif
+
+            <div>
+                <label for="content" class="block text-sm font-medium text-gray-700">Comentario</label>
+                <textarea wire:model="content" id="content" rows="4"
+                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Escribe tu comentario..."></textarea>
+                @error('content') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" 
+                        class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-8 py-3 rounded-lg font-action font-semibold tracking-wide transition-all duration-300 hover:scale-105">
+                    Publicar comentario
+                </button>
+            </div>
+        </form>
     </div>
 </div>

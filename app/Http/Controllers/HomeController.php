@@ -32,4 +32,31 @@ class HomeController extends Controller
 
         return view('frontend.post', compact('post'));
     }
+
+    /**
+     * Mostrar un post individual
+     */
+    public function showBlogs()
+    {
+        $v['posts'] = Post::where('published', true)
+            ->latest()
+            ->get();
+
+        $v['lastpost'] = Post::where('published', true)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        // dd($v['lastpost']);
+        return view('frontend.blogs', $v);
+    }
+
+    public function showBlog($slug)
+    {
+         $post = Post::where('slug', $slug)
+            ->where('published', true)
+            ->firstOrFail();
+
+        // dd($post);
+        return view('frontend.blog', compact('post'));
+    }
 }

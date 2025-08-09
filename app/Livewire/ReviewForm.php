@@ -17,7 +17,7 @@ class ReviewForm extends Component
 
     protected $rules = [
         'reviewer_name' => 'required|string|max:100',
-        'reviewer_email' => 'nullable|email|max:100',
+        'reviewer_email' => 'required|email|max:100',
         'reviewer_location' => 'nullable|string|max:100',
         'rating' => 'required|integer|between:1,5',
         'service_type' => 'nullable|string|max:50',
@@ -28,6 +28,7 @@ class ReviewForm extends Component
     protected $messages = [
         'reviewer_name.required' => 'El nombre es obligatorio.',
         'reviewer_email.email' => 'El email debe tener un formato válido.',
+        'reviewer_email.required' => 'El email es obligatorio.',
         'rating.required' => 'La valoración es obligatoria.',
         'rating.between' => 'La valoración debe estar entre 1 y 5 estrellas.',
         'title.required' => 'El título es obligatorio.',

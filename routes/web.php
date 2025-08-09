@@ -7,7 +7,8 @@ use App\Models\Post;
 
 // RUTAS PÚBLICAS
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/post/{slug}', [HomeController::class, 'showPost'])->name('post.show');
+Route::get('/blog-de-caza', [HomeController::class, 'showBlogs'])->name('blog-de-caza');
+Route::get('/blog-de-caza/{slug}', [HomeController::class, 'showBlog'])->name('blog-de-caza.show');
 
 // RUTAS DE NEWSLETTER (públicas)
 Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
