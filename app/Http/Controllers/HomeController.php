@@ -65,8 +65,33 @@ class HomeController extends Controller
         return view('frontend.aves');
     }
 
-     public function products()
+    public function showTiradas()
+    {
+        return view('frontend.tiradas-en-finca');
+    }
+
+    public function products()
     {
         return view('frontend.products');
+    }
+    
+    public function perdices()
+    {
+        return view('frontend.perdices');
+    }
+
+    public function faisanes()
+    {
+        return view('frontend.faisanes');
+    }
+
+    public function codornices()
+    {
+        return view('frontend.codornices');
+    }
+
+    public function palomas()
+    {
+        return view('frontend.palomas');
     }
 }

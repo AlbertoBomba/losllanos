@@ -23,7 +23,7 @@
                                         <i class="fas fa-dove mr-3"></i>
                                         Aves de caza
                                     </a>
-                                    <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
+                                    <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
                                         <i class="fas fa-crosshairs mr-3"></i>
                                         Tiradas
                                     </a>
@@ -69,7 +69,7 @@
                                 <i class="fas fa-dove mr-3"></i>
                                 <p class="text-gray-700 ">>Aves de caza</p>
                             </a>
-                            <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                            <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                                 <i class="fas fa-crosshairs mr-3"></i>
                                 Tiradas
                             </a>

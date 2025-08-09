@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3] pt-32 ">
+    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3] ">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{asset('images/general/perdiz-volando.webp')}}" 
@@ -123,9 +123,9 @@
                             <div class="text-xl font-display font-bold text-[#8b5e3c]">Precio a consultar </div>
                             <div class="text-gray-500 text-sm font-sans"></div>
                         </div>
-                        <button class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                        <a href="{{route('productos.aves-de-caza.perdices')}}" title="Consultar la ficha de perdices" class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             Consultar 
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -189,9 +189,9 @@
                             <div class="text-gray-500 text-sm font-sans"></div>
                         </div>
                         
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                       <a href="{{route('productos.aves-de-caza.faisanes')}}" title="Consultar la ficha de faisanes" class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             Consultar
-                        </button>
+                       </a>
                     </div>
                 </div>
 
@@ -254,10 +254,9 @@
                             <div class="text-xl font-display font-bold text-[#6b7280]">Precio a consultar</div>
                             <div class="text-gray-500 text-sm font-sans"></div>
                         </div>
-                        
-                        <button class="w-full bg-[#6b7280] hover:bg-[#5b6370] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                        <a href="{{route('productos.aves-de-caza.codornices')}}" title="Consultar la ficha de codornices" class="w-full bg-[#6b7280] hover:bg-[#5b6370] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             Consultar
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -321,9 +320,9 @@
                             <div class="text-gray-500 text-sm font-sans"></div>
                         </div>
                         
-                        <button class="w-full bg-[#059669] hover:bg-[#047857] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                        <a href="{{route('productos.aves-de-caza.palomas')}}" title="Consultar la ficha de palomas" class="w-full bg-[#059669] hover:bg-[#047857] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             Consultar
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

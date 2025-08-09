@@ -217,6 +217,10 @@
 .fa-chevron-down:before { content: "\f078"; }
 .fa-star:before { content: "\f005"; }
 .fa-star-half:before { content: "\f089"; }
+.fa-certificate:before { content: "\f0a3"; }
+.fa-truck:before { content: "\f0d1"; }
+.fa-user-tie:before { content: "\f508"; }
+.fa-check-circle:before { content: "\f058"; }
 
 /* Configuración de fuentes personalizadas */
 :root {
