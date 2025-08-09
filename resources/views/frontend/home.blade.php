@@ -6,6 +6,25 @@ parque temático. Un lugar para prácticar la caza en españa')
 
 @section('content')
 
+    <style>
+        /* Filter animations */
+        .service-card {
+            transition: all 0.4s ease-in-out;
+        }
+        
+        .service-card.hidden {
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            display: none !important;
+        }
+        
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            display: block !important;
+        }
+    </style>
+
 <!-- Hero Section with improved accessibility -->
     <section id="hero_section" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
         <!-- Video Background -->
@@ -91,9 +110,19 @@ parque temático. Un lugar para prácticar la caza en españa')
 
             <!-- Filter Buttons -->
             <div class="flex justify-center mb-12">
-                <div class="bg-white rounded-full p-2 shadow-lg" id="filterButtons">
-                    <button class="filter-btn px-6 py-2 bg-[#4b5d3a] text-white rounded-l-full font-action font-semibold tracking-wide transition-all duration-300" data-filter="sueltas">Sueltas</button>
-                    <button class="filter-btn px-6 py-2 text-gray-600 hover:text-[#4b5d3a] rounded-r-full transition-all duration-300 font-action font-medium" data-filter="aves">Aves</button>
+                <div class="bg-white rounded-full p-2 shadow-lg" role="tablist" aria-label="Filtros de productos">
+                    <button class="filter-btn px-6 py-2 bg-[#4b5d3a] text-white rounded-l-full font-action font-semibold tracking-wide transition-all duration-300" 
+                            data-filter="sueltas" 
+                            role="tab" 
+                            aria-selected="true" 
+                            aria-controls="servicesGrid"
+                            type="button">Sueltas</button>
+                    <button class="filter-btn px-6 py-2 text-gray-600 hover:text-[#4b5d3a] rounded-r-full transition-all duration-300 font-action font-medium" 
+                            data-filter="aves" 
+                            role="tab" 
+                            aria-selected="false" 
+                            aria-controls="servicesGrid"
+                            type="button">Aves</button>
                 </div>
             </div>
 
@@ -623,43 +652,221 @@ parque temático. Un lugar para prácticar la caza en españa')
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script>
+     <script>
+        // Dropdown menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.group');
+            const dropdownMenu = dropdown.querySelector('div[class*="absolute"]');
+            let timeoutId;
+
+            // Show dropdown on hover
+            dropdown.addEventListener('mouseenter', function() {
+                clearTimeout(timeoutId);
+                dropdownMenu.classList.remove('opacity-0', 'invisible');
+                dropdownMenu.classList.add('opacity-100', 'visible');
+            });
+
+            // Hide dropdown with delay
+            dropdown.addEventListener('mouseleave', function() {
+                timeoutId = setTimeout(() => {
+                    dropdownMenu.classList.remove('opacity-100', 'visible');
+                    dropdownMenu.classList.add('opacity-0', 'invisible');
+                }, 150);
+            });
+
+            // Keep dropdown open when hovering over menu items
+            dropdownMenu.addEventListener('mouseenter', function() {
+                clearTimeout(timeoutId);
+            });
+
+            dropdownMenu.addEventListener('mouseleave', function() {
+                timeoutId = setTimeout(() => {
+                    dropdownMenu.classList.remove('opacity-100', 'visible');
+                    dropdownMenu.classList.add('opacity-0', 'invisible');
+                }, 150);
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            let currentValue = 0;
+            const increment = targetValue / 100;
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 20);
+        }
+
+        // Intersection Observer for counter animation
+        const statsSection = document.querySelector('#happy-travelers');
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter('happy-travelers', 800);
+                        animateCounter('years-experience', 30);
+                        animateCounter('positive-reviews', 96);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            observer.observe(statsSection.closest('section'));
+        }
+
         // Scroll to Top functionality
         const scrollToTopBtn = document.getElementById('scrollToTop');
         
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-                    scrollToTopBtn.classList.add('opacity-100', 'visible');
-                } else {
-                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
-                    scrollToTopBtn.classList.remove('opacity-100', 'visible');
-                }
-            });
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                scrollToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                scrollToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
 
-            scrollToTopBtn.addEventListener('click', () => {
+        // Header background change on scroll
+        const header = document.getElementById('header');
+        const headerContent = document.getElementById('headerContent');
+        
+        // Obtener elementos específicos del menú
+        const mobileMenuIcon = document.getElementById('menuIcon');
+        const dropdownIcon = document.getElementById('mobileDropdownIcon');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const maxScroll = 300; // Distancia máxima de scroll para el efecto completo
+            
+            // Calcular la opacidad basada en el scroll (0 a 1)
+            let opacity = Math.min(scrollY / maxScroll, 1);
+            
+            // Calcular el blur basado en el scroll
+            let blurAmount = Math.min(scrollY / 100, 1) * 4; // Máximo 4px de blur
+            
+            // Calcular la sombra basada en el scroll
+            let shadowOpacity = Math.min(scrollY / 200, 1);
+            
+            // Calcular el color del texto basado en el scroll
+            // Cuando opacity = 0 (arriba): texto blanco (255, 255, 255)
+            // Cuando opacity = 1 (abajo): texto gris oscuro (55, 65, 81)
+            let textRed = Math.round(255 - (255 - 55) * opacity);
+            let textGreen = Math.round(255 - (255 - 65) * opacity);
+            let textBlue = Math.round(255 - (255 - 81) * opacity);
+            
+            // Debug
+            // console.log('Scroll Y:', scrollY, 'Opacity:', opacity);
+            
+            if (scrollY > 0) {
+                // Aplicar estilos al header
+                if (headerContent) {
+                    headerContent.style.backgroundColor = `rgba(245, 241, 227, ${opacity})`;
+                    headerContent.style.backdropFilter = `blur(${blurAmount}px)`;
+                    headerContent.style.boxShadow = `0 4px 6px rgba(0, 0, 0, ${shadowOpacity * 0.1})`;
+                }
+                
+                // Aplicar color de texto a todos los enlaces del menú desktop
+                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
+                desktopLinks.forEach(link => {
+                    link.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
+                });
+                
+                // Aplicar color al icono del menú móvil
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
+                }
+                
+                // Aplicar color al icono del dropdown móvil
+                if (dropdownIcon) {
+                    dropdownIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
+                }
+            } else {
+                // Restaurar estilos originales
+                if (headerContent) {
+                    headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0)';
+                    headerContent.style.backdropFilter = 'blur(0px)';
+                    headerContent.style.boxShadow = 'none';
+                }
+                
+                // Restaurar color blanco cuando estamos arriba
+                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
+                desktopLinks.forEach(link => {
+                    link.style.color = 'white';
+                });
+                
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.style.color = 'white';
+                }
+                
+                if (dropdownIcon) {
+                    dropdownIcon.style.color = 'white';
+                }
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-                    });
-                }
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileProductosBtn = document.getElementById('mobileProductosBtn');
+        const mobileDropdown = document.getElementById('mobileDropdown');
+        const mobileDropdownIcon = document.getElementById('mobileDropdownIcon');
+        
+        let isMenuOpen = false;
+
+        // Reviews Carousel Functionality
+        class ReviewsCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalReviews = 10;
+                this.reviewsPerSlide = 3;
+                this.totalSlides = this.totalReviews - this.reviewsPerSlide + 1; // 8 slides (0-7)
+                this.autoPlayInterval = null;
+                this.autoPlayDelay = 4000; // 4 seconds
+                this.isHovered = false;
+                
+                this.carouselWrapper = document.getElementById('carouselWrapper');
+                this.prevBtn = document.getElementById('prevReview');
+                this.nextBtn = document.getElementById('nextReview');
+                this.indicators = document.querySelectorAll('.indicator');
+                this.reviewCards = document.querySelectorAll('.review-card');
+                
+                this.init();
+            }
+            
+            init() {
+                // Set up event listeners
+                this.prevBtn.addEventListener('click', () => this.goToPrevSlide());
+                this.nextBtn.addEventListener('click', () => this.goToNextSlide());
+                
+                // Indicator click events
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Hover events to pause/resume autoplay
+                const carouselContainer = document.getElementById('reviewsCarousel');
+                carouselContainer.addEventListener('mouseenter', () => {
+                    this.isHovered = true;
+                    this.stopAutoPlay();
+                });
+                
+                carouselContainer.addEventListener('mouseleave', () => {
+                    this.isHovered = false;
+                    this.startAutoPlay();
+                });
                 
                 // Initialize carousel
                 this.updateCarousel();
@@ -667,43 +874,27 @@ parque temático. Un lugar para prácticar la caza en españa')
             }
             
             updateCarousel() {
-                // Check if reviewCards exist before proceeding
-                if (!this.reviewCards || this.reviewCards.length === 0) {
-                    console.log('No review cards to update');
-                    return;
-                }
-                
                 // Hide all review cards first
                 this.reviewCards.forEach(card => {
-                    if (card) {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = 'none';
                 });
                 
                 // Show only 3 cards starting from current slide
                 for (let i = 0; i < this.reviewsPerSlide; i++) {
                     const cardIndex = this.currentSlide + i;
-                    if (cardIndex < this.totalReviews && this.reviewCards[cardIndex]) {
+                    if (cardIndex < this.totalReviews) {
                         this.reviewCards[cardIndex].style.display = 'block';
                     }
                 }
                 
                 // Update indicators
-                if (this.indicators) {
-                    this.indicators.forEach((indicator, index) => {
-                        if (indicator) {
-                            indicator.classList.toggle('active', index === this.currentSlide);
-                        }
-                    });
-                }
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentSlide);
+                });
                 
                 // Update button states
-                if (this.prevBtn) {
-                    this.prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
-                }
-                if (this.nextBtn) {
-                    this.nextBtn.style.opacity = this.currentSlide >= this.totalSlides - 1 ? '0.5' : '1';
-                }
+                this.prevBtn.style.opacity = this.currentSlide === 0 ? '0.5' : '1';
+                this.nextBtn.style.opacity = this.currentSlide >= this.totalSlides - 1 ? '0.5' : '1';
             }
             
             goToSlide(slideIndex) {
@@ -794,29 +985,16 @@ parque temático. Un lugar para prácticar la caza en españa')
                         break;
                 }
                 
-                const captchaQuestionEl = document.getElementById('captchaQuestion');
-                const captchaInputEl = document.getElementById('captchaInput');
-                
-                if (captchaQuestionEl) {
-                    captchaQuestionEl.textContent = question;
-                    captchaAnswer = answer;
-                }
-                
-                if (captchaInputEl) {
-                    captchaInputEl.value = '';
-                }
+                document.getElementById('captchaQuestion').textContent = question;
+                captchaAnswer = answer;
+                document.getElementById('captchaInput').value = '';
             }
             
-            // Initialize CAPTCHA only if elements exist
-            if (document.getElementById('captchaQuestion') && document.getElementById('captchaInput')) {
-                generateCaptcha();
-            }
+            // Initialize CAPTCHA
+            generateCaptcha();
             
             // Refresh CAPTCHA button
-            const refreshCaptchaBtn = document.getElementById('refreshCaptcha');
-            if (refreshCaptchaBtn) {
-                refreshCaptchaBtn.addEventListener('click', generateCaptcha);
-            }
+            document.getElementById('refreshCaptcha').addEventListener('click', generateCaptcha);
             
             // Modal functionality
             const viewAllReviewsBtn = document.getElementById('viewAllReviews');
@@ -858,6 +1036,38 @@ parque temático. Un lugar para prácticar la caza en españa')
                     hideModal();
                 }
             });
+            
+            // Star rating functionality
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('reviewRating');
+            const ratingText = document.getElementById('ratingText');
+            
+            const ratingLabels = {
+                1: 'Muy malo',
+                2: 'Malo', 
+                3: 'Regular',
+                4: 'Bueno',
+                5: 'Excelente'
+            };
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratingInput.value = rating;
+                    ratingText.textContent = ratingLabels[rating];
+                    
+                    // Update star display
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.remove('text-gray-300');
+                            s.classList.add('text-yellow-400');
+                        } else {
+                            s.classList.remove('text-yellow-400');
+                            s.classList.add('text-gray-300');
+                        }
+                    });
+                });
+            });
 
             // Review form submission
             const reviewForm = document.getElementById('reviewForm');
@@ -867,8 +1077,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                     
                     const formData = new FormData(this);
                     const rating = formData.get('reviewRating');
-                    const captchaInputEl = document.getElementById('captchaInput');
-                    const captchaInput = captchaInputEl ? parseInt(captchaInputEl.value) : 0;
+                    const captchaInput = parseInt(document.getElementById('captchaInput').value);
                     
                     // Validate rating
                     if (rating === '0') {
@@ -876,9 +1085,8 @@ parque temático. Un lugar para prácticar la caza en españa')
                         return;
                     }
                     
-                    // Validate CAPTCHA (only if CAPTCHA elements exist)
-                    const captchaQuestionEl = document.getElementById('captchaQuestion');
-                    if (captchaQuestionEl && (isNaN(captchaInput) || captchaInput !== captchaAnswer)) {
+                    // Validate CAPTCHA
+                    if (isNaN(captchaInput) || captchaInput !== captchaAnswer) {
                         alert('Por favor, resuelve correctamente la operación matemática para verificar que no eres un robot.');
                         // Generate new CAPTCHA after failed attempt
                         generateCaptcha();
@@ -1155,37 +1363,90 @@ parque temático. Un lugar para prácticar la caza en españa')
             const stars = document.querySelectorAll('.rating-stars .star');
             const ratingInput = document.getElementById('reviewRating');
             const ratingText = document.getElementById('ratingText');
-            
-            const ratingLabels = {
+            let currentRating = 0;
+
+            // Rating texts
+            const ratingTexts = {
+                0: 'Selecciona una calificación',
                 1: 'Muy malo',
-                2: 'Malo', 
+                2: 'Malo',
                 3: 'Regular',
                 4: 'Bueno',
                 5: 'Excelente'
             };
 
-            stars.forEach(star => {
+            // Handle star hover
+            stars.forEach((star, index) => {
+                star.addEventListener('mouseenter', function() {
+                    highlightStars(index + 1);
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    highlightStars(currentRating);
+                });
+
                 star.addEventListener('click', function() {
-                    const rating = parseInt(this.getAttribute('data-rating'));
-                    if (ratingInput) {
-                        ratingInput.value = rating;
-                    }
-                    if (ratingText) {
-                        ratingText.textContent = ratingLabels[rating];
-                    }
-                    
-                    // Update star display
-                    stars.forEach((s, index) => {
-                        if (index < rating) {
-                            s.classList.remove('text-gray-300');
-                            s.classList.add('text-yellow-400');
-                        } else {
-                            s.classList.remove('text-yellow-400');
-                            s.classList.add('text-gray-300');
-                        }
-                    });
+                    currentRating = index + 1;
+                    ratingInput.value = currentRating;
+                    ratingText.textContent = ratingTexts[currentRating];
+                    highlightStars(currentRating);
                 });
             });
+
+            function highlightStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.remove('text-gray-300');
+                        star.classList.add('text-yellow-400');
+                    } else {
+                        star.classList.remove('text-yellow-400');
+                        star.classList.add('text-gray-300');
+                    }
+                });
+            }
+
+            // Handle form submission
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('reviewName').value,
+                        profession: document.getElementById('reviewProfession').value,
+                        rating: currentRating,
+                        text: document.getElementById('reviewText').value
+                    };
+
+                    // Validate rating
+                    if (currentRating === 0) {
+                        alert('Por favor, selecciona una calificación');
+                        return;
+                    }
+
+                    // Simulate form submission
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.textContent = 'Enviando...';
+                    submitBtn.disabled = true;
+
+                    // Simulate API call
+                    setTimeout(() => {
+                        alert('¡Gracias por compartir tu experiencia! Tu comentario será revisado y publicado pronto.');
+                        
+                        // Reset form
+                        reviewForm.reset();
+                        currentRating = 0;
+                        ratingInput.value = 0;
+                        ratingText.textContent = ratingTexts[0];
+                        highlightStars(0);
+                        
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            }
         });
 
         // Fixed CTA Widget functionality

@@ -11,9 +11,9 @@
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-8 text-2xl">
                     <div class="flex items-center space-x-6 font-action font-semibold">
-                       <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs"class="text-white hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Blogs</a>
+                       <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs"class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Blogs</a>
                         <div class="relative group">
-                            <a href="#" class="text-white hover:text-[#4b5d3a] transition-all duration-300 flex items-center hover:scale-105" id="productos-menu">
+                            <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 flex items-center hover:scale-105" id="productos-menu">
                                 Productos <i class="fas fa-chevron-down ml-1 text-sm transition-transform group-hover:rotate-180"></i>
                             </a>
                             <!-- Dropdown Menu -->
@@ -30,9 +30,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="text-white hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Servicios</a>
-                        <a href="#" class="text-white hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">¿Quiénes somos?</a>
-                        <a href="#" class="text-white hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">"Reseñas"</a>
+                        <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Servicios</a>
+                        <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">¿Quiénes somos?</a>
+                        <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">"Reseñas"</a>
                     </div>
                     <button class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-2 rounded-full font-action font-bold tracking-wide transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                         Contacto
@@ -46,7 +46,7 @@
                         aria-expanded="false"
                         aria-controls="mobileMenu"
                         type="button">
-                    <i class="fas fa-bars text-white text-xl" id="menuIcon" aria-hidden="true"></i>
+                    <i class="fas fa-bars text-gray-700 text-xl" id="menuIcon" aria-hidden="true"></i>
                 </button>
             </div>
             
@@ -56,12 +56,12 @@
                  role="navigation" 
                  aria-label="Menú móvil de navegación">
                 <div class="pt-4 space-y-3">
-                    <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs" class="block text-white hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                    <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                       Blogs  
                     </a>
                     <!-- Mobile Dropdown -->
                     <div class="block">
-                        <button class="w-full text-left text-white hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-between" id="mobileProductosBtn">
+                        <button class="w-full text-left text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-between" id="mobileProductosBtn">
                             Productos
                             <i class="fas fa-chevron-down text-sm transition-transform" id="mobileDropdownIcon"></i>
                         </button>
@@ -77,10 +77,10 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="block text-white hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                    <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                         Servicios
                     </a>
-                    <a href="#" class="block text-white hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                    <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                         ¿Quiénes somos?
                     </a>
                      <a href="#" class="block text-white hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Header background change based on hero section position
     const header = document.getElementById('header');
     const headerContent = document.getElementById('headerContent');
-    const heroSection = document.getElementById('hero_section');
     
     // Obtener elementos específicos del menú
     const mobileMenuIcon = document.getElementById('menuIcon');
@@ -152,143 +151,82 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (header && headerContent) {
         function updateHeaderStyle() {
+            // Verificar si existe la sección hero_section en el documento
+            const heroSection = document.getElementById('hero_section');
+            
+            // Si no existe la sección hero, no aplicar ningún efecto
+            if (!heroSection) {
+                // console.log('Hero section not found - no header effects applied');
+                return; // Salir de la función sin aplicar efectos
+            }
+            
             const scrollY = window.pageYOffset;
             const headerHeight = header.offsetHeight;
+            const heroRect = heroSection.getBoundingClientRect();
+            const heroBottom = heroRect.bottom;
             
-            // Verificar si existe la sección hero
-            if (heroSection) {
-                const heroRect = heroSection.getBoundingClientRect();
-                const heroBottom = heroRect.bottom;
+            // Si el header está sobre la sección hero (heroBottom > headerHeight), usar estilo transparente
+            const isOverHero = heroBottom > headerHeight;
+            
+            if (isOverHero) {
+                // Header transparente con texto blanco (sobre hero)
+                headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0)';
+                headerContent.style.backdropFilter = 'blur(0px)';
+                headerContent.style.boxShadow = 'none';
                 
-                // Si el header está sobre la sección hero (heroBottom > headerHeight), usar estilo transparente
-                const isOverHero = heroBottom > headerHeight;
+                // Aplicar color blanco a todos los elementos
+                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
+                desktopLinks.forEach(link => {
+                    link.style.color = 'white';
+                });
                 
-                if (isOverHero) {
-                    // Header transparente con texto blanco (sobre hero)
-                    headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0)';
-                    headerContent.style.backdropFilter = 'blur(0px)';
-                    headerContent.style.boxShadow = 'none';
-                    
-                    // Aplicar color blanco a todos los elementos
-                    const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                    desktopLinks.forEach(link => {
-                        link.style.color = 'white';
-                    });
-                    
-                    // Aplicar color blanco a elementos del menú móvil
-                    const mobileLinks = document.querySelectorAll('#mobileMenu a');
-                    mobileLinks.forEach(link => {
-                        link.style.color = 'white';
-                    });
-                    
-                    const mobileProductosBtn = document.getElementById('mobileProductosBtn');
-                    if (mobileProductosBtn) {
-                        mobileProductosBtn.style.color = 'white';
-                    }
-                    
-                    if (mobileMenuIcon) {
-                        mobileMenuIcon.style.color = 'white';
-                    }
-                    
-                    if (dropdownIcon) {
-                        dropdownIcon.style.color = 'white';
-                    }
-                } else {
-                    // Header con fondo y texto oscuro (fuera del hero)
-                    headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0.95)';
-                    headerContent.style.backdropFilter = 'blur(8px)';
-                    headerContent.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                    
-                    // Aplicar color oscuro a todos los elementos
-                    const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                    desktopLinks.forEach(link => {
-                        link.style.color = 'rgb(55, 65, 81)'; // text-gray-700
-                    });
-                    
-                    // Aplicar color oscuro a elementos del menú móvil
-                    const mobileLinks = document.querySelectorAll('#mobileMenu a');
-                    mobileLinks.forEach(link => {
-                        link.style.color = 'rgb(55, 65, 81)';
-                    });
-                    
-                    const mobileProductosBtn = document.getElementById('mobileProductosBtn');
-                    if (mobileProductosBtn) {
-                        mobileProductosBtn.style.color = 'rgb(55, 65, 81)';
-                    }
-                    
-                    if (mobileMenuIcon) {
-                        mobileMenuIcon.style.color = 'rgb(55, 65, 81)';
-                    }
-                    
-                    if (dropdownIcon) {
-                        dropdownIcon.style.color = 'rgb(55, 65, 81)';
-                    }
+                // Aplicar color blanco a elementos del menú móvil
+                const mobileLinks = document.querySelectorAll('#mobileMenu a');
+                mobileLinks.forEach(link => {
+                    link.style.color = 'white';
+                });
+                
+                const mobileProductosBtn = document.getElementById('mobileProductosBtn');
+                if (mobileProductosBtn) {
+                    mobileProductosBtn.style.color = 'white';
+                }
+                
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.style.color = 'white';
+                }
+                
+                if (dropdownIcon) {
+                    dropdownIcon.style.color = 'white';
                 }
             } else {
-                // Si no hay hero section, usar el comportamiento original basado en scroll
-                const maxScroll = 300;
-                let opacity = Math.min(scrollY / maxScroll, 1);
-                let blurAmount = Math.min(scrollY / 100, 1) * 4;
-                let shadowOpacity = Math.min(scrollY / 200, 1);
+                // Header con fondo y texto negro (fuera del hero)
+                headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0.95)';
+                headerContent.style.backdropFilter = 'blur(8px)';
+                headerContent.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
                 
-                let textRed = Math.round(255 - (255 - 55) * opacity);
-                let textGreen = Math.round(255 - (255 - 65) * opacity);
-                let textBlue = Math.round(255 - (255 - 81) * opacity);
+                // Aplicar color negro a todos los elementos
+                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
+                desktopLinks.forEach(link => {
+                    link.style.color = 'black'; // Texto negro
+                });
                 
-                if (scrollY > 0) {
-                    headerContent.style.backgroundColor = `rgba(245, 241, 227, ${opacity})`;
-                    headerContent.style.backdropFilter = `blur(${blurAmount}px)`;
-                    headerContent.style.boxShadow = `0 4px 6px rgba(0, 0, 0, ${shadowOpacity * 0.1})`;
-                    
-                    const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                    desktopLinks.forEach(link => {
-                        link.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                    });
-                    
-                    const mobileLinks = document.querySelectorAll('#mobileMenu a');
-                    mobileLinks.forEach(link => {
-                        link.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                    });
-                    
-                    const mobileProductosBtn = document.getElementById('mobileProductosBtn');
-                    if (mobileProductosBtn) {
-                        mobileProductosBtn.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                    }
-                    
-                    if (mobileMenuIcon) {
-                        mobileMenuIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                    }
-                    
-                    if (dropdownIcon) {
-                        dropdownIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                    }
-                } else {
-                    headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0)';
-                    headerContent.style.backdropFilter = 'blur(0px)';
-                    headerContent.style.boxShadow = 'none';
-                    
-                    const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                    desktopLinks.forEach(link => {
-                        link.style.color = 'white';
-                    });
-                    
-                    const mobileLinks = document.querySelectorAll('#mobileMenu a');
-                    mobileLinks.forEach(link => {
-                        link.style.color = 'white';
-                    });
-                    
-                    const mobileProductosBtn = document.getElementById('mobileProductosBtn');
-                    if (mobileProductosBtn) {
-                        mobileProductosBtn.style.color = 'white';
-                    }
-                    
-                    if (mobileMenuIcon) {
-                        mobileMenuIcon.style.color = 'white';
-                    }
-                    
-                    if (dropdownIcon) {
-                        dropdownIcon.style.color = 'white';
-                    }
+                // Aplicar color negro a elementos del menú móvil
+                const mobileLinks = document.querySelectorAll('#mobileMenu a');
+                mobileLinks.forEach(link => {
+                    link.style.color = 'black';
+                });
+                
+                const mobileProductosBtn = document.getElementById('mobileProductosBtn');
+                if (mobileProductosBtn) {
+                    mobileProductosBtn.style.color = 'black';
+                }
+                
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.style.color = 'black';
+                }
+                
+                if (dropdownIcon) {
+                    dropdownIcon.style.color = 'black';
                 }
             }
         }
@@ -392,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             navigationComponent.set('showMobileMenu', false);
                         }
                     } catch (e) {
-                        console.log('Livewire not available for mobile menu toggle');
+                        // console.log('Livewire not available for mobile menu toggle');
                     }
                 }
             }
