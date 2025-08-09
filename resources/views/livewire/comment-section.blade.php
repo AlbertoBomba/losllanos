@@ -129,7 +129,7 @@
     @endif
 
     <!-- Formulario para nuevo comentario -->
-    <div class="bg-gray-50 rounded-lg p-6 mt-4">
+    <div class=" rounded-lg p-6 mt-4 boder">
         <h4 class="text-md font-medium text-gray-900 mb-4">Agregar comentario</h4>
         <form wire:submit.prevent="submitComment" class="space-y-4">
             @if (!Auth::check())
@@ -163,7 +163,7 @@
 
             <div class="flex justify-end">
                 <button type="submit" 
-                        class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-8 py-3 rounded-lg font-action font-semibold tracking-wide transition-all duration-300 hover:scale-105">
+                        class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-3 rounded-lg font-action font-semibold tracking-wide transition-all duration-300 hover:scale-105">
                     Publicar comentario
                 </button>
             </div>

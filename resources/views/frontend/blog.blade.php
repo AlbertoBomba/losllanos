@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '{{ $post->title }}')
-@section('description', '{{ Str::limit(strip_tags($post->content), 155) }}')
+@section('title', e( $post->title ))
+@section('description', e( Str::limit(strip_tags($post->content), 155) ))
 
 
 @section('content')
