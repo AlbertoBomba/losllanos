@@ -18,7 +18,7 @@
                     </p>
                 </div>
 
-                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 p-6 lg:p-8">
                     <div>
                         <div class="flex items-center">
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
@@ -60,6 +60,30 @@
                         <p class="mt-4">
                             <a href="{{ route('admin.newsletters.index') }}" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800">
                                 Ver Suscriptores
+                                <svg viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-blue-600">
+                                    <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            <h2 class="ms-3 text-xl font-semibold text-gray-900">
+                                <a href="{{ route('admin.analytics.dashboard') }}" class="text-blue-600 hover:text-blue-800">Analytics Web</a>
+                            </h2>
+                        </div>
+
+                        <p class="mt-4 text-gray-500 text-sm leading-relaxed">
+                            Controla las visitas de tu web, páginas más populares, dispositivos utilizados y estadísticas detalladas de usuarios.
+                        </p>
+
+                        <p class="mt-4">
+                            <a href="{{ route('admin.analytics.dashboard') }}" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800">
+                                Ver Analytics
                                 <svg viewBox="0 0 20 20" class="ms-1 w-5 h-5 fill-blue-600">
                                     <path fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z" clip-rule="evenodd"></path>
                                 </svg>

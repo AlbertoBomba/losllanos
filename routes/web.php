@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Models\Post;
 
 // RUTAS PÚBLICAS
@@ -17,6 +20,11 @@ Route::get('/productos/aves-de-caza/perdices', [HomeController::class, 'perdices
 Route::get('/productos/aves-de-caza/faisanes', [HomeController::class, 'faisanes'])->name('productos.aves-de-caza.faisanes');
 Route::get('/productos/aves-de-caza/codornices', [HomeController::class, 'codornices'])->name('productos.aves-de-caza.codornices');
 Route::get('/productos/aves-de-caza/palomas', [HomeController::class, 'palomas'])->name('productos.aves-de-caza.palomas');
+
+// RESEÑAS
+Route::get('/reseñas', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reseñas/escribir', [ReviewController::class, 'create'])->name('reviews.create');
+Route::post('/reseñas', [ReviewController::class, 'store'])->name('reviews.store');
 
 // PÁGINAS LEGALES
 Route::view('/politica-privacidad', 'frontend.politica-privacidad')->name('politica-privacidad');
@@ -44,6 +52,9 @@ Route::redirect('/noticias', '/blog-de-caza', 301);
 Route::redirect('/contacto', '/', 301);
 Route::redirect('/contact', '/', 301);
 
+// RUTAS DE SITEMAP Y SEO
+Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robotsTxt'])->name('robots.txt');
 
 // RUTAS DE NEWSLETTER (públicas)
 Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
@@ -84,6 +95,28 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/reviews', function () {
         return view('admin.reviews');
     })->name('reviews.index');
+    
+    // Analytics Dashboard
+    Route::prefix('analytics')->group(function () {
+        Route::get('/dashboard', [AnalyticsController::class, 'dashboard'])->name('analytics.dashboard');
+        Route::get('/realtime', [AnalyticsController::class, 'realTime'])->name('analytics.realtime');
+        Route::get('/pages', [AnalyticsController::class, 'pages'])->name('analytics.pages');
+        Route::get('/visitors', [AnalyticsController::class, 'visitors'])->name('analytics.visitors');
+        Route::get('/traffic', [AnalyticsController::class, 'traffic'])->name('analytics.traffic');
+        Route::get('/keywords', [AnalyticsController::class, 'keywords'])->name('analytics.keywords');
+        Route::get('/keywords/history/{keyword}', [AnalyticsController::class, 'keywordHistory'])->name('analytics.keywords.history');
+        Route::get('/export', [AnalyticsController::class, 'export'])->name('analytics.export');
+    });
+    
+    // Gestión de Sitemap
+    Route::prefix('sitemap')->group(function () {
+        Route::get('/', [SitemapController::class, 'index'])->name('sitemap.index');
+        Route::get('/generate', [SitemapController::class, 'generateSitemap'])->name('sitemap.generate');
+        Route::get('/download', [SitemapController::class, 'downloadSitemap'])->name('sitemap.download');
+        Route::get('/preview', [SitemapController::class, 'previewSitemap'])->name('sitemap.preview');
+        Route::get('/json', [SitemapController::class, 'jsonSitemap'])->name('sitemap.json');
+        Route::post('/update', [SitemapController::class, 'updateSitemap'])->name('sitemap.update');
+    });
 });
 
 // Dashboard estándar de Jetstream

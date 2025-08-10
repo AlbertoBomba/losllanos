@@ -5,7 +5,9 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('images/logo/logo.png') }}" class="h-16 lg:h-20 object-cover" alt="Club de tiro los llanos">
+                    <a href="{{ route('home') }}" class="flex items-center">
+                        <img src="{{ asset('images/logo/logo.png') }}" class="h-16 lg:h-20 object-cover" alt="Club de tiro los llanos">
+                    </a>
                 </div>
                 
                 <!-- Desktop Menu -->
