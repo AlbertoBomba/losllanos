@@ -58,26 +58,6 @@ class ReviewController extends Controller
             'service_type' => 'required|in:caza_perdiz,caza_faisan,caza_codorniz,caza_paloma,tiradas_finca,venta_aves',
             'title' => 'required|string|max:255',
             'content' => 'required|string|min:50'
-        ], [
-            'reviewer_name.required' => 'El nombre es obligatorio.',
-            'reviewer_name.string' => 'El nombre debe ser un texto válido.',
-            'reviewer_name.max' => 'El nombre no puede tener más de 255 caracteres.',
-            'reviewer_email.required' => 'El email es obligatorio.',
-            'reviewer_email.email' => 'Debes introducir un email válido.',
-            'reviewer_email.max' => 'El email no puede tener más de 255 caracteres.',
-            'reviewer_location.string' => 'La ubicación debe ser un texto válido.',
-            'reviewer_location.max' => 'La ubicación no puede tener más de 255 caracteres.',
-            'rating.required' => 'Debes seleccionar una puntuación.',
-            'rating.integer' => 'La puntuación debe ser un número válido.',
-            'rating.between' => 'La puntuación debe estar entre 1 y 5 estrellas.',
-            'service_type.required' => 'Debes seleccionar un tipo de servicio.',
-            'service_type.in' => 'El tipo de servicio seleccionado no es válido.',
-            'title.required' => 'El título es obligatorio.',
-            'title.string' => 'El título debe ser un texto válido.',
-            'title.max' => 'El título no puede tener más de 255 caracteres.',
-            'content.required' => 'El contenido de la reseña es obligatorio.',
-            'content.string' => 'El contenido debe ser un texto válido.',
-            'content.min' => 'El contenido debe tener al menos 50 caracteres para ser útil.'
         ]);
 
         Review::create([

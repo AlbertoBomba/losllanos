@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Models\Post;
 
 // RUTAS PÚBLICAS
@@ -25,6 +26,10 @@ Route::get('/productos/aves-de-caza/palomas', [HomeController::class, 'palomas']
 Route::get('/reseñas', [ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reseñas/escribir', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reseñas', [ReviewController::class, 'store'])->name('reviews.store');
+
+// CONTACTO
+Route::get('/contacto', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store');
 
 // PÁGINAS LEGALES
 Route::view('/politica-privacidad', 'frontend.politica-privacidad')->name('politica-privacidad');
@@ -49,8 +54,6 @@ Route::redirect('/tiradas', '/productos/sueltas', 301);
 Route::redirect('/sueltas', '/productos/sueltas', 301);
 Route::redirect('/blog', '/blog-de-caza', 301);
 Route::redirect('/noticias', '/blog-de-caza', 301);
-Route::redirect('/contacto', '/', 301);
-Route::redirect('/contact', '/', 301);
 
 // RUTAS DE SITEMAP Y SEO
 Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');

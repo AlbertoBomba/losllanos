@@ -26,7 +26,7 @@ parque temático. Un lugar para prácticar la caza en españa')
     </style>
 
 <!-- Hero Section with improved accessibility -->
-    <section id="hero_section" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
+    <section  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
         <!-- Video Background -->
         <video autoplay muted loop class="absolute inset-0 w-full h-full z-0" style="object-fit: cover; object-position: center; transform: scale(1.5);">
             <source src="{{asset('media/tirada-los-llanos.mp4')}}" type="video/mp4">
@@ -607,45 +607,7 @@ parque temático. Un lugar para prácticar la caza en españa')
         </div>
     </section>
 
-    <!-- Fixed CTA Widget -->
-    <div id="ctaWidget" class="fixed right-4 lg:right-6 top-1/2 transform -translate-y-1/2 z-40 opacity-0 invisible transition-all duration-500">
-        <div class="bg-gradient-to-br from-[#4b5d3a] to-[#3a4a2c] rounded-2xl shadow-2xl p-4 lg:p-6 w-16 lg:w-64 lg:max-w-xs">
-            <!-- Header - Solo en desktop -->
-            <div class="hidden lg:block text-center mb-4">
-                <div class="w-12 h-12 bg-[#8b5e3c] rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-crosshairs text-white text-xl"></i>
-                </div>
-                <h3 class="font-display font-bold text-white text-lg uppercase tracking-wide">
-                    ¿Interesado?
-                </h3>
-                <p class="text-sm text-gray-200 font-sans mt-2 leading-relaxed">
-                    Contacta con nuestros expertos
-                </p>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="space-y-2 lg:space-y-3">
-                <!-- Móvil: Solo iconos | Desktop: Botones completos -->
-                <button onclick="window.open('tel:+34925123456', '_self')" class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Llamar">
-                    <i class="fas fa-phone lg:mr-2"></i>
-                    <span class="hidden lg:inline">Llamar</span>
-                </button>
-                <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta General - Los Llanos', '_self')" class="w-full bg-white hover:bg-gray-100 text-[#4b5d3a] p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Enviar Email">
-                    <i class="fas fa-envelope lg:mr-2"></i>
-                    <span class="hidden lg:inline">Email</span>
-                </button>
-                <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20me%20interesa%20información%20sobre%20sus%20servicios%20de%20caza', '_blank')" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="WhatsApp">
-                    <i class="fab fa-whatsapp lg:mr-2"></i>
-                    <span class="hidden lg:inline">WhatsApp</span>
-                </button>
-            </div>
-            
-            <!-- Close Button -->
-            <button id="closeCta" class="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-5 h-5 lg:w-6 lg:h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs transition-all duration-300">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
+   
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
@@ -731,83 +693,12 @@ parque temático. Un lugar para prácticar la caza en españa')
             }
         });
 
-        // Header background change on scroll
-        const header = document.getElementById('header');
-        const headerContent = document.getElementById('headerContent');
+
         
-        // Obtener elementos específicos del menú
-        const mobileMenuIcon = document.getElementById('menuIcon');
-        const dropdownIcon = document.getElementById('mobileDropdownIcon');
         
-        window.addEventListener('scroll', () => {
-            const scrollY = window.pageYOffset;
-            const maxScroll = 300; // Distancia máxima de scroll para el efecto completo
-            
-            // Calcular la opacidad basada en el scroll (0 a 1)
-            let opacity = Math.min(scrollY / maxScroll, 1);
-            
-            // Calcular el blur basado en el scroll
-            let blurAmount = Math.min(scrollY / 100, 1) * 4; // Máximo 4px de blur
-            
-            // Calcular la sombra basada en el scroll
-            let shadowOpacity = Math.min(scrollY / 200, 1);
-            
-            // Calcular el color del texto basado en el scroll
-            // Cuando opacity = 0 (arriba): texto blanco (255, 255, 255)
-            // Cuando opacity = 1 (abajo): texto gris oscuro (55, 65, 81)
-            let textRed = Math.round(255 - (255 - 55) * opacity);
-            let textGreen = Math.round(255 - (255 - 65) * opacity);
-            let textBlue = Math.round(255 - (255 - 81) * opacity);
-            
-            // Debug
-            // console.log('Scroll Y:', scrollY, 'Opacity:', opacity);
-            
-            if (scrollY > 0) {
-                // Aplicar estilos al header
-                if (headerContent) {
-                    headerContent.style.backgroundColor = `rgba(245, 241, 227, ${opacity})`;
-                    headerContent.style.backdropFilter = `blur(${blurAmount}px)`;
-                    headerContent.style.boxShadow = `0 4px 6px rgba(0, 0, 0, ${shadowOpacity * 0.1})`;
-                }
-                
-                // Aplicar color de texto a todos los enlaces del menú desktop
-                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                desktopLinks.forEach(link => {
-                    link.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                });
-                
-                // Aplicar color al icono del menú móvil
-                if (mobileMenuIcon) {
-                    mobileMenuIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                }
-                
-                // Aplicar color al icono del dropdown móvil
-                if (dropdownIcon) {
-                    dropdownIcon.style.color = `rgb(${textRed}, ${textGreen}, ${textBlue})`;
-                }
-            } else {
-                // Restaurar estilos originales
-                if (headerContent) {
-                    headerContent.style.backgroundColor = 'rgba(245, 241, 227, 0)';
-                    headerContent.style.backdropFilter = 'blur(0px)';
-                    headerContent.style.boxShadow = 'none';
-                }
-                
-                // Restaurar color blanco cuando estamos arriba
-                const desktopLinks = document.querySelectorAll('#header nav .flex.items-center.space-x-6 a');
-                desktopLinks.forEach(link => {
-                    link.style.color = 'white';
-                });
-                
-                if (mobileMenuIcon) {
-                    mobileMenuIcon.style.color = 'white';
-                }
-                
-                if (dropdownIcon) {
-                    dropdownIcon.style.color = 'white';
-                }
-            }
-        });
+     
+        
+       
 
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
@@ -816,15 +707,6 @@ parque temático. Un lugar para prácticar la caza en españa')
             });
         });
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = document.getElementById('menuIcon');
-        const mobileProductosBtn = document.getElementById('mobileProductosBtn');
-        const mobileDropdown = document.getElementById('mobileDropdown');
-        const mobileDropdownIcon = document.getElementById('mobileDropdownIcon');
-        
-        let isMenuOpen = false;
 
         // Reviews Carousel Functionality
         class ReviewsCarousel {
@@ -1124,81 +1006,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                 });
             }
         });
-        let isDropdownOpen = false;
-        
-        // Toggle mobile menu
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                
-                if (isMenuOpen) {
-                    // Open menu
-                    mobileMenu.classList.remove('opacity-0', 'invisible', 'max-h-0');
-                    mobileMenu.classList.add('opacity-100', 'visible', 'max-h-96');
-                    menuIcon.classList.remove('fa-bars');
-                    menuIcon.classList.add('fa-times');
-                } else {
-                    // Close menu
-                    mobileMenu.classList.remove('opacity-100', 'visible', 'max-h-96');
-                    mobileMenu.classList.add('opacity-0', 'invisible', 'max-h-0');
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                    
-                    // Close dropdown if open
-                    if (isDropdownOpen) {
-                        toggleMobileDropdown();
-                    }
-                }
-            });
-        }
-        
-        // Toggle mobile dropdown
-        function toggleMobileDropdown() {
-            isDropdownOpen = !isDropdownOpen;
-            
-            if (isDropdownOpen) {
-                mobileDropdown.classList.remove('opacity-0', 'invisible', 'max-h-0');
-                mobileDropdown.classList.add('opacity-100', 'visible', 'max-h-32');
-                mobileDropdownIcon.classList.add('rotate-180');
-            } else {
-                mobileDropdown.classList.remove('opacity-100', 'visible', 'max-h-32');
-                mobileDropdown.classList.add('opacity-0', 'invisible', 'max-h-0');
-                mobileDropdownIcon.classList.remove('rotate-180');
-            }
-        }
-        
-        if (mobileProductosBtn) {
-            mobileProductosBtn.addEventListener('click', toggleMobileDropdown);
-        }
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (isMenuOpen && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenuBtn.click();
-            }
-        });
-        
-        // Close mobile menu on window resize to desktop size
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024 && isMenuOpen) {
-                mobileMenuBtn.click();
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
+       
         // Filter functionality for services
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -1449,47 +1257,6 @@ parque temático. Un lugar para prácticar la caza en españa')
             }
         });
 
-        // Fixed CTA Widget functionality
-        const ctaWidget = document.getElementById('ctaWidget');
-        const closeCta = document.getElementById('closeCta');
-        let ctaShown = false;
-        
-        // Show CTA widget after scrolling down a bit
-        window.addEventListener('scroll', () => {
-            const scrollY = window.pageYOffset;
-            
-            if (scrollY > 500 && !ctaShown) {
-                ctaWidget.classList.remove('opacity-0', 'invisible');
-                ctaWidget.classList.add('opacity-100', 'visible');
-                ctaShown = true;
-            }
-        });
-        
-        // Close CTA widget
-        closeCta.addEventListener('click', () => {
-            ctaWidget.classList.add('opacity-0', 'invisible');
-            ctaWidget.classList.remove('opacity-100', 'visible');
-            ctaShown = false;
-        });
-        
-        // Responsive positioning for mobile devices
-        function handleResize() {
-            const isMobile = window.innerWidth < 768;
-            
-            if (isMobile) {
-                // On mobile: position at bottom-right, smaller and more compact
-                ctaWidget.classList.remove('top-1/2', '-translate-y-1/2');
-                ctaWidget.classList.add('bottom-20', 'top-auto');
-                ctaWidget.style.transform = 'none';
-            } else {
-                // On desktop: center vertically on the right
-                ctaWidget.classList.remove('bottom-20', 'top-auto');
-                ctaWidget.classList.add('top-1/2', '-translate-y-1/2');
-                ctaWidget.style.transform = 'translateY(-50%)';
-            }
-        }
-        
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Call on load
+       
     </script>
 @endsection
