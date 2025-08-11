@@ -108,19 +108,18 @@ class ContactController extends Controller
         // Por ejemplo, usando Mail::send() con una plantilla
         
         // Simulación del envío
-        Log::info('Email de contacto enviado (simulado)', [
-            'to' => config('mail.from.address', 'att@clubdetiro-losllanos.es'),
-            'subject' => 'Nuevo contacto: ' . $data['subject'],
-            'from' => $data['email']
-        ]);
+        // Log::info('Email de contacto enviado (simulado)', [
+        //     'to' => config('mail.from.address', 'att@clubdetiro-losllanos.es'),
+        //     'subject' => 'Nuevo contacto: ' . $data['subject'],
+        //     'from' => $data['email']
+        // ]);
         
         // Para implementar el envío real, descomenta y configura:
-        /*
         Mail::send('emails.contact', $data, function($message) use ($data) {
             $message->to(config('mail.from.address', 'att@clubdetiro-losllanos.es'))
                     ->subject('Nuevo contacto: ' . $data['subject'])
                     ->replyTo($data['email'], $data['name']);
         });
-        */
+        
     }
 }
