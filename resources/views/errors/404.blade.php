@@ -61,7 +61,7 @@
                     <i class="fas fa-shopping-cart mr-2"></i>
                     Ver Productos
                 </a>
-                <button onclick="window.open('tel:+34925123456', '_self')" 
+                <button onclick="window.open('tel:+34608910639', '_self')" 
                         class="bg-[#059669] hover:bg-[#047857] text-white px-6 py-4 rounded-lg font-action font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                     <i class="fas fa-phone mr-2"></i>
                     Llamar Ahora
@@ -203,17 +203,17 @@
                 
                 <!-- Contact Methods -->
                 <div class="grid md:grid-cols-3 gap-6">
-                    <button onclick="window.open('tel:+34925123456', '_self')" 
+                    <button onclick="window.open('tel:+34608910639', '_self')" 
                             class="bg-white text-[#4b5d3a] hover:bg-gray-100 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fas fa-phone mr-2"></i>
                         925 123 456
                     </button>
-                    <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta desde página 404&body=Hola,%20estaba%20buscando%20información%20y%20llegué%20a%20la%20página%20404.%20¿Podrían%20ayudarme?', '_self')" 
+                    <button onclick="window.open('mailto:att@clubdetiro-losllanos.es?subject=Consulta desde página 404&body=Hola,%20estaba%20buscando%20información%20y%20llegué%20a%20la%20página%20404.%20¿Podrían%20ayudarme?', '_self')" 
                             class="bg-[#8b5e3c] hover:bg-[#7a5235] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fas fa-envelope mr-2"></i>
                         Email
                     </button>
-                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20llegué%20a%20la%20página%20404%20y%20necesito%20ayuda%20para%20encontrar%20información', '_blank')" 
+                    <button onclick="window.open('https://wa.me/34608910639?text=Hola,%20llegué%20a%20la%20página%20404%20y%20necesito%20ayuda%20para%20encontrar%20información', '_blank')" 
                             class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fab fa-whatsapp mr-2"></i>
                         WhatsApp

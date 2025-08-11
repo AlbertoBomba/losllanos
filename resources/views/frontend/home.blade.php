@@ -31,7 +31,7 @@ parque temático. Un lugar para prácticar la caza en españa')
         <video autoplay muted loop class="absolute inset-0 w-full h-full z-0" style="object-fit: cover; object-position: center; transform: scale(1.5);">
             <source src="{{asset('media/tirada-los-llanos.mp4')}}" type="video/mp4">
             <!-- Fallback image if video doesn't load -->
-            {{-- <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&h=1080&fit=crop" alt="Travel background" class="w-full h-full object-cover"> --}}
+            <img src="{{asset('images/general/cazador-codorniz.webp')}}" alt="Imagen de cazador con codorniz" class="w-full h-full object-cover">
         </video>
         
         <!-- Dark overlay -->
@@ -49,12 +49,12 @@ parque temático. Un lugar para prácticar la caza en españa')
             
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                <button class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                <a href="{{ route('productos.aves-de-caza') }}" title="Ir a la sección de aves de caza" class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                     Sueltas o cacerías
-                </button>
-                <button class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                </a>
+                 <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                     Venta de aves de caza
-                </button>
+                </a>
             </div>
             
             <!-- Bottom Section with Avatars and Stats -->
@@ -63,11 +63,11 @@ parque temático. Un lugar para prácticar la caza en españa')
                 <div class="flex items-center space-x-4 mb-8 md:mb-0">
                     <div class="flex -space-x-3">
                         <img src="{{asset('images/follows/folow_1.jpg')}}" 
-                             class="w-12 h-12 rounded-full border-3 border-white" alt="cazador 1">
+                             class="w-12 h-12 rounded-full border-3 border-white" alt="Autores reseña general 1">
                         <img src="{{asset('images/follows/folow_2.jpg')}}" 
-                             class="w-12 h-12 rounded-full border-3 border-white" alt="cazador 2">
+                             class="w-12 h-12 rounded-full border-3 border-white" alt="Autores reseña general 2">
                         <img src="{{asset('images/follows/folow_3.jpg')}}" 
-                             class="w-12 h-12 rounded-full border-3 border-white" alt="cazador 3">
+                             class="w-12 h-12 rounded-full border-3 border-white" alt="Autores reseña general 3">
                         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full border-3 border-white flex items-center justify-center">
                             <span class="text-white text-sm font-semibold">16+</span>
                         </div>
@@ -103,11 +103,10 @@ parque temático. Un lugar para prácticar la caza en españa')
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-dark mb-4 uppercase tracking-wide font-display">¿Qué ofrecemos en el sector de la caza?</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto font-sans leading-relaxed">
-                   Ofrecemos una experiencia única de <a href="https://es.wikipedia.org/wiki/Caza" title="define caza" target="_blank" class="cursor:pointer"> caza </a> en un entorno rústico incomparable. 
+                   Ofrecemos una experiencia única de <strong><a href="https://es.wikipedia.org/wiki/Caza" title="Define caza desde la wikipedia" target="_blank" class="cursor:pointer"> caza </a></strong> en un entorno rústico incomparable. 
                    Disfruta de una jornada completa con merienda, comida durante la suelta y la mejor organización. También realizamos venta directa de perdices, faisanes, codornices y palomas.
                 </p>
             </div>
-
             <!-- Filter Buttons -->
             <div class="flex justify-center mb-12">
                 <div class="bg-white rounded-full p-2 shadow-lg" role="tablist" aria-label="Filtros de productos">
@@ -145,9 +144,11 @@ parque temático. Un lugar para prácticar la caza en españa')
                         <div class="flex items-center text-gray-600 mb-4 font-sans">
                             <span>Temporada: 25 - 26</span>
                         </div>
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
-                            Consultar
-                        </button>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.aves-de-caza.perdices')}}" title="Ir a la ficha producto para comprar perdices" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -169,9 +170,11 @@ parque temático. Un lugar para prácticar la caza en españa')
                             <i class="far fa-calendar-alt mr-2"></i>
                             <span>Temporada: 25 - 26</span>
                         </div>
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
-                            Consultar
-                        </button>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.aves-de-caza.codornices')}}" title="Ir a la ficha de producto para comprar codornices" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -193,14 +196,41 @@ parque temático. Un lugar para prácticar la caza en españa')
                             <i class="far fa-calendar-alt mr-2"></i>
                             <span>Temporada: 25 - 26</span>
                         </div>
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
-                            Consultar
-                        </button>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.aves-de-caza.palomas')}}" title="Ir a la ficha de producto para comprar palomas" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
+                    <img src="{{asset('images/general/cazador-perdiz-2.webp')}}"   
+                         alt="cazador contra perdiz sobre el fondo campos de castilla" 
+                         class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-sans font-medium">Aún no disponemos de calendario</span>
+                            <div class="text-right">
+                                {{-- <div class="text-2xl font-display font-bold text-accent">Precio</div>
+                                <div class="text-gray-600 text-sm font-sans">a consultar</div> --}}
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-dark mb-2 uppercase tracking-wide">Próximamente</h3>
+                        <div class="flex items-center text-gray-600 mb-4 font-sans">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <span>Temporada: Oct - Mar</span>
+                        </div>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.sueltas')}}" title="Ir a la ficha de sueltas y cacerías" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar fecha y precio
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Service Card 4 -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
+                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
                     <img src="{{asset('images/general/cazador-perdiz-2.webp')}}"   
                          alt="cazador contra perdiz sobre el fondo campos de castilla" 
                          class="w-full h-48 object-cover object-top">
@@ -217,16 +247,18 @@ parque temático. Un lugar para prácticar la caza en españa')
                             <i class="far fa-calendar-alt mr-2"></i>
                             <span>Temporada: Oct - Mar</span>
                         </div>
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
-                            Consultar fecha y precio
-                        </button>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.sueltas')}}" title="Ir a la ficha de sueltas y cacerías" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar fecha y precio
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </div> --}}
 
                 
 
                 <!-- Service Card 5 -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="finca">
+                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="finca">
                    <img src="{{asset('images/general/cazador-faisan.webp')}}"   
                          alt="cazador contra paloma sobre un fondo de campos de castilla" class="w-full h-48 object-cover object-top">
                     <div class="p-6">
@@ -246,9 +278,9 @@ parque temático. Un lugar para prácticar la caza en españa')
                             Consultar fecha y precio
                         </button>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Service Card 7 -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="premium">
+                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="premium">
                     <img src="{{asset('images/general/cazador-codorniz.webp')}}"   
                          alt="cazador contra codorniz" class="w-full h-48 object-cover object-top">
                     <div class="p-6">
@@ -268,7 +300,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                             Consultar fecha y precio
                         </button>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -278,7 +310,7 @@ parque temático. Un lugar para prácticar la caza en españa')
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{asset('images/general/padre-hijo-cazando-perdices.webp')}}" 
-                 alt="Padre e hijo cazando perdices" 
+                 alt="Padre e hijo conservando la tradición de la caza de perdices" 
                  class="w-full h-full object-cover">
         </div>
         
@@ -295,10 +327,10 @@ parque temático. Un lugar para prácticar la caza en españa')
         </div>
     </section>
 
-    <!-- Exclusive Deals Section -->
-    <section class="py-20 bg-[#f5f1e3]">
+    <!-- Section About Us -->
+    <section id="quienes-somos" class="py-20 bg-[#f5f1e3]">
         <div class="container mx-auto px-6">
-            <!-- First Card - 30% Discount -->
+            
             <div class="mb-12">
                 <div class="grid lg:grid-cols-2 gap-0 rounded-3xl shadow-lg overflow-hidden">
                     <!-- Image -->
@@ -309,7 +341,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                     </div>
                     
                     <!-- Content -->
-                    <div class="flex items-center p-8 lg:p-12">
+                    <div  class="flex items-center p-8 lg:p-12">
                         <div>
                             <!-- Title -->
                             <h3 class="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-4 leading-tight">
@@ -567,7 +599,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                                              {{ Str::limit($post->content, 120) }}
                                         </p>
                                         {{-- faltaría poner el link al post --}}
-                                        <a href="#" class="text-[#4b5d3a] hover:text-[#3a4a2c] font-action font-semibold tracking-wide uppercase">Leer Más →</a>
+                                        <a href="{{ route('blog-de-caza.show', $post->slug) }}" title="Ir a noticia {{ $post->title }}" class="text-[#4b5d3a] hover:text-[#3a4a2c] font-action font-semibold tracking-wide uppercase">Leer Más →</a>
                                     </div>
                                 </div>
                             @endforeach
@@ -575,8 +607,8 @@ parque temático. Un lugar para prácticar la caza en españa')
                     
             </div>
             <div class="text-center mt-12">
-                <a href="#" 
-                class="w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg">
+                 <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs" 
+                    class="w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg">
                     Ver todas las noticias del blog
                 </a>
             </div>
@@ -585,30 +617,6 @@ parque temático. Un lugar para prácticar la caza en españa')
     <!-- Reviews Section -->
     @livewire('reviews-section')
     
-    <!-- Newsletter Section -->
-    <section class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-display font-bold text-white mb-4 uppercase tracking-wide">
-                    Mantente Informado
-                </h2>
-                <p class="text-xl text-gray-200 mb-8 font-sans leading-relaxed">
-                    Suscríbete a nuestro newsletter y recibe los últimos artículos, consejos y noticias 
-                    del mundo de la caza directamente en tu correo.
-                </p>
-                
-                <div class="max-w-2xl mx-auto">
-                    @livewire('newsletter-hero')
-                    <p class="text-gray-300 text-sm mt-4 font-sans">
-                         * No compartimos tu información. Puedes darte de baja en cualquier momento.
-                    </p> 
-                </div>
-            </div>
-        </div>
-    </section>
-
-   
-
     <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
         <i class="fas fa-chevron-up"></i>

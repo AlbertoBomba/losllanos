@@ -22,6 +22,9 @@ Route::get('/productos/aves-de-caza/faisanes', [HomeController::class, 'faisanes
 Route::get('/productos/aves-de-caza/codornices', [HomeController::class, 'codornices'])->name('productos.aves-de-caza.codornices');
 Route::get('/productos/aves-de-caza/palomas', [HomeController::class, 'palomas'])->name('productos.aves-de-caza.palomas');
 
+// PÁGINAS INSTITUCIONALES
+Route::view('/quienes-somos', 'frontend.quienes-somos')->name('quienes-somos');
+
 // RESEÑAS
 Route::get('/reseñas', [ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/reseñas/escribir', [ReviewController::class, 'create'])->name('reviews.create');

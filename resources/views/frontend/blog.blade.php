@@ -73,21 +73,7 @@
                                 </div>
                                 
                                 <!-- Social Share -->
-                                {{-- <div class="flex items-center space-x-3">
-                                    <span class="text-gray-700 font-semibold">Compartir:</span>
-                                    <a href="#" class="w-8 h-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition">
-                                        <i class="fab fa-facebook-f text-sm"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-blue-400 hover:bg-blue-500 text-white rounded-full flex items-center justify-center transition">
-                                        <i class="fab fa-twitter text-sm"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-green-600 hover:bg-green-700 text-white rounded-full flex items-center justify-center transition">
-                                        <i class="fab fa-whatsapp text-sm"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 bg-gray-600 hover:bg-gray-700 text-white rounded-full flex items-center justify-center transition">
-                                        <i class="fas fa-link text-sm"></i>
-                                    </a>
-                                </div> --}}
+                                <x-social-share :title="$post->title" :description="Str::limit(strip_tags($post->content), 100)" show-labels="true" />
                             </div>
                             <!-- Article Title -->
                             <h1 class="text-3xl lg:text-4xl font-display font-bold text-dark mb-6 leading-tight">

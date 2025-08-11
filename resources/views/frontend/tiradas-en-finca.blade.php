@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Tiradas en Finca por Meses - Temporada de Caza | Los Llanos Toledo')
+@section('title', 'Cazar perdices | Los Llanos Toledo')
 @section('description', 'Organiza tu temporada de caza con nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. Planificación perfecta para toda la temporada.')
 
 @section('content')
@@ -20,14 +20,13 @@
         <!-- Content -->
         <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-20">
             <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
-                Tiradas en Finca
+                Cazar Perdices, Faisanes o codornices en Finca
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
                 <em class="font-display text-2xl md:text-3xl">Tu temporada de caza perfectamente planificada</em><br><br>
                 Organiza tus <strong>tiradas en finca mes a mes</strong> durante toda la temporada. 
                 Cada mes ofrece condiciones únicas y experiencias excepcionales.
             </p>
-            
             <!-- Quick Stats -->
             <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
                 <div class="text-center">
@@ -68,30 +67,29 @@
 
             <!-- Months Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                
-                <!-- Octubre Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- Octubre Card --}}
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                  
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/cazador-perdiz-2.webp')}}" 
                              alt="Tiradas en Octubre" 
                              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                        
                         <div class="absolute top-4 left-4 bg-[#8b5e3c] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Octubre
                         </div>
                         
-                        <!-- Temperature Badge -->
+                        
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#8b5e3c] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Templado
                         </div>
                         
-                        <!-- Overlay -->
+                        
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
+                   
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Octubre
@@ -102,7 +100,7 @@
                             Condiciones ideales para comenzar la temporada.
                         </p>
                         
-                        <!-- Features -->
+                        
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-thermometer-half text-[#8b5e3c] mr-2"></i>
@@ -118,38 +116,37 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                        
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Octubre
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Noviembre Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                   
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/cazador-faisan.webp')}}" 
                              alt="Tiradas en Noviembre" 
                              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                      
                         <div class="absolute top-4 left-4 bg-[#4b5d3a] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Noviembre
                         </div>
                         
-                        <!-- Temperature Badge -->
+                       
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#4b5d3a] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Fresco
                         </div>
                         
-                        <!-- Overlay -->
+                       
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Noviembre
@@ -160,7 +157,6 @@
                             y aves en su mejor momento de actividad.
                         </p>
                         
-                        <!-- Features -->
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-crown text-[#4b5d3a] mr-2"></i>
@@ -176,38 +172,36 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Noviembre
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Diciembre Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                  
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/historia-caza-2.webp')}}" 
                              alt="Tiradas en Diciembre" 
                              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                        
                         <div class="absolute top-4 left-4 bg-[#059669] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Diciembre
                         </div>
                         
-                        <!-- Temperature Badge -->
+                       
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#059669] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Frío
                         </div>
                         
-                        <!-- Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
+                    
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Diciembre
@@ -218,7 +212,7 @@
                             proporciona jornadas memorables en un entorno único.
                         </p>
                         
-                        <!-- Features -->
+                        
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-snowflake text-[#059669] mr-2"></i>
@@ -234,38 +228,37 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#059669] hover:bg-[#047857] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Diciembre
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Enero Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                    
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/finca.webp')}}" 
                              alt="Tiradas en Enero" 
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                       
                         <div class="absolute top-4 left-4 bg-[#6366f1] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Enero
                         </div>
                         
-                        <!-- Temperature Badge -->
+                        
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#6366f1] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Muy Frío
                         </div>
                         
-                        <!-- Overlay -->
+                        
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
+                   
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Enero
@@ -276,7 +269,7 @@
                             se comporten de manera predecible, ideal para planificar.
                         </p>
                         
-                        <!-- Features -->
+                       
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-calendar-alt text-[#6366f1] mr-2"></i>
@@ -292,38 +285,38 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                        <!-
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#6366f1] hover:bg-[#5855eb] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Enero
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Febrero Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                   
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/perdiz-volando.webp')}}" 
                              alt="Tiradas en Febrero" 
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                       
                         <div class="absolute top-4 left-4 bg-[#dc2626] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Febrero
                         </div>
                         
-                        <!-- Temperature Badge -->
+                       
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#dc2626] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Frío
                         </div>
                         
-                        <!-- Overlay -->
+                       
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
+                    
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Febrero
@@ -334,7 +327,7 @@
                             para la época reproductiva, aumentando su actividad.
                         </p>
                         
-                        <!-- Features -->
+                        
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-heart text-[#dc2626] mr-2"></i>
@@ -350,38 +343,38 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                        
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#dc2626] hover:bg-[#b91c1c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Febrero
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Marzo Card -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
-                    <!-- Image Container -->
+                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                   
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/cazador-perdiz-2.webp')}}" 
                              alt="Tiradas en Marzo" 
                              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110">
                         
-                        <!-- Month Badge -->
+                       
                         <div class="absolute top-4 left-4 bg-[#f59e0b] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Marzo
                         </div>
                         
-                        <!-- Temperature Badge -->
+                       
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#f59e0b] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Templado
                         </div>
                         
-                        <!-- Overlay -->
+                        
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                     
-                    <!-- Content -->
+                   
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
                             Marzo
@@ -392,7 +385,7 @@
                             para disfrutar de las tiradas antes del período de veda.
                         </p>
                         
-                        <!-- Features -->
+                       
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm">
                                 <i class="fas fa-flag-checkered text-[#f59e0b] mr-2"></i>
@@ -408,14 +401,18 @@
                             </div>
                         </div>
                         
-                        <!-- CTA Button -->
-                        <button onclick="window.open('tel:+34925123456', '_self')" 
+                       
+                        <button onclick="window.open('tel:+34608910639', '_self')" 
                                 class="w-full bg-[#f59e0b] hover:bg-[#d97706] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             <i class="fas fa-phone mr-2"></i>
                             Consultar Marzo
                         </button>
                     </div>
-                </div>
+                </div> --}}
+            </div>
+            <div>
+                <p class="text-center font-bold text-2xl">Aun no disponemos de calendario para la temporada de 2024 - 2025.</p>
+                <p class="text-center font-bold text-2xl">Suscríbete a nuestras newsletters, para estar informado sobre todas nuestras novedades.</p>
             </div>
         </div>
     </section>
@@ -504,139 +501,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-20 bg-[#4b5d3a]">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-display font-bold text-white mb-6 uppercase tracking-wide">
-                    Planifica tu Temporada Perfecta
-                </h2>
-                <p class="text-xl text-gray-200 mb-8 font-sans leading-relaxed">
-                    Contacta ahora y organiza tus tiradas en finca para toda la temporada. 
-                    Cada mes tiene su momento perfecto para la caza.
-                </p>
-                
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="window.open('tel:+34925123456', '_self')" 
-                            class="bg-white text-[#4b5d3a] hover:bg-gray-100 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                        <i class="fas fa-phone mr-2"></i>
-                        Llamar Ahora: 925 123 456
-                    </button>
-                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20quiero%20información%20sobre%20tiradas%20en%20finca%20por%20meses', '_blank')" 
-                            class="border-2 border-white text-white hover:bg-white hover:text-[#4b5d3a] px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Contactar por WhatsApp
-                    </button>
-                </div>
-                
-                <div class="mt-8 text-gray-200 font-sans text-sm">
-                    <p>📍 <strong>Los Llanos, Toledo</strong> | 🕒 <strong>Temporada Oct-Mar</strong> | 🎯 <strong>6 meses disponibles</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fixed CTA Widget -->
-    <div id="ctaWidget" class="fixed right-4 lg:right-6 top-1/2 transform -translate-y-1/2 z-40 opacity-0 invisible transition-all duration-500">
-        <div class="bg-gradient-to-br from-[#4b5d3a] to-[#3a4a2c] rounded-2xl shadow-2xl p-4 lg:p-6 w-16 lg:w-64 lg:max-w-xs">
-            <!-- Header - Solo en desktop -->
-            <div class="hidden lg:block text-center mb-4">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-calendar-alt text-[#4b5d3a] text-xl"></i>
-                </div>
-                <h3 class="font-display font-bold text-white text-lg uppercase tracking-wide">
-                    Tiradas en Finca
-                </h3>
-                <p class="text-sm text-gray-200 font-sans mt-2 leading-relaxed">
-                    ¿Te interesa? Contacta ahora
-                </p>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="space-y-2 lg:space-y-3">
-                <button onclick="window.open('tel:+34925123456', '_self')" class="w-full bg-white hover:bg-gray-100 text-[#4b5d3a] p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Llamar">
-                    <i class="fas fa-phone lg:mr-2"></i>
-                    <span class="hidden lg:inline">Llamar</span>
-                </button>
-                <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta Tiradas en Finca - Los Llanos', '_self')" class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Email">
-                    <i class="fas fa-envelope lg:mr-2"></i>
-                    <span class="hidden lg:inline">Email</span>
-                </button>
-                <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20me%20interesan%20las%20tiradas%20en%20finca%20mensuales', '_blank')" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="WhatsApp">
-                    <i class="fab fa-whatsapp lg:mr-2"></i>
-                    <span class="hidden lg:inline">WhatsApp</span>
-                </button>
-            </div>
-            
-            <!-- Close Button -->
-            <button id="closeCta" class="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-5 h-5 lg:w-6 lg:h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs transition-all duration-300">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // CTA Widget functionality
-            const ctaWidget = document.getElementById('ctaWidget');
-            const closeCta = document.getElementById('closeCta');
-            let ctaShown = false;
-            let ctaClosed = false;
-
-            function showCtaWidget() {
-                if (!ctaClosed && !ctaShown) {
-                    ctaWidget.classList.remove('opacity-0', 'invisible');
-                    ctaWidget.classList.add('opacity-100', 'visible');
-                    ctaShown = true;
-                }
-            }
-
-            function hideCtaWidget() {
-                ctaWidget.classList.add('opacity-0', 'invisible');
-                ctaWidget.classList.remove('opacity-100', 'visible');
-                ctaClosed = true;
-            }
-
-            // Show CTA after scrolling down
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 800) {
-                    showCtaWidget();
-                }
-            });
-
-            // Close CTA widget
-            if (closeCta) {
-                closeCta.addEventListener('click', hideCtaWidget);
-            }
-
-            // Scroll to Top functionality
-            const scrollToTopBtn = document.getElementById('scrollToTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-                    scrollToTopBtn.classList.add('opacity-100', 'visible');
-                } else {
-                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
-                    scrollToTopBtn.classList.remove('opacity-100', 'visible');
-                }
-            });
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
 @endsection

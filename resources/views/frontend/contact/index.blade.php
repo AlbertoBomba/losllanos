@@ -1,15 +1,22 @@
 @extends('layouts.frontend')
 
 @section('title', 'Contacto - Los Llanos')
-@section('description', 'Contacta con Los Llanos para consultas sobre nuestros servicios de caza: perdiz, faisán, codorniz, tiradas en finca y venta de aves. Te respondemos rápidamente.')
+@section('description', 'Contacta con Los Llanos para consultas sobre nuestros servicios de caza: perdiz, faisán, codorniz, 
+tiradas en finca y venta de aves. Te respondemos rápidamente.')
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-green-800 to-green-900 py-20 overflow-hidden">
+
+<section class="relative  min-h-[60vh]  bg-gradient-to-br from-green-800 to-green-900 py-20 overflow-hidden">
     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-    <div class="absolute inset-0 bg-[url('/images/backgrounds/contact-hero.jpg')] bg-cover bg-center bg-no-repeat opacity-30"></div>
-    
-    <div class="relative container mx-auto px-6">
+    {{-- <div class="absolute inset-0 bg-[url('/images/galery/13.JPG')] bg-cover bg-center bg-no-repeat opacity-30"></div> --}}
+    <div class="absolute inset-0 z-0">
+        <img src="{{asset('images/galery/13.JPG')}}" 
+                alt="Cazadores satisfechos" 
+                class="w-full h-full object-cover"
+                style="object-position: center;">
+    </div>
+    <div class="relative container mx-auto px-6 pt-20">
         <div class="max-w-4xl mx-auto text-center text-white">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 font-oswald">
                 Contacta con Nosotros
@@ -36,7 +43,7 @@
 </section>
 
 <!-- Contact Content -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-[#f5f1e3]">
     <div class="container mx-auto px-6">
         <div class="grid lg:grid-cols-3 gap-12">
             
@@ -183,7 +190,7 @@
                                    class="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded @error('privacy_policy') border-red-500 @enderror"
                                    required>
                             <label for="privacy_policy" class="text-sm text-gray-700">
-                                Acepto la <a href="/politica-privacidad" class="text-green-600 hover:text-green-700 underline" target="_blank">política de privacidad</a> y autorizo el tratamiento de mis datos para responder a mi consulta. <span class="text-red-500">*</span>
+                                Acepto la <a href="/politica-privacidad" title="Ir a la política de privacidad" class="text-green-600 hover:text-green-700 underline" target="_blank">política de privacidad</a> y autorizo el tratamiento de mis datos para responder a mi consulta. <span class="text-red-500">*</span>
                             </label>
                         </div>
                         @error('privacy_policy')
@@ -214,7 +221,7 @@
                                 <i class="fas fa-map-marker-alt text-green-600 text-lg mt-1 mr-3"></i>
                                 <div>
                                     <p class="font-medium text-gray-900">Dirección</p>
-                                    <p class="text-gray-700">Los Llanos<br>España</p>
+                                    <p class="text-gray-700">Finca Los Llanos - Bargas (Toledo)</p>
                                 </div>
                             </div>
                             
@@ -222,7 +229,7 @@
                                 <i class="fas fa-phone text-green-600 text-lg mt-1 mr-3"></i>
                                 <div>
                                     <p class="font-medium text-gray-900">Teléfono</p>
-                                    <p class="text-gray-700">+34 XXX XXX XXX</p>
+                                    <p class="text-gray-700">+34 608 910 639</p>
                                 </div>
                             </div>
                             
@@ -230,7 +237,7 @@
                                 <i class="fas fa-envelope text-green-600 text-lg mt-1 mr-3"></i>
                                 <div>
                                     <p class="font-medium text-gray-900">Email</p>
-                                    <p class="text-gray-700">info@losllanos.es</p>
+                                    <p class="text-gray-700">att@clubdetiro-losllanos.es</p>
                                 </div>
                             </div>
 
@@ -238,7 +245,7 @@
                                 <i class="fas fa-clock text-green-600 text-lg mt-1 mr-3"></i>
                                 <div>
                                     <p class="font-medium text-gray-900">Horario</p>
-                                    <p class="text-gray-700">Lunes a Domingo<br>9:00 - 20:00</p>
+                                    <p class="text-gray-700">Lunes a Domingo / 9:00 - 20:00</p>
                                 </div>
                             </div>
                         </div>
@@ -251,14 +258,6 @@
                             <li class="flex items-start">
                                 <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
                                 <span>Asesoramiento personalizado para tu experiencia de caza</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
-                                <span>Disponibilidad y precios actualizados</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
-                                <span>Información sobre temporadas de caza</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check text-green-600 mt-1 mr-3"></i>

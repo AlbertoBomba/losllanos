@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Blog de caza - los llanos')
-@section('description', 'Blog de caza, destinado a tener a todos nuestro clientes 
+@section('description', 'Blog de caza, destinado a tener a todos nuestro usuarios 
 informado sobre las últimas noticias y tendencias en el mundo de la caza.')
 
 @section('content')
@@ -13,7 +13,7 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
                 <nav class="flex mb-8" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <li class="inline-flex items-center">
-                            <a href="{{ route('home') }}" class="inline-flex items-center text-xl font-medium text-gray-700  hover:text-[#4b5d3a]">
+                            <a href="{{ route('home') }}" title="Ir a la página de inicio" class="inline-flex items-center text-xl font-medium text-gray-700  hover:text-[#4b5d3a]">
                                 <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                                 </svg>
@@ -83,8 +83,8 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
                                     </div>
                                 </div>
                                 <!-- CTA Button -->
-                                <a href="{{ route('blog-de-caza.show', $lastpost->slug) }}" class="inline-flex items-center bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-lg font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                                    Leer Artículo Completo
+                                <a href="{{ route('blog-de-caza.show', $lastpost->slug) }}" title="Ir al artículo completo: {{ $lastpost->title }}" class="inline-flex items-center bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-lg font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                                    Leer Artículo
                                     <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
                             </div>
@@ -126,7 +126,7 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
                                 </p>
                                 
                                 <!-- Read More Link -->
-                                <a href="{{ route('blog-de-caza.show', $post->slug) }}" class="text-[#4b5d3a] hover:text-[#3a4a2c] font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105">
+                                <a href="{{ route('blog-de-caza.show', $post->slug) }}" title="Ir al artículo completo: {{ $post->title }}" class="text-[#4b5d3a] hover:text-[#3a4a2c] font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105">
                                     Leer Más →
                                 </a>
                             </div>

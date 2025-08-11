@@ -74,17 +74,17 @@
                 </p>
                 
                 <div class="grid md:grid-cols-3 gap-4">
-                    <button onclick="window.open('tel:+34925123456', '_self')" 
+                    <button onclick="window.open('tel:+34608910639', '_self')" 
                             class="bg-white text-[#4b5d3a] hover:bg-gray-100 px-6 py-3 rounded-full font-action font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fas fa-phone mr-2"></i>
                         Llamar
                     </button>
-                    <button onclick="window.open('mailto:info@losllanos.com?subject=Error en la web&body=Hola,%20he%20encontrado%20un%20error%20500%20en%20la%20web.', '_self')" 
+                    <button onclick="window.open('mailto:att@clubdetiro-losllanos.es?subject=Error en la web&body=Hola,%20he%20encontrado%20un%20error%20500%20en%20la%20web.', '_self')" 
                             class="bg-[#8b5e3c] hover:bg-[#7a5235] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fas fa-envelope mr-2"></i>
                         Email
                     </button>
-                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20he%20encontrado%20un%20error%20en%20la%20web', '_blank')" 
+                    <button onclick="window.open('https://wa.me/34608910639?text=Hola,%20he%20encontrado%20un%20error%20en%20la%20web', '_blank')" 
                             class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-action font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fab fa-whatsapp mr-2"></i>
                         WhatsApp

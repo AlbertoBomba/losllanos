@@ -21,10 +21,10 @@ Todos los certificados sanitarios. Nos encargamos del transporte.')
         <!-- Content -->
         <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-20">
             <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
-                Recomendados la venta codornices para suelta
+               Venta y suelta de perdices, faisanes, codornices y palomas en finca
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
-                Ofrecemos dos líneas principales de productos: <strong>venta de aves de caza</strong> para sueltas y la <strong>organización de tiradas profesionales</strong>. 
+                Ofrecemos dos líneas principales de productos: <strong>venta de aves de caza</strong> para sueltas y la <strong>organización de tiradas profesionales en nuestra finca</strong>. 
                 Más de 30 años de experiencia nos avalan.
             </p>
         </div>
@@ -40,6 +40,27 @@ Todos los certificados sanitarios. Nos encargamos del transporte.')
         </div>
         
         <div class="container mx-auto px-6 relative z-10">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-8" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('home') }}" title="Ir a la página de inicio" class="inline-flex items-center text-xl font-medium text-gray-700  hover:text-[#4b5d3a]">
+                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                            </svg>
+                            Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center text-xl">
+                            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg>
+                            <span class="ml-1  font-medium text-gray-500 md:ml-2">Productos</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-dark mb-4 uppercase tracking-wide font-display">
                     Dos Especialidades, Una Pasión
@@ -113,9 +134,11 @@ Todos los certificados sanitarios. Nos encargamos del transporte.')
                         
                         <!-- Action Buttons -->
                         <div class="space-y-3">
-                            <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-6 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                                Consultar Disponibilidad
-                            </button>
+                            <div class="flex items-center justify-center w-full">
+                                <a href="{{ route('productos.aves-de-caza') }}" title="Consultar disponibilidad de aves de caza" class="w-full text-center bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-6 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                                    Consultar Disponibilidad
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -180,9 +203,11 @@ Todos los certificados sanitarios. Nos encargamos del transporte.')
                         
                         <!-- Action Buttons -->
                         <div class="space-y-3">
-                            <button class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-6 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                                Reservar Tirada
-                            </button>
+                            <div class="flex items-center justify-center w-full">
+                                <a href="{{ route('productos.sueltas') }}" title="Reservar tirada de aves de caza" class="w-full text-center bg-[#8b5e3c] hover:bg-[#7a5235] text-white  py-3 px-6 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                                      Reservar Tirada
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -232,40 +257,6 @@ Todos los certificados sanitarios. Nos encargamos del transporte.')
                         <div class="text-4xl md:text-5xl font-display font-bold text-[#8b5e3c] mb-2">100%</div>
                         <div class="text-white font-sans">Satisfacción garantizada</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact CTA Section -->
-    <section class="py-20 bg-[#f5f1e3]">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-display font-bold text-dark mb-6 uppercase tracking-wide">
-                    ¿Listo para Empezar?
-                </h2>
-                <p class="text-xl text-gray-600 mb-8 font-sans leading-relaxed">
-                    Contacta con nosotros para consultar disponibilidad de aves o reservar tu próxima tirada. 
-                    Nuestro equipo te ayudará a encontrar exactamente lo que necesitas.
-                </p>
-                
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="window.open('tel:+34925123456', '_self')" 
-                            class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                        <i class="fas fa-phone mr-2"></i>
-                        Llamar Ahora
-                    </button>
-                    <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta Productos - Los Llanos', '_self')" 
-                            class="border-2 border-[#4b5d3a] text-[#4b5d3a] hover:bg-[#4b5d3a] hover:text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Enviar Email
-                    </button>
-                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20me%20interesa%20información%20sobre%20sus%20productos', '_blank')" 
-                            class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        WhatsApp
-                    </button>
                 </div>
             </div>
         </div>

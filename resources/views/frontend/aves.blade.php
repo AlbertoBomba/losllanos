@@ -13,7 +13,6 @@
                  alt="Aves de caza Los Llanos" 
                  class="w-full h-full object-cover">
         </div>
-        
         <!-- Dark overlay -->
         <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
         
@@ -27,7 +26,6 @@
                 Ofrecemos <strong>todas nuestras aves de caza</strong> de la máxima calidad, 
                 criadas en libertad con todos los certificados sanitarios y garantía de origen.
             </p>
-            
             <!-- Quick Stats -->
             <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
                 <div class="text-center">
@@ -48,14 +46,38 @@
 
     <!-- Main Birds Section -->
     <section class="py-20 bg-[#f5f1e3] relative overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-image-pattern opacity-5" 
-                 style="background-image: url('{{asset('images/general/finca.webp')}}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
-            <div class="absolute inset-0 bg-[#f5f1e3] bg-opacity-90"></div>
-        </div>
-        
         <div class="container mx-auto px-6 relative z-10">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-8" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('home') }}" title="Ir a la página de inicio" class="inline-flex items-center text-xl font-medium text-gray-700  hover:text-[#4b5d3a]">
+                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                            </svg>
+                            Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('productos') }}" title="Ir a la página de productos" class="inline-flex items-center text-xl font-medium text-gray-700  hover:text-[#4b5d3a]">
+                            <div class="flex items-center text-xl">
+                                <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <span class="ml-1  font-medium text-gray-500 md:ml-2">Productos</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center text-xl">
+                            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg>
+                            <span class="ml-1  font-medium text-gray-500 md:ml-2">Aves de caza</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-dark mb-4 uppercase tracking-wide font-display">
                     Nuestras Aves de Caza
@@ -65,10 +87,8 @@
                     Todas nuestras aves incluyen certificados sanitarios y garantía de origen.
                 </p>
             </div>
-
             <!-- Birds Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                
                 <!-- Perdices Card -->
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105">
                     <!-- Image Container with Rotating Images -->
@@ -81,18 +101,15 @@
                              alt="Cazador con perdices" 
                              class="bird-image absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 opacity-0"
                              data-category="perdices">
-                        
                         <!-- Species Badge -->
                         <div class="absolute top-4 left-4 bg-[#8b5e3c] text-white px-3 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Perdices
                         </div>
-                        
                         <!-- Season Badge -->
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#8b5e3c] px-3 py-1 rounded-full font-display font-bold text-xs">
                             Oct-Mar
                         </div>
                     </div>
-                    
                     <!-- Content -->
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
@@ -123,6 +140,7 @@
                             <div class="text-xl font-display font-bold text-[#8b5e3c]">Precio a consultar </div>
                             <div class="text-gray-500 text-sm font-sans"></div>
                         </div>
+                        
                         <a href="{{route('productos.aves-de-caza.perdices')}}" title="Consultar la ficha de perdices" class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                             Consultar 
                         </a>
@@ -141,11 +159,6 @@
                              alt="Faisanes en el campo" 
                              class="bird-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
                              data-category="faisanes">
-                        {{-- <img src="{{asset('images/general/finca.webp')}}" 
-                             alt="Entorno natural faisanes" 
-                             class="bird-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-                             data-category="faisanes"> --}}
-                        
                         <!-- Species Badge -->
                         <div class="absolute top-4 left-4 bg-[#4b5d3a] text-white px-3 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Faisanes
@@ -226,7 +239,7 @@
                     <!-- Content -->
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
-                            Codornices
+                            Codornices (Coturnix coturnix)
                         </h3>
                         {{-- <p class="text-gray-600 mb-4 font-sans leading-relaxed">
                             <strong>Codornices de excelente calidad</strong>, perfectas para entrenamientos 
@@ -415,80 +428,6 @@
         </div>
     </section>
 
-    <!-- Contact CTA Section -->
-    <section class="py-20 bg-[#f5f1e3]">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-display font-bold text-dark mb-6 uppercase tracking-wide">
-                    ¿Necesitas Aves de Caza?
-                </h2>
-                <p class="text-xl text-gray-600 mb-8 font-sans leading-relaxed">
-                    Contacta con nosotros para consultar disponibilidad, precios y condiciones. 
-                    Te ayudamos a elegir las aves más adecuadas para tu suelta.
-                </p>
-                
-                <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="window.open('tel:+34925123456', '_self')" 
-                            class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                        <i class="fas fa-phone mr-2"></i>
-                        Llamar Ahora
-                    </button>
-                    <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta Aves de Caza - Los Llanos', '_self')" 
-                            class="border-2 border-[#4b5d3a] text-[#4b5d3a] hover:bg-[#4b5d3a] hover:text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Enviar Email
-                    </button>
-                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20me%20interesa%20información%20sobre%20aves%20de%20caza', '_blank')" 
-                            class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        WhatsApp
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fixed CTA Widget -->
-    <div id="ctaWidget" class="fixed right-4 lg:right-6 top-1/2 transform -translate-y-1/2 z-40 opacity-0 invisible transition-all duration-500">
-        <div class="bg-gradient-to-br from-[#4b5d3a] to-[#3a4a2c] rounded-2xl shadow-2xl p-4 lg:p-6 w-16 lg:w-64 lg:max-w-xs">
-            <!-- Header - Solo en desktop -->
-            <div class="hidden lg:block text-center mb-4">
-                <div class="w-12 h-12 bg-[#8b5e3c] rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-crosshairs text-white text-xl"></i>
-                </div>
-                <h3 class="font-display font-bold text-white text-lg uppercase tracking-wide">
-                    ¿Interesado?
-                </h3>
-                <p class="text-sm text-gray-200 font-sans mt-2 leading-relaxed">
-                    Contacta con nuestros expertos
-                </p>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="space-y-2 lg:space-y-3">
-                <!-- Móvil: Solo iconos | Desktop: Botones completos -->
-                <button onclick="window.open('tel:+34925123456', '_self')" class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Llamar">
-                    <i class="fas fa-phone lg:mr-2"></i>
-                    <span class="hidden lg:inline">Llamar</span>
-                </button>
-                <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta Aves de Caza - Los Llanos', '_self')" class="w-full bg-white hover:bg-gray-100 text-[#4b5d3a] p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="Enviar Email">
-                    <i class="fas fa-envelope lg:mr-2"></i>
-                    <span class="hidden lg:inline">Email</span>
-                </button>
-                <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20me%20interesa%20información%20sobre%20aves%20de%20caza', '_blank')" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 lg:py-3 lg:px-4 rounded-lg font-action font-semibold text-xs lg:text-sm tracking-wide transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center" title="WhatsApp">
-                    <i class="fab fa-whatsapp lg:mr-2"></i>
-                    <span class="hidden lg:inline">WhatsApp</span>
-                </button>
-            </div>
-            
-            <!-- Close Button -->
-            <button id="closeCta" class="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 w-5 h-5 lg:w-6 lg:h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs transition-all duration-300">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
         <i class="fas fa-chevron-up"></i>
@@ -532,38 +471,6 @@
             
             // Initialize image rotation
             rotateBirdImages();
-
-            // CTA Widget functionality
-            const ctaWidget = document.getElementById('ctaWidget');
-            const closeCta = document.getElementById('closeCta');
-            let ctaShown = false;
-            let ctaClosed = false;
-
-            function showCtaWidget() {
-                if (!ctaClosed && !ctaShown) {
-                    ctaWidget.classList.remove('opacity-0', 'invisible');
-                    ctaWidget.classList.add('opacity-100', 'visible');
-                    ctaShown = true;
-                }
-            }
-
-            function hideCtaWidget() {
-                ctaWidget.classList.add('opacity-0', 'invisible');
-                ctaWidget.classList.remove('opacity-100', 'visible');
-                ctaClosed = true;
-            }
-
-            // Show CTA after scrolling down
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 800) {
-                    showCtaWidget();
-                }
-            });
-
-            // Close CTA widget
-            if (closeCta) {
-                closeCta.addEventListener('click', hideCtaWidget);
-            }
 
             // Scroll to Top functionality
             const scrollToTopBtn = document.getElementById('scrollToTop');

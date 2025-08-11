@@ -44,7 +44,7 @@
     <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="{{asset('images/backgrounds/reviews-hero.jpg')}}" 
+            <img src="{{asset('images/galery/19.JPG')}}" 
                  alt="Cazadores satisfechos" 
                  class="w-full h-full object-cover"
                  style="object-position: center;">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('reviews.create') }}" 
+            <a href="{{ route('reviews.create') }}"  title="Ir al formulario para escribir una reseña"
                class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-full font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                 Escribe tu Reseña
             </a>
@@ -252,7 +252,7 @@
             <p class="text-xl mb-8 text-gray-200">
                 Comparte tu experiencia con otros cazadores. Tu opinión es muy valiosa para nosotros.
             </p>
-            <a href="{{ route('reviews.create') }}" 
+            <a href="{{ route('reviews.create') }}" title="Ir al formulario para escribir una reseña"
                class="bg-white text-[#8b5e3c] hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                 Escribir Reseña
             </a>

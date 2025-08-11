@@ -8,36 +8,40 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0">
                     <a href="{{ route('home') }}" class="flex items-center">
-                        <img src="{{ asset('images/logo/logo.png') }}" class="h-16 lg:h-20 object-cover" alt="Club de tiro los llanos">
+                        <img src="{{ asset('images/logo/logo.png') }}" title="Inicio - Club de tiro los llanos" class="h-16 lg:h-20 object-cover" alt="Club de tiro los llanos">
                     </a>
                 </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-8 text-2xl">
                     <div class="flex items-center space-x-6 font-action font-semibold">
-                       <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs"class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Blogs</a>
+                       <a href="{{route('blog-de-caza') }}" title="Ir a la sección de blogs" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Blogs</a>
                         <div class="relative group">
-                            <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 flex items-center hover:scale-105" >
+                            <button class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 flex items-center hover:scale-105" >
                                 Productos <i class="fas fa-chevron-down ml-1 text-sm transition-transform group-hover:rotate-180"></i>
-                            </a>
+                            </button>
                             <!-- Dropdown Menu -->
                             <div class="absolute bg-opacity-90 top-full left-0 mt-2 w-56 bg-[#f5f1e3] shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                                 <div class="py-2">
-                                    <a href="{{ route('productos.aves-de-caza') }}" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
-                                        <i class="fas fa-feather mr-3"></i>
-                                        Aves de caza
+                                    <a href="{{ route('productos.aves-de-caza') }}" title="Ir a la sección de aves de caza" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
+                                        <div class="flex gap-2"> 
+                                            <i class="fas fa-feather mr-3"></i>
+                                            <p class="text-lg">Aves de caza</p>
+                                        </div>
                                     </a>
                                     <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#4b5d3a] transition font-medium">
-                                        <i class="fas fa-crosshairs mr-3"></i>
-                                        Tiradas
+                                        <div class="flex gap-2"> 
+                                            <i class="fas fa-crosshairs mr-3"></i>
+                                            <p class="text-lg">Tiradas</p>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">¿Quiénes somos?</a>
-                        <a href="{{ route('reviews.index') }}" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Reseñas</a>
+                        <a href="https://clubdetiro-losllanos.es/#quienes-somos" title="Ir a la sección de quiénes somos" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">¿Quiénes somos?</a>
+                        <a href="{{ route('reviews.index') }}" title="Ir a la sección de reseñas" class="text-gray-700 hover:text-[#4b5d3a] transition-all duration-300 hover:scale-105">Reseñas</a>
                     </div>
-                    <a href="{{ route('contact.index') }}" class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-2 rounded-full font-action font-bold tracking-wide transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                    <a href="{{ route('contact.index') }}" title="Ir a la sección de contacto" class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-2 rounded-full font-action font-bold tracking-wide transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                         Contacto
                     </a>
                 </div>
@@ -64,31 +68,34 @@
                     </a>
                     <!-- Mobile Dropdown -->
                     <div class="block">
-                        <button class="w-full text-left text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-between" id="mobileProductosBtn">
+                        <a href="{{ route('productos') }}" title="Ir a la sección de productos" class="w-full text-left text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-between" id="mobileProductosBtn">
                             Productos
                             <i class="fas fa-chevron-down text-sm transition-transform" id="mobileDropdownIcon"></i>
-                        </button>
+                        </a>
                         <div class="ml-4 mt-2  space-y-2 opacity-0 invisible max-h-0 overflow-hidden transition-all duration-300  backdrop-blur-sm rounded-lg p-2" id="mobileDropdown">
-                            <a href="{{ route('productos.aves-de-caza') }}" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                            <a href="{{ route('productos.aves-de-caza') }}" title="Ir a selección de aves de caza en venta" class="block  text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                               <div class="flex gap-2"> 
                                 <i class="fas fa-feather mr-3"></i>
-                                <p class="text-gray-700 ">>Aves de caza</p>
+                                    <p class="text-gray-700 ">Aves de caza</p>
+                                </div>
                             </a>
                             <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="block text-gray-700 hover:text-[#4b5d3a] py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                                <div class="flex gap-2"> 
                                 <i class="fas fa-crosshairs mr-3"></i>
-                                Tiradas
+                                    <p class="text-gray-700 ">Tiradas</p>
+                                </div>
                             </a>
                         </div>
                     </div>
-                    <a href="#" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                    <a href="https://clubdetiro-losllanos.es/#quienes-somos" title="Ir a la sección de quiénes somos" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                         ¿Quiénes somos?
                     </a>
-                    <a href="{{ route('reviews.index') }}" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
+                    <a href="{{ route('reviews.index') }}" title="Ir a la sección de reseñas" class="block text-gray-700 hover:text-[#4b5d3a] font-action font-semibold text-lg py-2 px-2 rounded-lg hover:bg-gray-50 transition">
                         Reseñas
                     </a>
-                    
                     <!-- Mobile Contact Button -->
                     <div class="pt-2">
-                        <a href="{{ route('contact.index') }}" class="block w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg text-center">
+                        <a href="{{ route('contact.index') }}" title="Ir a la sección de contacto" class="block w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg text-center">
                             Contacto
                         </a>
                     </div>

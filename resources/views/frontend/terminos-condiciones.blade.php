@@ -52,7 +52,7 @@
                             <p class="mb-4">
                                 <strong>Última actualización:</strong> Agosto 2025<br>
                                 <strong>Empresa:</strong> Los Llanos Toledo<br>
-                                <strong>Contacto:</strong> info@losllanos.com | 925 123 456
+                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 925 123 456
                             </p>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                             <div>
                                 <h3 class="text-lg font-action font-bold text-dark mb-3">Contacto</h3>
                                 <ul class="space-y-2 text-gray-700">
-                                    <li><strong>Email:</strong> info@losllanos.com</li>
+                                    <li><strong>Email:</strong> att@clubdetiro-losllanos.es</li>
                                     <li><strong>Web:</strong> clubdetiro-losllanos.es</li>
                                     <li><strong>Horario:</strong> L-V 9:00-18:00</li>
                                     <li><strong>Experiencia:</strong> Más de 30 años</li>
@@ -283,7 +283,7 @@
                                 modificación o uso comercial sin autorización expresa.
                             </p>
                             <p>
-                                Para solicitar permisos de uso, contacta con nosotros en <strong>info@losllanos.com</strong>
+                                Para solicitar permisos de uso, contacta con nosotros en <strong>att@clubdetiro-losllanos.es</strong>
                             </p>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-envelope text-[#4b5d3a] mr-3"></i>
-                                        <span>info@losllanos.com</span>
+                                        <span>att@clubdetiro-losllanos.es</span>
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-phone text-[#4b5d3a] mr-3"></i>
@@ -398,17 +398,17 @@
                             <div>
                                 <h3 class="text-xl font-action font-bold text-dark mb-4">¿Dudas sobre los términos?</h3>
                                 <div class="space-y-3">
-                                    <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta sobre Términos y Condiciones', '_self')" 
+                                    <button onclick="window.open('mailto:att@clubdetiro-losllanos.es?subject=Consulta sobre Términos y Condiciones', '_self')" 
                                             class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300">
                                         <i class="fas fa-envelope mr-2"></i>
                                         Enviar consulta
                                     </button>
-                                    <button onclick="window.open('tel:+34925123456', '_self')" 
+                                    <button onclick="window.open('tel:+34608910639', '_self')" 
                                             class="w-full border-2 border-[#4b5d3a] text-[#4b5d3a] hover:bg-[#4b5d3a] hover:text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300">
                                         <i class="fas fa-phone mr-2"></i>
                                         Llamar directamente
                                     </button>
-                                    <button onclick="window.open('https://wa.me/34925123456?text=Hola,%20tengo%20dudas%20sobre%20los%20términos%20y%20condiciones', '_blank')" 
+                                    <button onclick="window.open('https://wa.me/34608910639?text=Hola,%20tengo%20dudas%20sobre%20los%20términos%20y%20condiciones', '_blank')" 
                                             class="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300">
                                         <i class="fab fa-whatsapp mr-2"></i>
                                         WhatsApp

@@ -169,7 +169,7 @@
                     <!-- Auto-play indicator and View All Button -->
                     <div class="flex flex-col sm:flex-row items-center justify-center mt-12 space-y-4 sm:space-y-0 ">
                         <div>
-                            <a  class="w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg text-center cursor-pointer">
+                            <a href="{{ route('reviews.index') }}" title="Ir a la sección de reseñas"  class="w-full bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-6 py-3 rounded-full font-action font-bold tracking-wide transition-all duration-300 shadow-md hover:shadow-lg text-center cursor-pointer">
                                 <i class="fas fa-comments mr-2"></i>
                                 Ver todos los comentarios
                             </a>

@@ -47,7 +47,7 @@
                             <p class="mb-4">
                                 <strong>Última actualización:</strong> Agosto 2025<br>
                                 <strong>Responsable del tratamiento:</strong> Los Llanos Toledo<br>
-                                <strong>Contacto:</strong> info@losllanos.com | 925 123 456
+                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 925 123 456
                             </p>
                         </div>
                     </div>
@@ -281,7 +281,7 @@
                             ¿Cómo ejercer tus derechos?
                         </h4>
                         <p class="text-gray-700 mb-4">
-                            Puedes ejercer tus derechos enviando un correo electrónico a <strong>info@losllanos.com</strong> 
+                            Puedes ejercer tus derechos enviando un correo electrónico a <strong>att@clubdetiro-losllanos.es</strong> 
                             o llamando al <strong>925 123 456</strong>. Te responderemos en un plazo máximo de 30 días.
                         </p>
                         <p class="text-gray-700 text-sm">
@@ -327,7 +327,7 @@
                                 <div class="space-y-2 text-gray-700">
                                     <p><strong>Los Llanos Toledo</strong></p>
                                     <p>Toledo, España</p>
-                                    <p>📧 info@losllanos.com</p>
+                                    <p>📧 att@clubdetiro-losllanos.es</p>
                                     <p>📞 925 123 456</p>
                                 </div>
                             </div>
@@ -335,12 +335,12 @@
                             <div>
                                 <h3 class="text-xl font-action font-bold text-dark mb-4">¿Dudas sobre privacidad?</h3>
                                 <div class="space-y-3">
-                                    <button onclick="window.open('mailto:info@losllanos.com?subject=Consulta sobre Política de Privacidad', '_self')" 
+                                    <button onclick="window.open('mailto:att@clubdetiro-losllanos.es?subject=Consulta sobre Política de Privacidad', '_self')" 
                                             class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300">
                                         <i class="fas fa-envelope mr-2"></i>
                                         Enviar consulta
                                     </button>
-                                    <button onclick="window.open('tel:+34925123456', '_self')" 
+                                    <button onclick="window.open('tel:+34608910639', '_self')" 
                                             class="w-full border-2 border-[#4b5d3a] text-[#4b5d3a] hover:bg-[#4b5d3a] hover:text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300">
                                         <i class="fas fa-phone mr-2"></i>
                                         Llamar directamente

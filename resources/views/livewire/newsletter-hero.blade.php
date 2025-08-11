@@ -10,7 +10,7 @@
                        wire:model="email" 
                        placeholder="Ingresa tu email" 
                        required
-                       class="flex-1 px-4 py-3 rounded-lg border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                       class="flex-1 px-4 text-black py-3 rounded-lg border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-600' }}  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 <button type="submit" 
                         wire:loading.attr="disabled"
                         class="px-8 py-3  text-white font-semibold rounded-lg  focus:outline-none focus:ring-2 transition duration-300 disabled:opacity-50 bg-[#8b5e3c] hover:bg-[#4b5d3a]">
