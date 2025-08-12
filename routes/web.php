@@ -28,6 +28,35 @@ Route::view('/quienes-somos', 'frontend.quienes-somos')->name('quienes-somos');
 
 // RESEÑAS
 Route::get('/reseñas', [ReviewController::class, 'index'])->name('reviews.index');
+
+// TEMPORAL: Ruta de debug sin autenticación  
+// Debug route simple - test básico
+Route::get('/test-simple', function () {
+    try {
+        $totalRecords = \App\Models\PageVisit::count();
+        $todayRecords = \App\Models\PageVisit::today()->count();
+        
+        return response()->json([
+            'status' => 'ok',
+            'total_records' => $totalRecords,
+            'today_records' => $todayRecords,
+            'date' => date('Y-m-d H:i:s')
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile()
+        ], 500);
+    }
+});
+
+// Debug route analytics - test controlador
+Route::get('/test-controller', [AnalyticsController::class, 'dashboardSimple'])->defaults('range', 'today');
+
+// Debug route analytics
+Route::get('/debug-analytics', [AnalyticsController::class, 'dashboard'])->defaults('range', 'today');
 Route::get('/reseñas/escribir', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reseñas', [ReviewController::class, 'store'])->name('reviews.store');
 
@@ -126,6 +155,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Analytics Dashboard
     Route::prefix('analytics')->group(function () {
         Route::get('/dashboard', [AnalyticsController::class, 'dashboard'])->name('analytics.dashboard');
+        Route::get('/error', function() {
+            return view('admin.analytics.error', ['error' => 'Error general en analytics']);
+        })->name('analytics.error');
         Route::get('/realtime', [AnalyticsController::class, 'realTime'])->name('analytics.realtime');
         Route::get('/pages', [AnalyticsController::class, 'pages'])->name('analytics.pages');
         Route::get('/visitors', [AnalyticsController::class, 'visitors'])->name('analytics.visitors');
