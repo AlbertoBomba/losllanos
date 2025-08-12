@@ -44,7 +44,7 @@ class Post extends Model
      */
     public function getUrlAttribute()
     {
-        return route('post.show', $this->slug);
+        return route('blog-de-caza.show', $this->slug);
     }
 
     /**

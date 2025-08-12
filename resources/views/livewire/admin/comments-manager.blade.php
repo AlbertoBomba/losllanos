@@ -135,7 +135,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-gray-900">{{ Str::limit($comment->post->title, 30) }}</div>
-                            <a href="{{ route('post.show', $comment->post->slug) }}" target="_blank"
+                            <a href="{{ route('blog-de-caza.show', $comment->post->slug) }}" target="_blank"
                                class="text-xs text-blue-600 hover:text-blue-800">Ver post</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
