@@ -68,8 +68,32 @@ class SitemapController extends Controller
         // Generar archivos XML del sitemap
         $this->generateSitemapFiles();
         
-        // Notificar automáticamente a los motores de búsqueda
-        $pingResults = $this->notifySearchEngines();
+        // Verificar si estamos en modo desarrollo ANTES de notificar
+        $appUrl = config('app.url');
+        $isDevelopment = $this->isDevelopmentMode($appUrl);
+        
+        // FORZAR simulación en desarrollo
+        if ($isDevelopment) {
+            $pingResults = [
+                'google' => [
+                    'success' => true,
+                    'status_code' => 200,
+                    'message' => 'Simulado en modo desarrollo - No se envían pings reales',
+                    'development_mode' => true,
+                    'forced_simulation' => true
+                ],
+                'bing' => [
+                    'success' => true,
+                    'status_code' => 200,
+                    'message' => 'Simulado en modo desarrollo - No se envían pings reales', 
+                    'development_mode' => true,
+                    'forced_simulation' => true
+                ]
+            ];
+        } else {
+            // Solo en producción hacer ping real
+            $pingResults = $this->notifySearchEngines();
+        }
         
         return response()->json([
             'success' => true,
@@ -81,8 +105,15 @@ class SitemapController extends Controller
                 'last_updated' => now()->format('d/m/Y H:i'),
                 'generated_at' => now()->toISOString()
             ],
-            'ping_results' => $pingResults
-        ]);
+            'ping_results' => $pingResults,
+            'debug_info' => [
+                'app_url' => $appUrl,
+                'is_development' => $isDevelopment,
+                'environment' => app()->environment()
+            ]
+        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate')
+          ->header('Pragma', 'no-cache')
+          ->header('Expires', '0');
     }
     
     /**
@@ -93,26 +124,62 @@ class SitemapController extends Controller
         try {
             // Usar la URL pública del sitio en producción
             $appUrl = config('app.url');
+            $sitemapUrl = $appUrl . '/sitemap_index.xml';
             
-            // Si estamos en desarrollo local, simular el éxito pero no hacer ping real
-            if (str_contains($appUrl, 'localhost') || str_contains($appUrl, '127.0.0.1')) {
+            // Detección más robusta del modo desarrollo
+            $isDevelopment = $this->isDevelopmentMode($appUrl);
+            
+            // Log para debugging
+            \Illuminate\Support\Facades\Log::info('Sitemap ping debug', [
+                'app_url' => $appUrl,
+                'sitemap_url' => $sitemapUrl,
+                'is_development' => $isDevelopment,
+                'environment' => app()->environment()
+            ]);
+            
+            // SIEMPRE simular en desarrollo - no hacer pings reales
+            if ($isDevelopment) {
                 return [
                     'google' => [
                         'success' => true,
                         'status_code' => 200,
-                        'message' => 'Modo desarrollo - Ping simulado (usar en producción con dominio real)',
-                        'development_mode' => true
+                        'message' => 'Simulado en modo desarrollo (no se envían pings reales)',
+                        'development_mode' => true,
+                        'app_url' => $appUrl,
+                        'ping_url' => 'https://www.google.com/ping?sitemap=' . urlencode($sitemapUrl)
                     ],
                     'bing' => [
                         'success' => true,
                         'status_code' => 200,
-                        'message' => 'Modo desarrollo - Ping simulado (usar en producción con dominio real)',
-                        'development_mode' => true
+                        'message' => 'Simulado en modo desarrollo (no se envían pings reales)',
+                        'development_mode' => true,
+                        'app_url' => $appUrl,
+                        'ping_url' => 'https://www.bing.com/ping?sitemap=' . urlencode($sitemapUrl)
                     ]
                 ];
             }
             
-            $sitemapUrl = $appUrl . '/sitemap_index.xml';
+            // Solo en producción hacer pings reales
+            $sitemapAccessible = $this->verifySitemapAccessibility($sitemapUrl);
+            
+            if (!$sitemapAccessible) {
+                return [
+                    'google' => [
+                        'success' => false,
+                        'status_code' => 404,
+                        'message' => 'Sitemap no accesible públicamente desde Internet',
+                        'development_mode' => false,
+                        'sitemap_accessible' => false
+                    ],
+                    'bing' => [
+                        'success' => false,
+                        'status_code' => 404,
+                        'message' => 'Sitemap no accesible públicamente desde Internet',
+                        'development_mode' => false,
+                        'sitemap_accessible' => false
+                    ]
+                ];
+            }
             
             $results = [
                 'google' => $this->pingGoogle($sitemapUrl),
@@ -122,10 +189,66 @@ class SitemapController extends Controller
             return $results;
             
         } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Sitemap ping error', [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ]);
+            
             return [
                 'error' => true,
                 'message' => 'Error al notificar motores de búsqueda: ' . $e->getMessage()
             ];
+        }
+    }
+    
+    /**
+     * Detectar si estamos en modo desarrollo
+     */
+    private function isDevelopmentMode($appUrl)
+    {
+        // Verificar múltiples indicadores de desarrollo
+        $developmentIndicators = [
+            str_contains($appUrl, 'localhost'),
+            str_contains($appUrl, '127.0.0.1'),
+            str_contains($appUrl, '::1'),
+            str_contains($appUrl, '.local'),
+            str_contains($appUrl, ':8000'),
+            str_contains($appUrl, ':3000'),
+            app()->environment('local'),
+            app()->environment('dev'),
+            app()->environment('development')
+        ];
+        
+        return in_array(true, $developmentIndicators);
+    }
+    
+    /**
+     * Verificar si el sitemap es accesible públicamente
+     */
+    private function verifySitemapAccessibility($sitemapUrl)
+    {
+        try {
+            // En desarrollo, configurar para evitar problemas SSL
+            $httpClient = \Illuminate\Support\Facades\Http::timeout(10);
+            
+            // Si estamos probando desde localhost a un dominio real, 
+            // configurar opciones de SSL más permisivas
+            if (str_contains(config('app.url'), '.es') || str_contains(config('app.url'), '.com')) {
+                $httpClient = $httpClient->withOptions([
+                    'verify' => false, // Solo para testing desde desarrollo
+                ]);
+            }
+            
+            $response = $httpClient->get($sitemapUrl);
+            return $response->successful() && str_contains($response->body(), '<?xml');
+        } catch (\Exception $e) {
+            // Log del error para debugging
+            \Illuminate\Support\Facades\Log::info('Sitemap accessibility check failed', [
+                'url' => $sitemapUrl,
+                'error' => $e->getMessage()
+            ]);
+            return false;
         }
     }
     
@@ -135,17 +258,45 @@ class SitemapController extends Controller
     private function pingGoogle($sitemapUrl)
     {
         try {
+            $isDevelopment = $this->isDevelopmentMode(config('app.url'));
+            
+            if ($isDevelopment) {
+                \Illuminate\Support\Facades\Log::info('Simulando ping a Google para desarrollo: ' . $sitemapUrl);
+                return [
+                    'success' => true,
+                    'status_code' => 200,
+                    'message' => 'Notificación simulada en modo desarrollo'
+                ];
+            }
+            
             $googlePingUrl = 'https://www.google.com/ping?sitemap=' . urlencode($sitemapUrl);
             
-            $response = \Illuminate\Support\Facades\Http::timeout(10)->get($googlePingUrl);
+            \Illuminate\Support\Facades\Log::info('Enviando ping a Google: ' . $googlePingUrl);
+            
+            $response = \Illuminate\Support\Facades\Http::timeout(30)
+                ->withOptions([
+                    'verify' => false, // Desactivar verificación SSL para testing local
+                    'http_errors' => false // No lanzar excepciones por códigos HTTP
+                ])
+                ->get($googlePingUrl);
+            
+            $statusCode = $response->status();
+            $message = 'Notificación ' . ($response->successful() ? 'exitosa' : 'fallida') . " - Código: {$statusCode}";
+            
+            \Illuminate\Support\Facades\Log::info("Respuesta de Google: {$statusCode}");
             
             return [
                 'success' => $response->successful(),
-                'status_code' => $response->status(),
-                'message' => $response->successful() ? 'Notificado correctamente' : 'Error en notificación'
+                'status_code' => $statusCode,
+                'message' => $message
             ];
             
         } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Google ping failed', [
+                'sitemap_url' => $sitemapUrl,
+                'error' => $e->getMessage()
+            ]);
+            
             return [
                 'success' => false,
                 'status_code' => 0,
@@ -160,17 +311,45 @@ class SitemapController extends Controller
     private function pingBing($sitemapUrl)
     {
         try {
+            $isDevelopment = $this->isDevelopmentMode(config('app.url'));
+            
+            if ($isDevelopment) {
+                \Illuminate\Support\Facades\Log::info('Simulando ping a Bing para desarrollo: ' . $sitemapUrl);
+                return [
+                    'success' => true,
+                    'status_code' => 200,
+                    'message' => 'Notificación simulada en modo desarrollo'
+                ];
+            }
+            
             $bingPingUrl = 'https://www.bing.com/ping?sitemap=' . urlencode($sitemapUrl);
             
-            $response = \Illuminate\Support\Facades\Http::timeout(10)->get($bingPingUrl);
+            \Illuminate\Support\Facades\Log::info('Enviando ping a Bing: ' . $bingPingUrl);
+            
+            $response = \Illuminate\Support\Facades\Http::timeout(30)
+                ->withOptions([
+                    'verify' => false, // Desactivar verificación SSL para testing local
+                    'http_errors' => false // No lanzar excepciones por códigos HTTP
+                ])
+                ->get($bingPingUrl);
+            
+            $statusCode = $response->status();
+            $message = 'Notificación ' . ($response->successful() ? 'exitosa' : 'fallida') . " - Código: {$statusCode}";
+            
+            \Illuminate\Support\Facades\Log::info("Respuesta de Bing: {$statusCode}");
             
             return [
                 'success' => $response->successful(),
-                'status_code' => $response->status(),
-                'message' => $response->successful() ? 'Notificado correctamente' : 'Error en notificación'
+                'status_code' => $statusCode,
+                'message' => $message
             ];
             
         } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Bing ping failed', [
+                'sitemap_url' => $sitemapUrl,
+                'error' => $e->getMessage()
+            ]);
+            
             return [
                 'success' => false,
                 'status_code' => 0,

@@ -156,3 +156,82 @@ Route::middleware('auth')->group(function () {
 // RUTAS DE TESTING PARA SITEMAP PING
 Route::get('/test-ping-sitemap', [TestPingController::class, 'testPing'])->name('test.ping.sitemap');
 Route::get('/test-ping-view', [TestPingController::class, 'testView'])->name('test.ping.view');
+Route::get('/seo-diagnostics', [TestPingController::class, 'diagnostics'])->name('seo.diagnostics');
+Route::get('/production-ready', [TestPingController::class, 'productionReady'])->name('production.ready');
+
+// RUTA DE DIAGNÓSTICO DE SITEMAP
+Route::get('/test-sitemap-access', function() {
+    $sitemapUrl = config('app.url') . '/sitemap_index.xml';
+    
+    try {
+        $response = \Illuminate\Support\Facades\Http::timeout(10)->get($sitemapUrl);
+        
+        return response()->json([
+            'sitemap_url' => $sitemapUrl,
+            'accessible' => $response->successful(),
+            'status_code' => $response->status(),
+            'headers' => $response->headers(),
+            'content_preview' => substr($response->body(), 0, 500),
+            'content_length' => strlen($response->body()),
+            'is_xml' => str_contains($response->body(), '<?xml'),
+            'timestamp' => now()->toISOString()
+        ], 200, [], JSON_PRETTY_PRINT);
+        
+    } catch (\Exception $e) {
+        return response()->json([
+            'sitemap_url' => $sitemapUrl,
+            'accessible' => false,
+            'error' => $e->getMessage(),
+            'timestamp' => now()->toISOString()
+        ], 200, [], JSON_PRETTY_PRINT);
+    }
+})->name('test.sitemap.access');
+
+// RUTA DE DEBUG RÁPIDO
+Route::get('/debug-ping', function() {
+    $appUrl = config('app.url');
+    
+    // Detección de desarrollo
+    $developmentIndicators = [
+        'contains_localhost' => str_contains($appUrl, 'localhost'),
+        'contains_127' => str_contains($appUrl, '127.0.0.1'),
+        'contains_port_8000' => str_contains($appUrl, ':8000'),
+        'app_environment' => app()->environment(),
+        'is_local_env' => app()->environment('local')
+    ];
+    
+    $isDevelopment = in_array(true, [
+        str_contains($appUrl, 'localhost'),
+        str_contains($appUrl, '127.0.0.1'),
+        str_contains($appUrl, ':8000'),
+        app()->environment('local')
+    ]);
+    
+    return response()->json([
+        'app_url' => $appUrl,
+        'sitemap_url' => $appUrl . '/sitemap_index.xml',
+        'development_indicators' => $developmentIndicators,
+        'is_development' => $isDevelopment,
+        'should_simulate' => $isDevelopment ? 'YES' : 'NO',
+        'environment' => app()->environment(),
+        'timestamp' => now()->toISOString()
+    ], 200, [], JSON_PRETTY_PRINT);
+})->name('debug.ping');
+
+// TEST DIRECTO DEL MÉTODO UPDATE SITEMAP
+Route::get('/test-update-sitemap', function() {
+    $controller = new \App\Http\Controllers\SitemapController();
+    
+    try {
+        $result = $controller->updateSitemap();
+        return $result;
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => true,
+            'message' => $e->getMessage(),
+            'file' => basename($e->getFile()),
+            'line' => $e->getLine(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+})->name('test.update.sitemap');

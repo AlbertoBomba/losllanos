@@ -122,6 +122,15 @@
                 <div class="mb-4">
                     <strong>Timestamp:</strong> ${data.timestamp}
                 </div>
+                <div class="mb-4">
+                    <strong>App URL:</strong> ${data.app_url}
+                </div>
+                <div class="mb-4">
+                    <strong>Sitemap Accesible:</strong> 
+                    <span class="${data.sitemap_accessible ? 'text-green-600' : 'text-red-600'}">
+                        ${data.sitemap_accessible ? '✅ Sí' : '❌ No'}
+                    </span>
+                </div>
             `;
             
             // Mostrar modo desarrollo si aplica
@@ -130,9 +139,13 @@
                     <div class="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                         <div class="flex items-center text-yellow-800">
                             <i class="fas fa-info-circle mr-2"></i>
-                            <strong>Modo Desarrollo - Respuestas Simuladas</strong>
+                            <strong>Modo Desarrollo/Simulación</strong>
                         </div>
                         <div class="text-sm text-yellow-700 mt-1">
+                            ${data.sitemap_accessible === false ? 
+                                'El sitemap no es accesible públicamente. ' : 
+                                'Detectado entorno de desarrollo local. '
+                            }
                             Para notificaciones reales, se requiere un dominio público accesible desde Internet.
                         </div>
                     </div>

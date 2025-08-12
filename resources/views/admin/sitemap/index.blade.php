@@ -29,6 +29,29 @@
                 </div>
             </div>
             
+            <!-- Panel de Debug (Solo en desarrollo) -->
+            @if(str_contains(config('app.url'), 'localhost') || str_contains(config('app.url'), '127.0.0.1'))
+            <div class="mb-6">
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i>
+                        <h3 class="text-lg font-medium text-yellow-800">Modo Desarrollo Detectado</h3>
+                    </div>
+                    <p class="text-sm text-yellow-700 mb-4">
+                        Estás ejecutando en <code>{{ config('app.url') }}</code>. Las notificaciones a Google/Bing son simuladas para evitar errores 404.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="/debug-ping" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded text-sm">
+                            <i class="fas fa-bug mr-1"></i> Debug Info
+                        </a>
+                        <a href="/seo-diagnostics" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm">
+                            <i class="fas fa-chart-line mr-1"></i> Diagnóstico SEO
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endif
+            
             <!-- Estadísticas del Sitemap -->
             <div class="mb-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -338,12 +361,23 @@
                         displayPingResults(data.ping_results);
                     }
                     
+                    // Mostrar información de debug si está disponible
+                    if (data.debug_info) {
+                        console.log('Debug Info:', data.debug_info);
+                    }
+                    
                     // Mostrar notificación de éxito
                     let successMessage = '¡Sitemap actualizado correctamente! Se han procesado ' + data.stats.total_urls + ' URLs.';
                     if (data.ping_results) {
                         const successfulPings = Object.values(data.ping_results).filter(result => result.success).length;
                         const totalPings = Object.keys(data.ping_results).length;
-                        successMessage += ` Notificaciones enviadas: ${successfulPings}/${totalPings} motores de búsqueda.`;
+                        const simulatedCount = Object.values(data.ping_results).filter(result => result.development_mode).length;
+                        
+                        if (simulatedCount > 0) {
+                            successMessage += ` Notificaciones simuladas: ${successfulPings}/${totalPings} (modo desarrollo).`;
+                        } else {
+                            successMessage += ` Notificaciones enviadas: ${successfulPings}/${totalPings} motores de búsqueda.`;
+                        }
                     }
                     showNotification(successMessage);
                     

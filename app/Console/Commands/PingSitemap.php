@@ -27,40 +27,56 @@ class PingSitemap extends Command
      */
     public function handle()
     {
-        $appUrl = config('app.url');
-        $sitemapUrl = $this->option('url') ?? $appUrl . '/sitemap_index.xml';
+        $this->info('Notificando a los motores de búsqueda sobre el sitemap actualizado..');
+        $this->line('');
         
-        $this->info('Notificando a los motores de búsqueda sobre el sitemap actualizado...');
-        $this->info('Sitemap URL: ' . $sitemapUrl);
-        $this->info('App URL: ' . $appUrl);
+        $baseUrl = config('app.url');
+        $sitemapUrl = $baseUrl . '/sitemap_index.xml';
         
-        // Verificar si estamos en desarrollo
-        $isDevelopment = str_contains($appUrl, 'localhost') || str_contains($appUrl, '127.0.0.1');
+        $this->info("Sitemap URL: {$sitemapUrl}");
+        $this->info("App URL: {$baseUrl}");
         
-        if ($isDevelopment) {
-            $this->warn('⚠️  MODO DESARROLLO DETECTADO');
-            $this->warn('Las notificaciones reales a Google/Bing requieren un dominio público accesible desde Internet.');
-            $this->warn('En desarrollo, se mostrarán respuestas simuladas.');
-            $this->newLine();
-        }
+        $isDevelopment = $this->isDevelopmentMode($baseUrl);
         
-        $results = [];
-        
-        // Ping Google
+        // Notificar solo el sitemap principal (index)
         $googleResult = $this->pingGoogle($sitemapUrl, $isDevelopment);
-        $results['google'] = $googleResult;
-        
-        // Ping Bing
         $bingResult = $this->pingBing($sitemapUrl, $isDevelopment);
-        $results['bing'] = $bingResult;
         
         // Mostrar resultados
-        $this->displayResults($results);
+        $this->line('');
+        $this->info('🎯 RESULTADOS DE LAS NOTIFICACIONES:');
+        $this->line('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
         
-        // Log results
-        Log::info('Sitemap ping results', $results);
+        $googleStatus = $googleResult['success'] ? '✅ ÉXITO' : '❌ ERROR';
+        $bingStatus = $bingResult['success'] ? '✅ ÉXITO' : '❌ ERROR';
+        
+        $this->line("GOOGLE: {$googleStatus} (Código: {$googleResult['status_code']})");
+        $this->line("   Mensaje: {$googleResult['message']}");
+        $this->line("BING: {$bingStatus} (Código: {$bingResult['status_code']})");
+        $this->line("   Mensaje: {$bingResult['message']}");
+        $this->line('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        
+        $successCount = ($googleResult['success'] ? 1 : 0) + ($bingResult['success'] ? 1 : 0);
+        
+        if ($successCount == 2) {
+            $this->info('🎉 Todas las notificaciones fueron exitosas (2/2)');
+        } else {
+            $this->warn("⚠️  Algunas notificaciones fallaron ({$successCount}/2 exitosas)");
+        }
         
         return 0;
+    }
+    
+    /**
+     * Determinar si está en modo desarrollo
+     */
+    private function isDevelopmentMode($appUrl)
+    {
+        return str_contains($appUrl, 'localhost') || 
+               str_contains($appUrl, '127.0.0.1') || 
+               str_contains($appUrl, '.test') ||
+               str_contains($appUrl, '.local') ||
+               config('app.env') === 'local';
     }
     
     /**
@@ -83,7 +99,13 @@ class PingSitemap extends Command
             
             $this->line('📡 Notificando a Google Search Console...');
             
-            $response = Http::timeout(30)->get($googlePingUrl);
+            // Configurar HTTP client con opciones SSL flexibles para testing
+            $response = Http::timeout(30)
+                ->withOptions([
+                    'verify' => false, // Desactivar verificación SSL para testing local
+                    'http_errors' => false // No lanzar excepciones por códigos HTTP
+                ])
+                ->get($googlePingUrl);
             
             if ($response->successful()) {
                 $this->info('✅ Google notificado correctamente');
@@ -97,7 +119,7 @@ class PingSitemap extends Command
                 return [
                     'success' => false,
                     'status_code' => $response->status(),
-                    'message' => 'Error en la notificación'
+                    'message' => 'Error en la notificación - Código: ' . $response->status()
                 ];
             }
             
@@ -131,7 +153,13 @@ class PingSitemap extends Command
             
             $this->line('📡 Notificando a Bing Webmaster Tools...');
             
-            $response = Http::timeout(30)->get($bingPingUrl);
+            // Configurar HTTP client con opciones SSL flexibles para testing
+            $response = Http::timeout(30)
+                ->withOptions([
+                    'verify' => false, // Desactivar verificación SSL para testing local
+                    'http_errors' => false // No lanzar excepciones por códigos HTTP
+                ])
+                ->get($bingPingUrl);
             
             if ($response->successful()) {
                 $this->info('✅ Bing notificado correctamente');
@@ -145,7 +173,7 @@ class PingSitemap extends Command
                 return [
                     'success' => false,
                     'status_code' => $response->status(),
-                    'message' => 'Error en la notificación'
+                    'message' => 'Error en la notificación - Código: ' . $response->status()
                 ];
             }
             

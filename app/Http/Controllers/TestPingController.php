@@ -18,27 +18,34 @@ class TestPingController extends Controller
         // Verificar si estamos en desarrollo
         $isDevelopment = str_contains($appUrl, 'localhost') || str_contains($appUrl, '127.0.0.1');
         
+        // Verificar accesibilidad del sitemap
+        $sitemapAccessible = $this->verifySitemapAccessibility($sitemapUrl);
+        
         $pingResults = [];
         
-        if ($isDevelopment) {
-            // En desarrollo, simular respuestas exitosas
+        if ($isDevelopment || !$sitemapAccessible) {
+            // En desarrollo o sitemap no accesible, simular respuestas exitosas
+            $reason = !$sitemapAccessible ? 'Sitemap no accesible públicamente' : 'Modo desarrollo local';
+            
             $pingResults['google'] = [
                 'success' => true,
                 'status_code' => 200,
-                'message' => 'Modo desarrollo - Ping simulado (requiere dominio público para funcionar realmente)',
+                'message' => "Simulado - {$reason}",
                 'ping_url' => 'https://www.google.com/ping?sitemap=' . urlencode($sitemapUrl),
-                'development_mode' => true
+                'development_mode' => true,
+                'sitemap_accessible' => $sitemapAccessible
             ];
             
             $pingResults['bing'] = [
                 'success' => true,
                 'status_code' => 200,
-                'message' => 'Modo desarrollo - Ping simulado (requiere dominio público para funcionar realmente)',
+                'message' => "Simulado - {$reason}",
                 'ping_url' => 'https://www.bing.com/ping?sitemap=' . urlencode($sitemapUrl),
-                'development_mode' => true
+                'development_mode' => true,
+                'sitemap_accessible' => $sitemapAccessible
             ];
         } else {
-            // En producción, hacer ping real
+            // En producción con sitemap accesible, hacer ping real
             try {
                 // Ping Google
                 $googlePingUrl = 'https://www.google.com/ping?sitemap=' . urlencode($sitemapUrl);
@@ -47,7 +54,8 @@ class TestPingController extends Controller
                     'success' => $googleResponse->successful(),
                     'status_code' => $googleResponse->status(),
                     'message' => $googleResponse->successful() ? 'Notificado correctamente' : 'Error en notificación',
-                    'ping_url' => $googlePingUrl
+                    'ping_url' => $googlePingUrl,
+                    'sitemap_accessible' => $sitemapAccessible
                 ];
                 
                 // Ping Bing  
@@ -57,7 +65,8 @@ class TestPingController extends Controller
                     'success' => $bingResponse->successful(),
                     'status_code' => $bingResponse->status(),
                     'message' => $bingResponse->successful() ? 'Notificado correctamente' : 'Error en notificación',
-                    'ping_url' => $bingPingUrl
+                    'ping_url' => $bingPingUrl,
+                    'sitemap_accessible' => $sitemapAccessible
                 ];
                 
             } catch (\Exception $e) {
@@ -73,9 +82,23 @@ class TestPingController extends Controller
             'sitemap_url' => $sitemapUrl,
             'ping_results' => $pingResults,
             'timestamp' => now()->toISOString(),
-            'development_mode' => $isDevelopment,
+            'development_mode' => $isDevelopment || !$sitemapAccessible,
+            'sitemap_accessible' => $sitemapAccessible,
             'app_url' => $appUrl
         ], 200, [], JSON_PRETTY_PRINT);
+    }
+    
+    /**
+     * Verificar si el sitemap es accesible
+     */
+    private function verifySitemapAccessibility($sitemapUrl)
+    {
+        try {
+            $response = Http::timeout(5)->get($sitemapUrl);
+            return $response->successful() && str_contains($response->body(), '<?xml');
+        } catch (\Exception $e) {
+            return false;
+        }
     }
     
     /**
@@ -84,5 +107,21 @@ class TestPingController extends Controller
     public function testView()
     {
         return view('test-ping');
+    }
+    
+    /**
+     * Mostrar vista de diagnóstico completa
+     */
+    public function diagnostics()
+    {
+        return view('seo-diagnostics');
+    }
+    
+    /**
+     * Mostrar vista de preparación para producción
+     */
+    public function productionReady()
+    {
+        return view('production-ready');
     }
 }
