@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\TestPingController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Models\Post;
@@ -60,6 +61,26 @@ Route::redirect('/noticias', '/blog-de-caza', 301);
 
 // RUTAS DE SITEMAP Y SEO
 Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
+Route::get('/sitemap_index.xml', function() {
+    return response(file_get_contents(public_path('sitemap_index.xml')))
+           ->header('Content-Type', 'application/xml');
+})->name('sitemap.index');
+
+Route::get('/sitemap-pages.xml', function() {
+    return response(file_get_contents(public_path('sitemap-pages.xml')))
+           ->header('Content-Type', 'application/xml');
+})->name('sitemap.pages');
+
+Route::get('/sitemap-posts.xml', function() {
+    return response(file_get_contents(public_path('sitemap-posts.xml')))
+           ->header('Content-Type', 'application/xml');
+})->name('sitemap.posts');
+
+Route::get('/sitemap-products.xml', function() {
+    return response(file_get_contents(public_path('sitemap-products.xml')))
+           ->header('Content-Type', 'application/xml');
+})->name('sitemap.products');
+
 Route::get('/robots.txt', [SitemapController::class, 'robotsTxt'])->name('robots.txt');
 
 // RUTAS DE NEWSLETTER (públicas)
@@ -131,3 +152,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 });
+
+// RUTAS DE TESTING PARA SITEMAP PING
+Route::get('/test-ping-sitemap', [TestPingController::class, 'testPing'])->name('test.ping.sitemap');
+Route::get('/test-ping-view', [TestPingController::class, 'testView'])->name('test.ping.view');

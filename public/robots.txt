@@ -1,2 +1,31 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /login
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /node_modules/
+
+# Allow important files
+Allow: /sitemap*.xml
+Allow: /robots.txt
+Allow: /favicon.ico
+Allow: *.css
+Allow: *.js
+Allow: *.webp
+Allow: *.jpg
+Allow: *.png
+Allow: *.gif
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://clubdetiro-losllanos.es/sitemap_index.xml
+Sitemap: https://clubdetiro-losllanos.es/sitemap.xml
+Sitemap: https://clubdetiro-losllanos.es/sitemap-pages.xml
+Sitemap: https://clubdetiro-losllanos.es/sitemap-posts.xml
+Sitemap: https://clubdetiro-losllanos.es/sitemap-products.xml

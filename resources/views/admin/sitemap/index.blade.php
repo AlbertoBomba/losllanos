@@ -19,6 +19,16 @@
                 </div>
             </div>
             
+            <!-- Estado de Notificaciones a Motores de Búsqueda -->
+            <div id="searchEngineNotifications" class="mb-6 hidden">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">🔍 Estado de Notificaciones SEO</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="pingResults">
+                        <!-- Los resultados se llenarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            
             <!-- Estadísticas del Sitemap -->
             <div class="mb-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -323,8 +333,19 @@
                         if (lastUpdatedEl) lastUpdatedEl.textContent = data.stats.last_updated;
                     }
                     
+                    // Mostrar resultados de notificaciones a motores de búsqueda
+                    if (data.ping_results) {
+                        displayPingResults(data.ping_results);
+                    }
+                    
                     // Mostrar notificación de éxito
-                    showNotification('¡Sitemap actualizado correctamente! Se han procesado ' + data.stats.total_urls + ' URLs.');
+                    let successMessage = '¡Sitemap actualizado correctamente! Se han procesado ' + data.stats.total_urls + ' URLs.';
+                    if (data.ping_results) {
+                        const successfulPings = Object.values(data.ping_results).filter(result => result.success).length;
+                        const totalPings = Object.keys(data.ping_results).length;
+                        successMessage += ` Notificaciones enviadas: ${successfulPings}/${totalPings} motores de búsqueda.`;
+                    }
+                    showNotification(successMessage);
                     
                     // Restaurar botón después de 2 segundos
                     setTimeout(() => {
@@ -377,6 +398,83 @@
 
         function hideNotification() {
             document.getElementById('notification').classList.add('hidden');
+        }
+        
+        function displayPingResults(pingResults) {
+            const container = document.getElementById('pingResults');
+            const notificationSection = document.getElementById('searchEngineNotifications');
+            
+            if (!pingResults) return;
+            
+            let html = '';
+            
+            // Google Results
+            if (pingResults.google) {
+                const google = pingResults.google;
+                const googleIcon = google.success ? 'fa-check-circle text-green-500' : 'fa-times-circle text-red-500';
+                const googleStatus = google.success ? 'Notificado correctamente' : 'Error en notificación';
+                const googleBg = google.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+                
+                // Icono especial para modo desarrollo
+                const devIcon = google.development_mode ? '<i class="fas fa-cog text-yellow-500 mr-1" title="Modo desarrollo"></i>' : '';
+                
+                html += `
+                    <div class="p-4 rounded-lg border ${googleBg}">
+                        <div class="flex items-center mb-2">
+                            <i class="fab fa-google text-2xl text-blue-600 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Google Search Console ${devIcon}</h4>
+                                <div class="flex items-center mt-1">
+                                    <i class="fas ${googleIcon} mr-2"></i>
+                                    <span class="text-sm">${googleStatus}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600">
+                            Código de respuesta: ${google.status_code}
+                            ${google.message ? '• ' + google.message : ''}
+                        </p>
+                    </div>
+                `;
+            }
+            
+            // Bing Results
+            if (pingResults.bing) {
+                const bing = pingResults.bing;
+                const bingIcon = bing.success ? 'fa-check-circle text-green-500' : 'fa-times-circle text-red-500';
+                const bingStatus = bing.success ? 'Notificado correctamente' : 'Error en notificación';
+                const bingBg = bing.success ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+                
+                // Icono especial para modo desarrollo
+                const devIcon = bing.development_mode ? '<i class="fas fa-cog text-yellow-500 mr-1" title="Modo desarrollo"></i>' : '';
+                
+                html += `
+                    <div class="p-4 rounded-lg border ${bingBg}">
+                        <div class="flex items-center mb-2">
+                            <i class="fab fa-microsoft text-2xl text-blue-500 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Bing Webmaster Tools ${devIcon}</h4>
+                                <div class="flex items-center mt-1">
+                                    <i class="fas ${bingIcon} mr-2"></i>
+                                    <span class="text-sm">${bingStatus}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600">
+                            Código de respuesta: ${bing.status_code}
+                            ${bing.message ? '• ' + bing.message : ''}
+                        </p>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            notificationSection.classList.remove('hidden');
+            
+            // Auto-ocultar después de 10 segundos
+            setTimeout(() => {
+                notificationSection.classList.add('hidden');
+            }, 10000);
         }
     </script>
 </x-app-layout>

@@ -65,17 +65,127 @@ class SitemapController extends Controller
     {
         $sitemap = $this->buildSitemap();
         
+        // Generar archivos XML del sitemap
+        $this->generateSitemapFiles();
+        
+        // Notificar automáticamente a los motores de búsqueda
+        $pingResults = $this->notifySearchEngines();
+        
         return response()->json([
             'success' => true,
-            'message' => 'Sitemap actualizado correctamente',
+            'message' => 'Sitemap actualizado y motores de búsqueda notificados',
             'stats' => [
                 'static_pages' => count($this->getStaticPages()),
                 'blog_posts' => Post::where('published', true)->count(),
                 'total_urls' => count($sitemap),
                 'last_updated' => now()->format('d/m/Y H:i'),
                 'generated_at' => now()->toISOString()
-            ]
+            ],
+            'ping_results' => $pingResults
         ]);
+    }
+    
+    /**
+     * Notificar a los motores de búsqueda sobre la actualización del sitemap
+     */
+    private function notifySearchEngines()
+    {
+        try {
+            // Usar la URL pública del sitio en producción
+            $appUrl = config('app.url');
+            
+            // Si estamos en desarrollo local, simular el éxito pero no hacer ping real
+            if (str_contains($appUrl, 'localhost') || str_contains($appUrl, '127.0.0.1')) {
+                return [
+                    'google' => [
+                        'success' => true,
+                        'status_code' => 200,
+                        'message' => 'Modo desarrollo - Ping simulado (usar en producción con dominio real)',
+                        'development_mode' => true
+                    ],
+                    'bing' => [
+                        'success' => true,
+                        'status_code' => 200,
+                        'message' => 'Modo desarrollo - Ping simulado (usar en producción con dominio real)',
+                        'development_mode' => true
+                    ]
+                ];
+            }
+            
+            $sitemapUrl = $appUrl . '/sitemap_index.xml';
+            
+            $results = [
+                'google' => $this->pingGoogle($sitemapUrl),
+                'bing' => $this->pingBing($sitemapUrl)
+            ];
+            
+            return $results;
+            
+        } catch (\Exception $e) {
+            return [
+                'error' => true,
+                'message' => 'Error al notificar motores de búsqueda: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * Ping a Google Search Console
+     */
+    private function pingGoogle($sitemapUrl)
+    {
+        try {
+            $googlePingUrl = 'https://www.google.com/ping?sitemap=' . urlencode($sitemapUrl);
+            
+            $response = \Illuminate\Support\Facades\Http::timeout(10)->get($googlePingUrl);
+            
+            return [
+                'success' => $response->successful(),
+                'status_code' => $response->status(),
+                'message' => $response->successful() ? 'Notificado correctamente' : 'Error en notificación'
+            ];
+            
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'status_code' => 0,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * Ping a Bing Webmaster Tools
+     */
+    private function pingBing($sitemapUrl)
+    {
+        try {
+            $bingPingUrl = 'https://www.bing.com/ping?sitemap=' . urlencode($sitemapUrl);
+            
+            $response = \Illuminate\Support\Facades\Http::timeout(10)->get($bingPingUrl);
+            
+            return [
+                'success' => $response->successful(),
+                'status_code' => $response->status(),
+                'message' => $response->successful() ? 'Notificado correctamente' : 'Error en notificación'
+            ];
+            
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'status_code' => 0,
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * Generar archivos de sitemap XML
+     */
+    private function generateSitemapFiles()
+    {
+        // Ejecutar el comando artisan para generar los archivos XML
+        \Illuminate\Support\Facades\Artisan::call('sitemap:generate');
     }
     
     /**
