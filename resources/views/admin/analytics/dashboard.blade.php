@@ -99,8 +99,48 @@
             <div class="mb-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Visitas por Día</h3>
-                    <canvas id="visitsChart" width="400" height="100"></canvas>
+                    <div class="chart-container" style="height: 200px; max-height: 200px;">
+                        <canvas id="visitsChart"></canvas>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Gráficos de análisis temporal -->
+            <div class="analytics-grid mb-6">
+                
+                <!-- Gráfico Diario -->
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-medium text-gray-900">📊 Últimos 7 Días</h3>
+                        <span class="text-sm text-gray-500">Visitas diarias</span>
+                    </div>
+                    <div class="chart-container" style="height: 300px; max-height: 300px;">
+                        <canvas id="dailyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gráfico Semanal -->
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-medium text-gray-900">📈 Últimas 8 Semanas</h3>
+                        <span class="text-sm text-gray-500">Visitas semanales</span>
+                    </div>
+                    <div class="chart-container" style="height: 300px; max-height: 300px;">
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gráfico Mensual -->
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-medium text-gray-900">📅 Últimos 12 Meses</h3>
+                        <span class="text-sm text-gray-500">Visitas mensuales</span>
+                    </div>
+                    <div class="chart-container" style="height: 300px; max-height: 300px;">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Tablas de datos -->
@@ -338,42 +378,291 @@
         </div>
     </div>
 
-    @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Gráfico de visitas
-        const ctx = document.getElementById('visitsChart').getContext('2d');
-        const chartData = @json($stats['visits_chart']);
+    @push('styles')
+    <style>
+        /* Estilos para controlar el tamaño de los gráficos */
+        .chart-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
         
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: chartData.map(item => item.date),
-                datasets: [{
-                    label: 'Visitas',
-                    data: chartData.map(item => item.visits),
-                    borderColor: 'rgb(59, 130, 246)',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    fill: true,
-                    tension: 0.1
-                }]
-            },
-            options: {
+        .chart-container canvas {
+            max-width: 100% !important;
+            max-height: 400px !important;
+        }
+        
+        /* Prevenir overflow en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .chart-container canvas {
+                max-height: 250px !important;
+            }
+        }
+        
+        /* Grid responsive para los gráficos */
+        .analytics-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 1024px) {
+            .analytics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .analytics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+    @endpush
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar que Chart.js esté disponible
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js no está cargado');
+                return;
+            }
+
+            // Configuración global para evitar problemas de canvas
+            Chart.defaults.responsive = true;
+            Chart.defaults.maintainAspectRatio = true;
+            Chart.defaults.aspectRatio = 2;
+            Chart.defaults.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+            // Configuración común para todos los gráficos
+            const commonOptions = {
                 responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2,
+                devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 15,
+                            fontSize: 11
+                        }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            precision: 0
+                            precision: 0,
+                            maxTicksLimit: 8
+                        },
+                        grid: {
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 8
+                        },
+                        grid: {
+                            drawBorder: false
                         }
                     }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            };
+
+            // Colores para los gráficos
+            const colors = {
+                primary: 'rgba(59, 130, 246, 0.8)',
+                primaryLight: 'rgba(59, 130, 246, 0.1)',
+                secondary: 'rgba(16, 185, 129, 0.8)',
+                secondaryLight: 'rgba(16, 185, 129, 0.1)',
+                accent: 'rgba(245, 158, 11, 0.8)',
+                accentLight: 'rgba(245, 158, 11, 0.1)'
+            };
+
+            // Función helper para crear gráficos de forma segura
+            function createChartSafely(canvasId, config) {
+                try {
+                    const ctx = document.getElementById(canvasId);
+                    if (!ctx) {
+                        console.warn(`Canvas ${canvasId} no encontrado`);
+                        return null;
+                    }
+                    
+                    // Asegurar tamaño máximo del canvas
+                    const container = ctx.parentElement;
+                    if (container) {
+                        const maxWidth = Math.min(container.offsetWidth || 800, 1200);
+                        const maxHeight = Math.min(container.offsetHeight || 400, 600);
+                        
+                        ctx.style.maxWidth = maxWidth + 'px';
+                        ctx.style.maxHeight = maxHeight + 'px';
+                    }
+                    
+                    return new Chart(ctx, config);
+                } catch (error) {
+                    console.error(`Error creando gráfico ${canvasId}:`, error);
+                    return null;
                 }
             }
+
+            // 1. Gráfico principal de visitas
+            const chartData = @json($stats['visits_chart'] ?? []);
+            if (chartData && chartData.length > 0) {
+                createChartSafely('visitsChart', {
+                    type: 'line',
+                    data: {
+                        labels: chartData.map(item => item.date || ''),
+                        datasets: [{
+                            label: 'Visitas',
+                            data: chartData.map(item => item.visits || 0),
+                            borderColor: colors.primary,
+                            backgroundColor: colors.primaryLight,
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 3,
+                            pointHoverRadius: 5
+                        }]
+                    },
+                    options: {
+                        ...commonOptions,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 2. Gráfico Diario (últimos 7 días)
+            const dailyData = @json($stats['daily_visits_chart'] ?? []);
+            if (dailyData && dailyData.length > 0) {
+                createChartSafely('dailyChart', {
+                    type: 'bar',
+                    data: {
+                        labels: dailyData.map(item => item.date || ''),
+                        datasets: [
+                            {
+                                label: 'Total Visitas',
+                                data: dailyData.map(item => item.visits || 0),
+                                backgroundColor: colors.primary,
+                                borderColor: colors.primary,
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Visitantes Únicos',
+                                data: dailyData.map(item => item.unique_visits || 0),
+                                backgroundColor: colors.secondary,
+                                borderColor: colors.secondary,
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: commonOptions
+                });
+            }
+
+            // 3. Gráfico Semanal (últimas 8 semanas)
+            const weeklyData = @json($stats['weekly_visits_chart'] ?? []);
+            if (weeklyData && weeklyData.length > 0) {
+                createChartSafely('weeklyChart', {
+                    type: 'line',
+                    data: {
+                        labels: weeklyData.map(item => item.date || ''),
+                        datasets: [
+                            {
+                                label: 'Total Visitas',
+                                data: weeklyData.map(item => item.visits || 0),
+                                borderColor: colors.accent,
+                                backgroundColor: colors.accentLight,
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 5
+                            },
+                            {
+                                label: 'Visitantes Únicos',
+                                data: weeklyData.map(item => item.unique_visits || 0),
+                                borderColor: colors.secondary,
+                                backgroundColor: colors.secondaryLight,
+                                fill: false,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 5
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonOptions,
+                        plugins: {
+                            ...commonOptions.plugins,
+                            tooltip: {
+                                callbacks: {
+                                    afterLabel: function(context) {
+                                        const dataIndex = context.dataIndex;
+                                        if (weeklyData[dataIndex] && weeklyData[dataIndex].period) {
+                                            return 'Período: ' + weeklyData[dataIndex].period;
+                                        }
+                                        return '';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 4. Gráfico Mensual (últimos 12 meses)
+            const monthlyData = @json($stats['monthly_visits_chart'] ?? []);
+            if (monthlyData && monthlyData.length > 0) {
+                createChartSafely('monthlyChart', {
+                    type: 'bar',
+                    data: {
+                        labels: monthlyData.map(item => item.date || ''),
+                        datasets: [
+                            {
+                                label: 'Total Visitas',
+                                data: monthlyData.map(item => item.visits || 0),
+                                backgroundColor: colors.primary,
+                                borderColor: colors.primary,
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Visitantes Únicos',
+                                data: monthlyData.map(item => item.unique_visits || 0),
+                                backgroundColor: colors.secondary,
+                                borderColor: colors.secondary,
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonOptions,
+                        scales: {
+                            ...commonOptions.scales,
+                            x: {
+                                ...commonOptions.scales.x,
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 0,
+                                    maxTicksLimit: 6
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            console.log('📊 Gráficos de analytics cargados correctamente');
         });
     </script>
     @endpush

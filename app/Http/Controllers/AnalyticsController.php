@@ -31,7 +31,10 @@ class AnalyticsController extends Controller
             'search_engines' => PageVisit::getSearchEngines(),
             'top_keywords' => PageVisit::getTopSearchKeywords(10),
             'utm_campaigns' => PageVisit::getUTMCampaigns(),
-            'visits_chart' => $this->getVisitsChartData($dateRange)
+            'visits_chart' => $this->getVisitsChartData($dateRange),
+            'daily_visits_chart' => $this->getDailyVisitsChart(7),
+            'weekly_visits_chart' => $this->getWeeklyVisitsChart(8),
+            'monthly_visits_chart' => $this->getMonthlyVisitsChart(12)
         ];
 
         return view('admin.analytics.dashboard', compact('stats', 'dateRange'));
@@ -251,6 +254,68 @@ class AnalyticsController extends Controller
         };
 
         return PageVisit::getVisitsChart($days);
+    }
+
+    private function getDailyVisitsChart($days = 7)
+    {
+        return PageVisit::select(DB::raw('DATE(visited_at) as date'))
+            ->selectRaw('COUNT(*) as visits')
+            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+            ->where('visited_at', '>=', Carbon::now()->subDays($days))
+            ->groupBy(DB::raw('DATE(visited_at)'))
+            ->orderBy('date')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'date' => Carbon::parse($item->date)->format('d/m'),
+                    'visits' => $item->visits,
+                    'unique_visits' => $item->unique_visits
+                ];
+            });
+    }
+
+    private function getWeeklyVisitsChart($weeks = 8)
+    {
+        return PageVisit::select(DB::raw('YEARWEEK(visited_at, 1) as week'))
+            ->selectRaw('COUNT(*) as visits')
+            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+            ->where('visited_at', '>=', Carbon::now()->subWeeks($weeks))
+            ->groupBy(DB::raw('YEARWEEK(visited_at, 1)'))
+            ->orderBy('week')
+            ->get()
+            ->map(function ($item) {
+                $year = substr($item->week, 0, 4);
+                $week = substr($item->week, 4, 2);
+                $startOfWeek = Carbon::now()->setISODate($year, $week)->startOfWeek();
+                
+                return [
+                    'date' => 'Sem ' . $week . '/' . $year,
+                    'period' => $startOfWeek->format('d/m') . ' - ' . $startOfWeek->copy()->endOfWeek()->format('d/m'),
+                    'visits' => $item->visits,
+                    'unique_visits' => $item->unique_visits
+                ];
+            });
+    }
+
+    private function getMonthlyVisitsChart($months = 12)
+    {
+        return PageVisit::select(DB::raw('YEAR(visited_at) as year'), DB::raw('MONTH(visited_at) as month'))
+            ->selectRaw('COUNT(*) as visits')
+            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+            ->where('visited_at', '>=', Carbon::now()->subMonths($months))
+            ->groupBy(DB::raw('YEAR(visited_at)'), DB::raw('MONTH(visited_at)'))
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get()
+            ->map(function ($item) {
+                $monthName = Carbon::createFromDate($item->year, $item->month, 1)->locale('es')->format('M Y');
+                
+                return [
+                    'date' => $monthName,
+                    'visits' => $item->visits,
+                    'unique_visits' => $item->unique_visits
+                ];
+            });
     }
 
     private function exportToCsv($data)
