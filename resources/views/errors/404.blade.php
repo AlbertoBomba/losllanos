@@ -206,7 +206,7 @@
                     <button onclick="window.open('tel:+34608910639', '_self')" 
                             class="bg-white text-[#4b5d3a] hover:bg-gray-100 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
                         <i class="fas fa-phone mr-2"></i>
-                        925 123 456
+                        608 910 639
                     </button>
                     <button onclick="window.open('mailto:att@clubdetiro-losllanos.es?subject=Consulta desde página 404&body=Hola,%20estaba%20buscando%20información%20y%20llegué%20a%20la%20página%20404.%20¿Podrían%20ayudarme?', '_self')" 
                             class="bg-[#8b5e3c] hover:bg-[#7a5235] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">

@@ -52,7 +52,7 @@
                             <p class="mb-4">
                                 <strong>Última actualización:</strong> Agosto 2025<br>
                                 <strong>Empresa:</strong> Los Llanos Toledo<br>
-                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 925 123 456
+                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 608 910 639
                             </p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                     <li><strong>Razón social:</strong> Los Llanos Toledo</li>
                                     <li><strong>Actividad:</strong> Cría y venta de aves de caza</li>
                                     <li><strong>Ubicación:</strong> Toledo, España</li>
-                                    <li><strong>Teléfono:</strong> 925 123 456</li>
+                                    <li><strong>Teléfono:</strong> 608 910 639</li>
                                 </ul>
                             </div>
                             <div>
@@ -386,7 +386,7 @@
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-phone text-[#4b5d3a] mr-3"></i>
-                                        <span>925 123 456</span>
+                                        <span>608 910 639</span>
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-clock text-[#4b5d3a] mr-3"></i>

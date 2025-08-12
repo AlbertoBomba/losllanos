@@ -47,7 +47,7 @@
                             <p class="mb-4">
                                 <strong>Última actualización:</strong> Agosto 2025<br>
                                 <strong>Responsable del tratamiento:</strong> Los Llanos Toledo<br>
-                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 925 123 456
+                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 608 910 639
                             </p>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
                         </h4>
                         <p class="text-gray-700 mb-4">
                             Puedes ejercer tus derechos enviando un correo electrónico a <strong>att@clubdetiro-losllanos.es</strong> 
-                            o llamando al <strong>925 123 456</strong>. Te responderemos en un plazo máximo de 30 días.
+                            o llamando al <strong>608 910 639</strong>. Te responderemos en un plazo máximo de 30 días.
                         </p>
                         <p class="text-gray-700 text-sm">
                             Si no estás satisfecho con nuestra respuesta, puedes presentar una reclamación ante la 
@@ -328,7 +328,7 @@
                                     <p><strong>Los Llanos Toledo</strong></p>
                                     <p>Toledo, España</p>
                                     <p>📧 att@clubdetiro-losllanos.es</p>
-                                    <p>📞 925 123 456</p>
+                                    <p>📞 608 910 639</p>
                                 </div>
                             </div>
                             

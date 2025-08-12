@@ -213,62 +213,70 @@ tiradas en finca y venta de aves. Te respondemos rápidamente.')
             <div class="lg:col-span-1">
                 <div class="space-y-8">
                     
-                    <!-- Contact Info -->
-                    <div class="bg-green-50 rounded-lg p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 font-oswald">Información de Contacto</h3>
-                        <div class="space-y-4">
+                    <!-- Location Info -->
+                <div class="order-1 lg:order-2">
+                    <div class="bg-green-50 rounded-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 font-oswald">Finca Los Llanos</h3>
+                        
+                        <div class="space-y-6">
                             <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-green-600 text-lg mt-1 mr-3"></i>
+                                <i class="fas fa-map-marker-alt text-green-600 text-xl mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-gray-900">Dirección</p>
-                                    <p class="text-gray-700">Finca Los Llanos - Bargas (Toledo)</p>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Dirección Completa</h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Finca Los Llanos<br>
+                                        Camino de las Perdices, s/n<br>
+                                        45593 Bargas, Toledo<br>
+                                        Castilla-La Mancha, España
+                                    </p>
                                 </div>
                             </div>
                             
                             <div class="flex items-start">
-                                <i class="fas fa-phone text-green-600 text-lg mt-1 mr-3"></i>
+                                <i class="fas fa-car text-green-600 text-xl mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-gray-900">Teléfono</p>
-                                    <p class="text-gray-700">+34 608 910 639</p>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Acceso en Vehículo</h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Acceso directo desde la A-40, salida 13<br>
+                                        Parking disponible en la finca<br>
+                                        Coordenadas GPS: 40.0000, -4.1333
+                                    </p>
                                 </div>
                             </div>
                             
                             <div class="flex items-start">
-                                <i class="fas fa-envelope text-green-600 text-lg mt-1 mr-3"></i>
+                                <i class="fas fa-clock text-green-600 text-xl mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-gray-900">Email</p>
-                                    <p class="text-gray-700">att@clubdetiro-losllanos.es</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start">
-                                <i class="fas fa-clock text-green-600 text-lg mt-1 mr-3"></i>
-                                <div>
-                                    <p class="font-medium text-gray-900">Horario</p>
-                                    <p class="text-gray-700">Lunes a Domingo / 9:00 - 20:00</p>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Horario de Visitas</h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Lunes a Domingo: 9:00 - 20:00<br>
+                                        <span class="text-sm text-gray-600">*Recomendamos concertar cita previa</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
+                        <!-- Action Buttons -->
+                        <div class="mt-8 space-y-4">
+                            <!-- Botón Cómo llegar -->
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=39.976943,-4.063520&destination_place_id=ChIJ12345678901234567890" 
+                               title="Cómo llegar a la Finca Los Llanos, desde google maps"
+                                target="_blank" 
+                               rel="noopener noreferrer"
+                               class="w-full bg-blue-600 text-white font-medium py-4 px-6 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all duration-200 flex items-center justify-center">
+                                <i class="fas fa-route mr-2"></i>
+                                Cómo Llegar (Google Maps)
+                            </a>
+                        </div>
+                        <!-- Map -->
+                        {{-- <div class="order-2 lg:order-1">
+                            <div class="relative bg-gray-200 rounded-lg overflow-hidden shadow-lg" style="height: 400px;">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3057.4097733170474!2d-4.0660949234796!3d39.97694708228792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMznCsDU4JzM3LjAiTiA0wrAwMyc0OC43Ilc!5e0!3m2!1ses!2ses!4v1754956409965!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div> --}}
                     </div>
+                </div>
 
-                    <!-- Why Contact Us -->
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 font-oswald">¿Por qué contactarnos?</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
-                                <span>Asesoramiento personalizado para tu experiencia de caza</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
-                                <span>Organización de eventos grupales</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-600 mt-1 mr-3"></i>
-                                <span>Consultas sobre venta de aves</span>
-                            </li>
-                        </ul>
-                    </div>
+                    
 
                     <!-- Response Time -->
                     <div class="bg-blue-50 rounded-lg p-6 text-center">
@@ -281,4 +289,50 @@ tiradas en finca y venta de aves. Te respondemos rápidamente.')
         </div>
     </div>
 </section>
+
+<!-- Location Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 font-oswald">Nuestra Ubicación</h2>
+                <p class="text-lg text-gray-600">Ven a visitarnos en la Finca Los Llanos, en el corazón de Toledo</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                
+                
+            </div>
+            
+            <!-- Distancias y Accesos -->
+            <div class="mt-12 bg-gray-50 rounded-lg p-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-6 text-center font-oswald">Distancias desde Principales Ciudades</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <i class="fas fa-city text-green-600 text-2xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-900">Toledo</h4>
+                        <p class="text-gray-600">15 km - 20 min</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-city text-green-600 text-2xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-900">Madrid</h4>
+                        <p class="text-gray-600">85 km - 1h 15min</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-city text-green-600 text-2xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-900">Talavera</h4>
+                        <p class="text-gray-600">45 km - 45 min</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-city text-green-600 text-2xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-900">Ávila</h4>
+                        <p class="text-gray-600">90 km - 1h 30min</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

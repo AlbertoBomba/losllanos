@@ -107,6 +107,18 @@
                         <i class="fas fa-envelope text-[#4b5d3a] mr-3"></i>
                         <span class="text-gray-300">att@clubdetiro-losllanos.es</span>
                     </div>
+                    
+                    <div class="mt-8 space-y-4">
+                            <!-- Botón Cómo llegar -->
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=39.976943,-4.063520&destination_place_id=ChIJ12345678901234567890" 
+                               title="Cómo llegar a la Finca Los Llanos, (google maps)"
+                                target="_blank" 
+                               rel="noopener noreferrer"
+                               class="w-full bg-blue-600 text-white font-medium py-4 px-6 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all duration-200 flex items-center justify-center">
+                                <i class="fas fa-route mr-2"></i>
+                                Cómo Llegar
+                            </a>
+                        </div>
                 </div>
             </div>
 
