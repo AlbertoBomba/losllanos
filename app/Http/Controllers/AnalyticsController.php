@@ -17,11 +17,15 @@ class AnalyticsController extends Controller
         // Obtener datos según el rango de fecha
         $query = $this->getQueryByDateRange($dateRange);
         
+        // Obtener análisis de sesiones
+        $sessionAnalysis = $this->getSessionAnalysisByPages($query);
+        
         $stats = [
             'total_visits' => $query->count(),
             'unique_visitors' => $query->where('is_unique_visitor', true)->count(),
             'bounce_rate' => $this->calculateBounceRate($query),
             'avg_session_duration' => $this->getAverageSessionDuration($query),
+            'session_analysis' => $sessionAnalysis,
             'most_visited_pages' => PageVisit::getMostVisitedPages(10),
             'top_referers' => PageVisit::getTopReferers(10),
             'device_stats' => PageVisit::getDeviceStats(),
@@ -42,8 +46,10 @@ class AnalyticsController extends Controller
 
     public function realTime()
     {
-        // Visitas en tiempo real (últimos 5 minutos)
-        $realtimeVisits = PageVisit::where('visited_at', '>=', Carbon::now()->subMinutes(5))
+        // Visitas en tiempo real (últimos 5 minutos) excluyendo bots
+        $realtimeVisits = $this->applyBotFilters(
+            PageVisit::where('visited_at', '>=', Carbon::now()->subMinutes(5))
+        )
             ->orderBy('visited_at', 'desc')
             ->limit(50)
             ->get();
@@ -196,28 +202,64 @@ class AnalyticsController extends Controller
 
     private function getQueryByDateRange($range)
     {
+        $baseQuery = null;
+        
         switch ($range) {
             case 'today':
-                return PageVisit::today();
+                $baseQuery = PageVisit::today();
+                break;
             case 'yesterday':
-                return PageVisit::yesterday();
+                $baseQuery = PageVisit::yesterday();
+                break;
             case 'week':
-                return PageVisit::thisWeek();
+                $baseQuery = PageVisit::thisWeek();
+                break;
             case 'month':
-                return PageVisit::thisMonth();
+                $baseQuery = PageVisit::thisMonth();
+                break;
             case 'last_month':
-                return PageVisit::lastMonth();
+                $baseQuery = PageVisit::lastMonth();
+                break;
             default:
-                return PageVisit::today();
+                $baseQuery = PageVisit::today();
         }
+        
+        // Excluir bots de redes sociales y crawlers
+        return $baseQuery->where('user_agent', '!=', 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)')
+            ->whereNotLike('user_agent', '%bot%')
+            ->whereNotLike('user_agent', '%crawler%')
+            ->whereNotLike('user_agent', '%spider%')
+            ->whereNotLike('user_agent', '%facebookexternalhit%');
+    }
+
+    /**
+     * Aplicar filtros para excluir bots y crawlers
+     */
+    private function applyBotFilters($query)
+    {
+        return $query->where('user_agent', '!=', 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)')
+            ->whereNotLike('user_agent', '%bot%')
+            ->whereNotLike('user_agent', '%crawler%')
+            ->whereNotLike('user_agent', '%spider%')
+            ->whereNotLike('user_agent', '%facebookexternalhit%')
+            // Excluir URLs administrativas y de sistema
+            ->whereNotLike('url', '%/login%')
+            ->whereNotLike('url', '%/admin%')
+            ->whereNotLike('url', '%/api/%');
     }
 
     private function calculateBounceRate($query)
     {
-        $totalSessions = $query->distinct('session_id')->count();
+        // Crear una query limpia para el cálculo de bounce rate
+        $dateRange = request()->get('range', 'today');
+        $cleanQuery = $this->getQueryByDateRange($dateRange);
+        
+        $totalSessions = $cleanQuery->distinct('session_id')->count();
         if ($totalSessions === 0) return 0;
         
-        $bouncedSessions = $query->selectRaw('session_id, COUNT(*) as page_views')
+        // Contar sesiones de una sola página
+        $bouncedSessions = $cleanQuery->select('session_id')
+            ->selectRaw('COUNT(*) as page_views')
             ->groupBy('session_id')
             ->having('page_views', '=', 1)
             ->count();
@@ -258,10 +300,12 @@ class AnalyticsController extends Controller
 
     private function getDailyVisitsChart($days = 7)
     {
-        return PageVisit::select(DB::raw('DATE(visited_at) as date'))
-            ->selectRaw('COUNT(*) as visits')
-            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
-            ->where('visited_at', '>=', Carbon::now()->subDays($days))
+        return $this->applyBotFilters(
+            PageVisit::select(DB::raw('DATE(visited_at) as date'))
+                ->selectRaw('COUNT(*) as visits')
+                ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+                ->where('visited_at', '>=', Carbon::now()->subDays($days))
+        )
             ->groupBy(DB::raw('DATE(visited_at)'))
             ->orderBy('date')
             ->get()
@@ -276,10 +320,12 @@ class AnalyticsController extends Controller
 
     private function getWeeklyVisitsChart($weeks = 8)
     {
-        return PageVisit::select(DB::raw('YEARWEEK(visited_at, 1) as week'))
-            ->selectRaw('COUNT(*) as visits')
-            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
-            ->where('visited_at', '>=', Carbon::now()->subWeeks($weeks))
+        return $this->applyBotFilters(
+            PageVisit::select(DB::raw('YEARWEEK(visited_at, 1) as week'))
+                ->selectRaw('COUNT(*) as visits')
+                ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+                ->where('visited_at', '>=', Carbon::now()->subWeeks($weeks))
+        )
             ->groupBy(DB::raw('YEARWEEK(visited_at, 1)'))
             ->orderBy('week')
             ->get()
@@ -299,10 +345,12 @@ class AnalyticsController extends Controller
 
     private function getMonthlyVisitsChart($months = 12)
     {
-        return PageVisit::select(DB::raw('YEAR(visited_at) as year'), DB::raw('MONTH(visited_at) as month'))
-            ->selectRaw('COUNT(*) as visits')
-            ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
-            ->where('visited_at', '>=', Carbon::now()->subMonths($months))
+        return $this->applyBotFilters(
+            PageVisit::select(DB::raw('YEAR(visited_at) as year'), DB::raw('MONTH(visited_at) as month'))
+                ->selectRaw('COUNT(*) as visits')
+                ->selectRaw('COUNT(DISTINCT session_id) as unique_visits')
+                ->where('visited_at', '>=', Carbon::now()->subMonths($months))
+        )
             ->groupBy(DB::raw('YEAR(visited_at)'), DB::raw('MONTH(visited_at)'))
             ->orderBy('year')
             ->orderBy('month')
@@ -452,5 +500,58 @@ class AnalyticsController extends Controller
             default:
                 return today();
         }
+    }
+
+    /**
+     * Análisis de sesiones por número de páginas visitadas
+     */
+    private function getSessionAnalysisByPages($query)
+    {
+        // Crear una query completamente limpia para evitar conflictos
+        $dateRange = request()->get('range', 'today');
+        $cleanQuery = $this->getQueryByDateRange($dateRange);
+        
+        // Obtener sesiones con número de páginas visitadas
+        $sessionsData = $cleanQuery->select(
+                'session_id',
+                DB::raw('COUNT(*) as page_count'),
+                DB::raw('MIN(visited_at) as first_visit'),
+                DB::raw('MAX(visited_at) as last_visit'),
+                DB::raw('MIN(url) as first_page'),
+                DB::raw('MAX(url) as last_page')
+            )
+            ->groupBy('session_id')
+            ->orderByRaw('COUNT(*) desc')
+            ->get();
+
+        // Clasificar sesiones por número de páginas
+        $sessionsByPages = [
+            '1_page' => $sessionsData->where('page_count', 1),
+            '2_pages' => $sessionsData->where('page_count', 2),
+            '3_pages' => $sessionsData->where('page_count', 3),
+            '4_pages' => $sessionsData->where('page_count', 4),
+            '5_plus_pages' => $sessionsData->where('page_count', '>=', 5),
+        ];
+
+        // Calcular estadísticas
+        $totalSessions = $sessionsData->count();
+        $sessionStats = [];
+        
+        foreach ($sessionsByPages as $type => $sessions) {
+            $count = $sessions->count();
+            $percentage = $totalSessions > 0 ? round(($count / $totalSessions) * 100, 2) : 0;
+            
+            $sessionStats[$type] = [
+                'count' => $count,
+                'percentage' => $percentage,
+                'sessions' => $sessions->take(10) // Tomar las 10 primeras para mostrar
+            ];
+        }
+
+        return [
+            'total_sessions' => $totalSessions,
+            'stats' => $sessionStats,
+            'recent_sessions' => $sessionsData->take(20) // Las 20 sesiones más recientes
+        ];
     }
 }

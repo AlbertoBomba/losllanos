@@ -10,6 +10,10 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Models\Post;
 
+
+//test 
+Route::get('/home2', [HomeController::class, 'home2'])->name('home2');
+
 // RUTAS PÚBLICAS
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog-de-caza', [HomeController::class, 'showBlogs'])->name('blog-de-caza');

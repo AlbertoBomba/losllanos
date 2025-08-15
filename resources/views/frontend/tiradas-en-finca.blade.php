@@ -1,7 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', 'Cazar perdices | Los Llanos Toledo')
-@section('description', 'Organiza tu temporada de caza con nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. Planificación perfecta para toda la temporada.')
+@section('title', 'Coto de caza intensivo | Los Llanos Toledo')
+@section('description', 'Temporada de caza. Nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. 
+Además coto de caza intensivo de codornices.')
 
 @section('content')
 
@@ -20,12 +21,11 @@
         <!-- Content -->
         <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-20">
             <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
-                Cazar Perdices, Faisanes o codornices en Finca
+                Coto de caza codornices y suelta de perdices y faisan en finca
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
                 <em class="font-display text-2xl md:text-3xl">Tu temporada de caza perfectamente planificada</em><br><br>
-                Organiza tus <strong>tiradas en finca mes a mes</strong> durante toda la temporada. 
-                Cada mes ofrece condiciones únicas y experiencias excepcionales.
+                Organiza tus <strong>jornadas en nuestro coto de caza, en nuestra finca</strong> durante toda la temporada. 
             </p>
             <!-- Quick Stats -->
             <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">

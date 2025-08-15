@@ -7,6 +7,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+     /**
+     * Mostrar un post individual
+     */
+    public function home2()
+    {
+         // Obtener últimos posts para mostrar en home
+        $latestPosts = Post::where('published', true)
+                          ->latest()
+                          ->take(3)
+                          ->get();
+        return view('frontend._home', compact('latestPosts'));
+    }
+
     /**
      * Mostrar la página de inicio
      */

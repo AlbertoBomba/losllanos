@@ -21,10 +21,9 @@ class TrackPageVisits
     {
         $response = $next($request);
 
-        // Solo trackear peticiones GET y que no sean APIs, admin, ni archivos estáticos
+        // Solo trackear peticiones GET y que no sean excluidas
         if ($request->isMethod('GET') && 
-            !$request->is('api/*') && 
-            !$request->is('admin/*') &&
+            !$this->shouldExcludeFromTracking($request) &&
             !$this->isStaticFile($request)) {
             
             $this->trackVisit($request);
@@ -37,6 +36,12 @@ class TrackPageVisits
     {
         try {
             $userAgent = $request->userAgent() ?? '';
+            
+            // Excluir bots y crawlers
+            if ($this->isBotOrCrawler($userAgent)) {
+                return;
+            }
+            
             $referer = $request->header('referer');
 
             // Obtener o generar session ID para el tracking
@@ -313,5 +318,95 @@ class TrackPageVisits
         }
 
         return null;
+    }
+
+    protected function shouldExcludeFromTracking(Request $request)
+    {
+        $url = $request->fullUrl();
+        $path = $request->path();
+        
+        // URLs específicas a excluir
+        $excludedUrls = [
+            'https://clubdetiro-losllanos.es/login',
+            'https://clubdetiro-losllanos.es/admin'
+        ];
+        
+        // Verificar URLs completas específicas
+        foreach ($excludedUrls as $excludedUrl) {
+            if ($url === $excludedUrl) {
+                return true;
+            }
+        }
+        
+        // Patrones de rutas a excluir
+        $excludedPatterns = [
+            'api/*',           // APIs
+            'admin/*',         // Panel de administración
+            'login',           // Página de login
+            'admin',           // Admin sin slash
+            '_debugbar/*',     // Laravel Debugbar
+            'livewire/*',      // Livewire requests
+            'telescope/*',     // Laravel Telescope
+        ];
+        
+        // Verificar patrones
+        foreach ($excludedPatterns as $pattern) {
+            if ($request->is($pattern)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    protected function isBotOrCrawler($userAgent)
+    {
+        // Lista de patrones de bots y crawlers que queremos excluir
+        $botPatterns = [
+            // Facebook External Hit específicamente mencionado por el usuario
+            'facebookexternalhit/1.1',
+            'facebookexternalhit',
+            
+            // Otros bots comunes
+            'bot',
+            'crawler',
+            'spider',
+            'scraper',
+            'crawl',
+            
+            // Bots específicos conocidos
+            'googlebot',
+            'bingbot',
+            'slurp',
+            'duckduckbot',
+            'baiduspider',
+            'yandexbot',
+            'facebookbot',
+            'twitterbot',
+            'linkedinbot',
+            'whatsapp',
+            'telegram',
+            'discordbot',
+            'applebot',
+            'amazonbot',
+            'pingdom',
+            'uptimerobot',
+            'headlesschrome',
+            'phantomjs',
+            'selenium',
+            'wget',
+            'curl',
+            'http_request'
+        ];
+
+        $userAgentLower = strtolower($userAgent);
+        
+        foreach ($botPatterns as $pattern) {
+            if (strpos($userAgentLower, strtolower($pattern)) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

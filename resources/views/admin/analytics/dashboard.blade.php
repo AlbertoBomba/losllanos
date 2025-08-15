@@ -95,6 +95,137 @@
                 </div>
             </div>
 
+            <!-- Análisis de Sesiones por Páginas Visitadas -->
+            @if(isset($stats['session_analysis']))
+            <div class="mb-6">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-6">🔍 Análisis de Comportamiento de Sesiones</h3>
+                    
+                    <!-- Resumen de sesiones por páginas -->
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-red-600">{{ $stats['session_analysis']['stats']['1_page']['count'] }}</div>
+                                <div class="text-sm text-red-500">1 Página (Bounce)</div>
+                                <div class="text-xs text-red-400">{{ $stats['session_analysis']['stats']['1_page']['percentage'] }}%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-600">{{ $stats['session_analysis']['stats']['2_pages']['count'] }}</div>
+                                <div class="text-sm text-blue-500">2 Páginas</div>
+                                <div class="text-xs text-blue-400">{{ $stats['session_analysis']['stats']['2_pages']['percentage'] }}%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-600">{{ $stats['session_analysis']['stats']['3_pages']['count'] }}</div>
+                                <div class="text-sm text-green-500">3 Páginas</div>
+                                <div class="text-xs text-green-400">{{ $stats['session_analysis']['stats']['3_pages']['percentage'] }}%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-yellow-600">{{ $stats['session_analysis']['stats']['4_pages']['count'] }}</div>
+                                <div class="text-sm text-yellow-500">4 Páginas</div>
+                                <div class="text-xs text-yellow-400">{{ $stats['session_analysis']['stats']['4_pages']['percentage'] }}%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-600">{{ $stats['session_analysis']['stats']['5_plus_pages']['count'] }}</div>
+                                <div class="text-sm text-purple-500">5+ Páginas</div>
+                                <div class="text-xs text-purple-400">{{ $stats['session_analysis']['stats']['5_plus_pages']['percentage'] }}%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla detallada de sesiones -->
+                    <div class="mt-6">
+                        <h4 class="text-md font-medium text-gray-900 mb-4">📊 Detalle de Sesiones Recientes</h4>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Session ID</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Páginas</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Primera Página</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Última Página</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duración</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @foreach($stats['session_analysis']['recent_sessions'] as $session)
+                                    @php
+                                        $duration = \Carbon\Carbon::parse($session->last_visit)->diffInSeconds(\Carbon\Carbon::parse($session->first_visit));
+                                        $pageType = '';
+                                        $badgeClass = '';
+                                        
+                                        if ($session->page_count == 1) {
+                                            $pageType = 'Bounce';
+                                            $badgeClass = 'bg-red-100 text-red-800';
+                                        } elseif ($session->page_count == 2) {
+                                            $pageType = '2 Páginas';
+                                            $badgeClass = 'bg-blue-100 text-blue-800';
+                                        } elseif ($session->page_count == 3) {
+                                            $pageType = '3 Páginas';
+                                            $badgeClass = 'bg-green-100 text-green-800';
+                                        } elseif ($session->page_count == 4) {
+                                            $pageType = '4 Páginas';
+                                            $badgeClass = 'bg-yellow-100 text-yellow-800';
+                                        } else {
+                                            $pageType = '5+ Páginas';
+                                            $badgeClass = 'bg-purple-100 text-purple-800';
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
+                                            {{ substr($session->session_id, 0, 8) }}...
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                {{ $session->page_count }}
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 max-w-xs truncate" title="{{ $session->first_page }}">
+                                            {{ $session->first_page }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 max-w-xs truncate" title="{{ $session->last_page }}">
+                                            {{ $session->last_page }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            @if($duration > 0)
+                                                {{ gmdate('H:i:s', $duration) }}
+                                            @else
+                                                < 1s
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ $badgeClass }}">
+                                                {{ $pageType }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        @if($stats['session_analysis']['recent_sessions']->count() == 0)
+                        <div class="text-center py-4">
+                            <p class="text-sm text-gray-500">No hay sesiones para mostrar en este período.</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <!-- Gráfico de visitas -->
             <div class="mb-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
