@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test LCP y Optimización de Imágenes - Los Llanos</title>
+    
+    <!-- Critical CSS inline -->
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .hero-section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            aspect-ratio: 21/9;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+        
+        .metrics-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-width: 250px;
+            z-index: 1000;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+        }
+        
+        .excellent { color: #28a745; }
+        .good { color: #17a2b8; }
+        .needs-improvement { color: #ffc107; }
+        .poor { color: #dc3545; }
+        
+        .loading {
+            color: #6c757d;
+        }
+        
+        /* Image loading states */
+        .image-container {
+            position: relative;
+            background: #f8f9fa;
+        }
+        
+        .loading-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .image-loaded .loading-placeholder {
+            display: none;
+        }
+        
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+    </style>
+    
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="public/images/general/historia-caza-uno.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="public/images/general/historia-caza-2.webp" fetchpriority="high">
+    
+    <!-- Import optimization styles -->
+    <link rel="stylesheet" href="resources/css/images.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <h1>Test de Optimización de Imágenes LCP</h1>
+            <p>Esta página testa la optimización de imágenes para mejorar el Largest Contentful Paint (LCP)</p>
+            
+            <!-- Critical hero image - should be LCP element -->
+            <div class="image-container">
+                <div class="loading-placeholder">Cargando imagen crítica...</div>
+                <picture>
+                    <source srcset="public/images/general/historia-caza-uno.webp" type="image/webp">
+                    <img 
+                        src="public/images/general/historia-caza-uno.webp"
+                        alt="Historia de caza - Imagen principal"
+                        class="hero-image lcp-critical"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="sync"
+                        onload="this.parentElement.classList.add('image-loaded')"
+                    >
+                </picture>
+            </div>
+        </div>
+        
+        <h2>Galería de Imágenes Optimizadas</h2>
+        <div class="gallery">
+            <!-- Gallery images with lazy loading -->
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/historia-caza-2.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/historia-caza-2.webp"
+                            alt="Historia de caza 2"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/padre-hijo-cazando-perdices.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/padre-hijo-cazando-perdices.webp"
+                            alt="Padre e hijo cazando perdices"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/finca.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/finca.webp"
+                            alt="Finca de caza"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/perdiz-volando.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/perdiz-volando.webp"
+                            alt="Perdiz volando"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/faisan-volando.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/faisan-volando.webp"
+                            alt="Faisán volando"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <div class="image-container">
+                    <div class="loading-placeholder">Cargando...</div>
+                    <picture>
+                        <source data-srcset="public/images/general/codorniz-volando.webp" type="image/webp">
+                        <img 
+                            data-src="public/images/general/codorniz-volando.webp"
+                            alt="Codorniz volando"
+                            class="gallery-image lazy-image"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Metrics panel -->
+    <div class="metrics-panel">
+        <h3>Métricas en Tiempo Real</h3>
+        
+        <div class="metric">
+            <span>LCP:</span>
+            <span id="lcp-value" class="metric-value loading">Calculando...</span>
+        </div>
+        
+        <div class="metric">
+            <span>FCP:</span>
+            <span id="fcp-value" class="metric-value loading">Calculando...</span>
+        </div>
+        
+        <div class="metric">
+            <span>CLS:</span>
+            <span id="cls-value" class="metric-value loading">Calculando...</span>
+        </div>
+        
+        <div class="metric">
+            <span>Imágenes cargadas:</span>
+            <span id="images-loaded" class="metric-value">0</span>
+        </div>
+        
+        <div class="metric">
+            <span>Elemento LCP:</span>
+            <span id="lcp-element" class="metric-value">Detectando...</span>
+        </div>
+        
+        <div class="metric">
+            <span>Tiempo total:</span>
+            <span id="total-time" class="metric-value loading">Calculando...</span>
+        </div>
+    </div>
+
+    <script>
+        // Import the image optimizer
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize performance tracking
+            const metrics = {
+                lcp: null,
+                fcp: null,
+                cls: 0,
+                imagesLoaded: 0,
+                startTime: performance.now()
+            };
+
+            // LCP tracking
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                
+                metrics.lcp = Math.round(lastEntry.startTime);
+                document.getElementById('lcp-value').textContent = metrics.lcp + 'ms';
+                document.getElementById('lcp-value').className = 'metric-value ' + getLCPClass(metrics.lcp);
+                
+                // Identify LCP element
+                const element = lastEntry.element;
+                if (element) {
+                    const elementDesc = element.tagName.toLowerCase() + 
+                        (element.className ? '.' + element.className.split(' ')[0] : '') +
+                        (element.alt ? ` (${element.alt.substring(0, 20)}...)` : '');
+                    document.getElementById('lcp-element').textContent = elementDesc;
+                }
+                
+                console.log('🎯 LCP:', metrics.lcp + 'ms', lastEntry.element);
+            }).observe({ type: 'largest-contentful-paint', buffered: true });
+
+            // FCP tracking
+            new PerformanceObserver((entryList) => {
+                for (const entry of entryList.getEntries()) {
+                    if (entry.name === 'first-contentful-paint') {
+                        metrics.fcp = Math.round(entry.startTime);
+                        document.getElementById('fcp-value').textContent = metrics.fcp + 'ms';
+                        document.getElementById('fcp-value').className = 'metric-value ' + getFCPClass(metrics.fcp);
+                        console.log('🎨 FCP:', metrics.fcp + 'ms');
+                    }
+                }
+            }).observe({ type: 'paint', buffered: true });
+
+            // CLS tracking
+            new PerformanceObserver((entryList) => {
+                for (const entry of entryList.getEntries()) {
+                    if (!entry.hadRecentInput) {
+                        metrics.cls += entry.value;
+                    }
+                }
+                document.getElementById('cls-value').textContent = metrics.cls.toFixed(3);
+                document.getElementById('cls-value').className = 'metric-value ' + getCLSClass(metrics.cls);
+            }).observe({ type: 'layout-shift', buffered: true });
+
+            // Image loading tracking
+            function setupImageTracking() {
+                const images = document.querySelectorAll('img');
+                images.forEach(img => {
+                    if (img.complete) {
+                        metrics.imagesLoaded++;
+                    } else {
+                        img.addEventListener('load', () => {
+                            metrics.imagesLoaded++;
+                            updateImageCount();
+                            
+                            // Add loaded class for fade-in effect
+                            img.classList.add('loaded');
+                            img.parentElement.classList.add('image-loaded');
+                        });
+                    }
+                });
+                updateImageCount();
+            }
+
+            function updateImageCount() {
+                document.getElementById('images-loaded').textContent = metrics.imagesLoaded;
+            }
+
+            // Lazy loading implementation
+            function setupLazyLoading() {
+                const lazyImages = document.querySelectorAll('img[data-src]');
+                
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                const picture = img.closest('picture');
+                                
+                                // Load WebP source if available
+                                if (picture) {
+                                    const webpSource = picture.querySelector('source[data-srcset]');
+                                    if (webpSource) {
+                                        webpSource.srcset = webpSource.dataset.srcset;
+                                    }
+                                }
+                                
+                                // Load main image
+                                img.src = img.dataset.src;
+                                img.classList.add('loading');
+                                
+                                imageObserver.unobserve(img);
+                            }
+                        });
+                    }, {
+                        rootMargin: '50px'
+                    });
+
+                    lazyImages.forEach(img => imageObserver.observe(img));
+                } else {
+                    // Fallback for older browsers
+                    lazyImages.forEach(img => {
+                        img.src = img.dataset.src;
+                    });
+                }
+            }
+
+            // Performance classification functions
+            function getLCPClass(value) {
+                if (value < 2500) return 'excellent';
+                if (value < 4000) return 'good';
+                return 'poor';
+            }
+
+            function getFCPClass(value) {
+                if (value < 1800) return 'excellent';
+                if (value < 3000) return 'good';
+                return 'poor';
+            }
+
+            function getCLSClass(value) {
+                if (value < 0.1) return 'excellent';
+                if (value < 0.25) return 'good';
+                return 'poor';
+            }
+
+            // Update total time
+            function updateTotalTime() {
+                const totalTime = Math.round(performance.now() - metrics.startTime);
+                document.getElementById('total-time').textContent = totalTime + 'ms';
+            }
+
+            // Initialize everything
+            setupImageTracking();
+            setupLazyLoading();
+            
+            // Update total time every second
+            setInterval(updateTotalTime, 1000);
+            
+            // Final report after page load
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    console.log('📊 Image Optimization Test Results:');
+                    console.log(`LCP: ${metrics.lcp}ms (${getLCPClass(metrics.lcp)})`);
+                    console.log(`FCP: ${metrics.fcp}ms (${getFCPClass(metrics.fcp)})`);
+                    console.log(`CLS: ${metrics.cls.toFixed(3)} (${getCLSClass(metrics.cls)})`);
+                    console.log(`Images loaded: ${metrics.imagesLoaded}`);
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

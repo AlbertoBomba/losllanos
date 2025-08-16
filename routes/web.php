@@ -10,10 +10,6 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Models\Post;
 
-
-//test 
-Route::get('/home2', [HomeController::class, 'home2'])->name('home2');
-
 // RUTAS PÚBLICAS
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog-de-caza', [HomeController::class, 'showBlogs'])->name('blog-de-caza');
@@ -22,6 +18,7 @@ Route::get('/blog-de-caza/{slug}', [HomeController::class, 'showBlog'])->name('b
 Route::get('/productos', [HomeController::class, 'products'])->name('productos');
 Route::get('/productos/aves-de-caza', [HomeController::class, 'showAvesCaza'])->name('productos.aves-de-caza');
 Route::get('/productos/sueltas', [HomeController::class, 'showTiradas'])->name('productos.sueltas');
+Route::get('/productos/Sueltas/coto-de-caza-intensiva', [HomeController::class, 'showCotoCazaIntensivo'])->name('productos.Sueltas.coto-de-caza-intensiva');
 Route::get('/productos/aves-de-caza/perdices', [HomeController::class, 'perdices'])->name('productos.aves-de-caza.perdices');
 Route::get('/productos/aves-de-caza/faisanes', [HomeController::class, 'faisanes'])->name('productos.aves-de-caza.faisanes');
 Route::get('/productos/aves-de-caza/codornices', [HomeController::class, 'codornices'])->name('productos.aves-de-caza.codornices');
@@ -74,6 +71,8 @@ Route::view('/terminos-condiciones', 'frontend.terminos-condiciones')->name('ter
 
 // REDIRECCIONES DE LA WEB ANTIGUA
 // Estas rutas redirigen URLs antiguas a las nuevas ubicaciones
+Route::redirect('/Coto%20Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
+Route::redirect('/Coto Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
 Route::redirect('/producto', '/productos', 301);
 Route::redirect('/product', '/productos', 301);
 Route::redirect('/products', '/productos', 301);

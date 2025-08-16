@@ -1,84 +1,22 @@
-/* Completely Local Google Fonts - No CDN Dependencies */
+/* Advanced Font Optimization - Performance & UX Focused */
 
-/* Montserrat Font Family */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2') format('woff2');
-}
+/* Critical Fonts with Optimized Display Strategy */
 
-/* Oswald Font Family */
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/oswald/TK3iWkUHHAIjg752FD8Ghe4.woff2') format('woff2');
-}
+/* Oswald Font Family - font-display (titles and headers) */
+/* Using 'swap' for headers - visible immediately with fallback */
+/* Optimized for FCP with precise fallback metrics */
 @font-face {
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url('/fonts/oswald/TK3iWkUHHAIjg752HT8Ghe4.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/oswald/TK3iWkUHHAIjg752Fj8Ghe4.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/oswald/TK3iWkUHHAIjg752Fz8Ghe4.woff2') format('woff2');
+  /* Advanced metrics optimization - matched to Arial Black fallback */
+  ascent-override: 104%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+  size-adjust: 95%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
   font-family: 'Oswald';
@@ -86,69 +24,88 @@
   font-weight: 700;
   font-display: swap;
   src: url('/fonts/oswald/TK3iWkUHHAIjg752GT8G.woff2') format('woff2');
+  /* Advanced metrics optimization - matched to Arial Black fallback */
+  ascent-override: 104%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+  size-adjust: 98%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F;
 }
 
-/* Rajdhani Font Family */
+/* Montserrat Font Family - font-action (buttons and actions) */
+/* Using 'swap' for UI elements - immediate visibility crucial for interaction */
+/* FCP optimized with Helvetica fallback matching */
 @font-face {
-  font-family: 'Rajdhani';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pasEfOqeef2kg.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Rajdhani';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/rajdhani/LDIxapCSOBg7S-QT7p4GM-aUWA.woff2') format('woff2');
+  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2') format('woff2');
+  /* Precision metrics - matched to Helvetica Neue fallback */
+  ascent-override: 91%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+  size-adjust: 105%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
-  font-family: 'Rajdhani';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pb0EPOqeef2kg.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Rajdhani';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pbYF_Oqeef2kg.woff2') format('woff2');
+  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2') format('woff2');
+  /* Precision metrics - matched to Helvetica Neue fallback */
+  ascent-override: 91%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+  size-adjust: 108%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F;
 }
 @font-face {
-  font-family: 'Rajdhani';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pa8FvOqeef2kg.woff2') format('woff2');
+  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2') format('woff2');
+  /* Precision metrics - matched to Helvetica Neue fallback */
+  ascent-override: 91%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+  size-adjust: 110%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F;
 }
 
-/* Figtree Font Family */
+/* Figtree Font Family - font-sans (body text) */
+/* Using 'optional' for body text - optimal reading experience */
+/* Enhanced for FCP with system font fallback precision */
 @font-face {
   font-family: 'Figtree';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/figtree/_Xms-HUzqDCFdgfMm4q9DbZs.woff2') format('woff2');
+  /* Ultra-precise metrics - matched to system-ui fallback */
+  ascent-override: 89%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+  size-adjust: 112%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+0180-024F;
 }
 @font-face {
   font-family: 'Figtree';
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
+  font-display: optional;
   src: url('/fonts/figtree/_Xms-HUzqDCFdgfMm4S9DQ.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Figtree';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/figtree/_Xms-HUzqDCFdgfMm4q9DbZs.woff2') format('woff2');
+  /* Ultra-precise metrics - matched to system-ui fallback */
+  ascent-override: 89%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+  size-adjust: 114%;
+  unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+0180-024F;
 }
 
-/* Font Awesome Local */
+/* Font Awesome - Optimized Critical Icons Only */
 @font-face {
   font-family: "Font Awesome 6 Free";
   font-style: normal;
@@ -157,45 +114,11 @@
   src: url("/webfonts/fa-solid-900.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: "Font Awesome 6 Free";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("/webfonts/fa-regular-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Font Awesome 6 Brands";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("/webfonts/fa-brands-400.woff2") format("woff2");
-}
-
-/* Font Awesome Icons Classes */
+/* Font Awesome Icons Classes - Streamlined */
 .fas,
 .fa-solid {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-}
-
-.far,
-.fa-regular {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 400;
-}
-
-.fab,
-.fa-brands {
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400;
-}
-
-.fa,
-.fas,
-.far,
-.fab {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -205,43 +128,59 @@
   line-height: 1;
 }
 
-/* Font Awesome Icon Definitions */
+/* Critical Icon Definitions Only */
 .fa-times:before { content: "\f00d"; }
 .fa-chevron-up:before { content: "\f077"; }
+.fa-chevron-down:before { content: "\f078"; }
 .fa-phone:before { content: "\f095"; }
 .fa-envelope:before { content: "\f0e0"; }
 .fa-whatsapp:before { content: "\f232"; }
 .fa-crosshairs:before { content: "\f05b"; }
-.fa-calendar-alt:before { content: "\f073"; }
 .fa-bars:before { content: "\f0c9"; }
-.fa-chevron-down:before { content: "\f078"; }
 .fa-star:before { content: "\f005"; }
-.fa-star-half:before { content: "\f089"; }
-.fa-certificate:before { content: "\f0a3"; }
-.fa-truck:before { content: "\f0d1"; }
-.fa-user-tie:before { content: "\f508"; }
 .fa-check-circle:before { content: "\f058"; }
 
-/* Configuración de fuentes personalizadas */
+/* Advanced Font Configuration with CLS Optimization */
 :root {
-  --font-display: 'Oswald', sans-serif;
-  --font-action: 'Montserrat', sans-serif;
-  --font-sans: 'Figtree', sans-serif;
-  --font-heading: 'Rajdhani', sans-serif;
+  --font-display: 'Oswald', 'Arial Black', system-ui, sans-serif;
+  --font-action: 'Montserrat', 'Helvetica Neue', 'Arial', system-ui, sans-serif;
+  --font-sans: 'Figtree', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+  --font-heading: 'Oswald', 'Arial Black', system-ui, sans-serif;
+  
+  /* Font metrics for consistent sizing */
+  --font-display-metrics: normal;
+  --font-action-metrics: normal;
+  --font-sans-metrics: normal;
 }
 
-.font-display {
+/* Streamlined Font Classes with Performance Optimizations */
+.font-display,
+.font-heading {
   font-family: var(--font-display);
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
 }
 
 .font-action {
   font-family: var(--font-action);
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeSpeed;
 }
 
 .font-sans {
   font-family: var(--font-sans);
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
 }
 
-.font-heading {
-  font-family: var(--font-heading);
+/* Font loading optimization hints */
+@media (prefers-reduced-motion: reduce) {
+  .font-display,
+  .font-action,
+  .font-sans {
+    font-display: optional;
+  }
 }

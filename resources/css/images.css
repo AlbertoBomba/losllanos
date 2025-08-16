@@ -1,0 +1,166 @@
+/* Advanced Image Optimization Styles for LCP Improvement */
+
+/* Critical Image Loading Strategy */
+.hero-image,
+.featured-image,
+.above-fold-image {
+    /* High priority loading for LCP critical images */
+    content-visibility: auto;
+    contain-intrinsic-size: 800px 600px;
+}
+
+/* Lazy Loading with Intersection Observer Optimization */
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    /* Placeholder while loading */
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+    background: none;
+    animation: none;
+}
+
+@keyframes loading-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Responsive Images with Art Direction */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    /* Prevent layout shift */
+    aspect-ratio: var(--image-aspect-ratio, 16/9);
+    object-fit: cover;
+    object-position: center;
+    /* GPU acceleration for smooth loading */
+    transform: translateZ(0);
+    will-change: opacity;
+}
+
+/* Image optimization for different contexts */
+.gallery-image {
+    --image-aspect-ratio: 4/3;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.hero-banner {
+    --image-aspect-ratio: 21/9;
+    /* Critical for LCP - attributes go in HTML */
+}
+
+.content-image {
+    --image-aspect-ratio: 16/9;
+    /* Non-critical images - attributes go in HTML */
+}
+
+/* WebP Support with Fallbacks */
+.modern-image {
+    /* Base styles that work with picture element */
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Blur-to-clear loading effect */
+.progressive-image {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+.progressive-image.loaded {
+    filter: blur(0);
+}
+
+/* Image size variants for different screens */
+@media (max-width: 768px) {
+    .gallery-image {
+        --image-aspect-ratio: 1/1;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        --image-aspect-ratio: 16/9;
+    }
+}
+
+/* Critical images that affect LCP */
+.lcp-critical {
+    /* Highest priority for largest contentful paint */
+    content-visibility: auto;
+    contain-intrinsic-size: 1200px 800px;
+    /* HTML attributes: loading="eager" fetchpriority="high" decoding="sync" */
+}
+
+/* Image container with loading state */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e9ecef;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image-container.loaded::before {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Performance hints for images */
+.performance-optimized {
+    /* Enable hardware acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    
+    /* Optimize for repaint */
+    will-change: transform, opacity;
+}
+
+/* Error state styling */
+.image-error {
+    background: #f8d7da;
+    color: #721c24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    border: 1px dashed #f5c6cb;
+}
+
+.image-error::before {
+    content: '🖼️ Error al cargar imagen';
+    font-size: 14px;
+}

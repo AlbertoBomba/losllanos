@@ -1,0 +1,122 @@
+/* Additional Font Weights - Lazy Loaded */
+/* Load this file only when needed for specific components */
+
+/* Additional Montserrat weights for special cases */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2') format('woff2');
+}
+
+/* Additional Oswald weights */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/oswald/TK3iWkUHHAIjg752FD8Ghe4.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/oswald/TK3iWkUHHAIjg752Fz8Ghe4.woff2') format('woff2');
+}
+
+/* Rajdhani Family - Alternative heading font */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/rajdhani/LDIxapCSOBg7S-QT7p4GM-aUWA.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pbYF_Oqeef2kg.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/rajdhani/LDI2apCSOBg7S-QT7pa8FvOqeef2kg.woff2') format('woff2');
+}
+
+/* Additional Figtree weight */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/figtree/_Xms-HUzqDCFdgfMm4q9DbZs.woff2') format('woff2');
+}
+
+/* Additional Font Awesome fonts for special icons */
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/webfonts/fa-regular-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("/webfonts/fa-brands-400.woff2") format("woff2");
+}
+
+/* Additional Icon Classes */
+.far,
+.fa-regular {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fab,
+.fa-brands {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+/* Extended Icon Definitions */
+.fa-calendar-alt:before { content: "\f073"; }
+.fa-star-half:before { content: "\f089"; }
+.fa-certificate:before { content: "\f0a3"; }
+.fa-truck:before { content: "\f0d1"; }
+.fa-user-tie:before { content: "\f508"; }
+
+/* Alternative font configuration for Rajdhani */
+.font-heading-alt {
+  font-family: 'Rajdhani', 'Arial Black', sans-serif;
+}

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test FCP Optimizado - Los Llanos</title>
+    
+    <!-- DNS prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <!-- Preconnect para optimización de carga -->
+    <link rel="preconnect" href="public/fonts" crossorigin>
+    
+    <!-- Fuentes críticas con fetchpriority -->
+    <link rel="preload" href="public/fonts/oswald/TK3iWkUHHAIjg752HT8Ghe4.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">
+    <link rel="preload" href="public/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high">
+    <link rel="preload" href="public/fonts/oswald/TK3iWkUHHAIjg752GT8G.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="public/fonts/figtree/_Xms-HUzqDCFdgfMm4q9DbZs.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="resources/css/fonts.css">
+    
+    <style>
+        /* CSS crítico inline para FCP inmediato */
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        /* Fallbacks críticos para títulos */
+        .fcp-header {
+            font-family: 'Arial Black', system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 3.5rem;
+            color: #1a202c;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+        
+        .fcp-subheader {
+            font-family: 'Arial Black', system-ui, sans-serif;
+            font-weight: 400;
+            font-size: 2rem;
+            color: #2d3748;
+            margin: 30px 0 15px;
+            line-height: 1.2;
+        }
+        
+        /* Fallbacks críticos para botones */
+        .fcp-button {
+            font-family: 'Helvetica Neue', 'Arial', system-ui, sans-serif;
+            font-weight: 600;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.005em;
+            line-height: 1.4;
+        }
+        
+        .fcp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Contenido con fallback */
+        .fcp-content {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        /* Métricas en tiempo real */
+        .metrics-container {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-family: 'Helvetica Neue', monospace, sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .metric-value.excellent { color: #38a169; }
+        .metric-value.good { color: #3182ce; }
+        .metric-value.needs-improvement { color: #d69e2e; }
+        .metric-value.poor { color: #e53e3e; }
+        
+        .metric-label {
+            font-family: system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+        
+        .metric-description {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-top: 4px;
+        }
+        
+        /* Indicadores de estado */
+        .loading-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .font-loaded {
+            opacity: 0;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="fcp-header">Test FCP Optimizado</h1>
+        <h2 class="fcp-subheader">Medición de First Contentful Paint</h2>
+        
+        <div class="fcp-content">
+            Esta página está optimizada específicamente para mejorar el <strong>First Contentful Paint (FCP)</strong> 
+            mediante el uso estratégico de <code>font-display: swap</code> y <code>font-display: optional</code>, 
+            junto con métricas de fuente precisas para minimizar el <strong>Cumulative Layout Shift (CLS)</strong>.
+        </div>
+        
+        <button class="fcp-button">Botón con Montserrat</button>
+        <button class="fcp-button">Acción Optimizada</button>
+        
+        <div class="fcp-content">
+            <strong>Estrategias implementadas:</strong>
+            <ul>
+                <li><code>fetchpriority="high"</code> para fuentes críticas</li>
+                <li>CSS crítico inline para renderizado inmediato</li>
+                <li>Métricas de fuente ajustadas (ascent-override, descent-override, size-adjust)</li>
+                <li>Unicode-range específico para optimizar la carga</li>
+                <li>Fallbacks tipográficos precisos para transición suave</li>
+            </ul>
+        </div>
+        
+        <div class="metrics-container">
+            <h3 class="fcp-subheader">Métricas de Rendimiento en Tiempo Real</h3>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="fcp-value">
+                        <div class="loading-indicator"></div>
+                    </div>
+                    <div class="metric-label">First Contentful Paint</div>
+                    <div class="metric-description">Tiempo hasta primer contenido visible</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value" id="lcp-value">
+                        <div class="loading-indicator"></div>
+                    </div>
+                    <div class="metric-label">Largest Contentful Paint</div>
+                    <div class="metric-description">Tiempo hasta contenido principal</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value" id="cls-value">
+                        <div class="loading-indicator"></div>
+                    </div>
+                    <div class="metric-label">Cumulative Layout Shift</div>
+                    <div class="metric-description">Estabilidad visual de la página</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value" id="font-load-time">
+                        <div class="loading-indicator"></div>
+                    </div>
+                    <div class="metric-label">Font Load Time</div>
+                    <div class="metric-description">Tiempo de carga de fuentes</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value" id="fonts-loaded">0</div>
+                    <div class="metric-label">Fuentes Cargadas</div>
+                    <div class="metric-description">Total de fuentes disponibles</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value" id="swap-count">0</div>
+                    <div class="metric-label">Font Swaps</div>
+                    <div class="metric-description">Intercambios de fuente detectados</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables para tracking
+        let fontLoadStartTime = performance.now();
+        let swapCount = 0;
+        let metricsCollected = {
+            fcp: false,
+            lcp: false,
+            cls: false
+        };
+
+        // Función para actualizar métricas visuales
+        function updateMetricDisplay(elementId, value, unit = 'ms') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = value + (unit ? unit : '');
+                
+                // Aplicar colores según rangos de Core Web Vitals
+                element.className = 'metric-value ' + getMetricClass(elementId, value);
+            }
+        }
+
+        function getMetricClass(metricType, value) {
+            switch(metricType) {
+                case 'fcp-value':
+                    if (value < 1800) return 'excellent';
+                    if (value < 3000) return 'good';
+                    if (value < 4000) return 'needs-improvement';
+                    return 'poor';
+                    
+                case 'lcp-value':
+                    if (value < 2500) return 'excellent';
+                    if (value < 4000) return 'good';
+                    return 'poor';
+                    
+                case 'cls-value':
+                    if (value < 0.1) return 'excellent';
+                    if (value < 0.25) return 'good';
+                    return 'poor';
+                    
+                default:
+                    return 'good';
+            }
+        }
+
+        // First Contentful Paint
+        new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (entry.name === 'first-contentful-paint') {
+                    const fcpTime = Math.round(entry.startTime);
+                    updateMetricDisplay('fcp-value', fcpTime);
+                    metricsCollected.fcp = true;
+                    console.log(`🎯 FCP optimizado: ${fcpTime}ms`);
+                }
+            }
+        }).observe({type: 'paint', buffered: true});
+
+        // Largest Contentful Paint
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            const lcpTime = Math.round(lastEntry.startTime);
+            updateMetricDisplay('lcp-value', lcpTime);
+            metricsCollected.lcp = true;
+            console.log(`🎯 LCP: ${lcpTime}ms`);
+        }).observe({type: 'largest-contentful-paint', buffered: true});
+
+        // Cumulative Layout Shift
+        let clsValue = 0;
+        new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            }
+            updateMetricDisplay('cls-value', clsValue.toFixed(3), '');
+            metricsCollected.cls = true;
+            console.log(`🎯 CLS optimizado: ${clsValue.toFixed(3)}`);
+        }).observe({type: 'layout-shift', buffered: true});
+
+        // Monitoreo de carga de fuentes
+        const fontFamilies = ['Oswald', 'Montserrat', 'Figtree'];
+        let fontsLoaded = 0;
+
+        function checkFontLoad() {
+            let currentLoaded = 0;
+            fontFamilies.forEach(font => {
+                if (document.fonts.check(`16px ${font}`)) {
+                    currentLoaded++;
+                }
+            });
+            
+            if (currentLoaded > fontsLoaded) {
+                swapCount++;
+                updateMetricDisplay('swap-count', swapCount, '');
+                fontsLoaded = currentLoaded;
+                updateMetricDisplay('fonts-loaded', fontsLoaded, '');
+                
+                console.log(`🔄 Font swap detectado: ${fontsLoaded} fuentes cargadas`);
+            }
+        }
+
+        // Verificar carga de fuentes cada 100ms
+        const fontCheckInterval = setInterval(checkFontLoad, 100);
+
+        // Cuando todas las fuentes estén listas
+        document.fonts.ready.then(function() {
+            const fontLoadTime = Math.round(performance.now() - fontLoadStartTime);
+            updateMetricDisplay('font-load-time', fontLoadTime);
+            clearInterval(fontCheckInterval);
+            
+            console.log(`✅ Todas las fuentes cargadas en ${fontLoadTime}ms`);
+            console.log(`📊 Total font swaps: ${swapCount}`);
+            
+            // Aplicar clase de animación
+            document.querySelectorAll('.fcp-header, .fcp-subheader').forEach(el => {
+                el.classList.add('font-loaded');
+            });
+            
+            // Resumen final
+            setTimeout(() => {
+                if (metricsCollected.fcp && metricsCollected.lcp && metricsCollected.cls) {
+                    console.log('🎉 Optimización FCP completada exitosamente');
+                }
+            }, 1000);
+        });
+
+        // Test específico de font-display
+        function testFontDisplayStrategy() {
+            const testDiv = document.createElement('div');
+            testDiv.style.fontFamily = 'Oswald, Arial Black, sans-serif';
+            testDiv.style.position = 'absolute';
+            testDiv.style.opacity = '0';
+            testDiv.innerHTML = 'Test font swap';
+            document.body.appendChild(testDiv);
+            
+            const computedStyle = getComputedStyle(testDiv);
+            console.log(`📝 Font family aplicada: ${computedStyle.fontFamily}`);
+            
+            document.body.removeChild(testDiv);
+        }
+
+        // Ejecutar test al cargar
+        window.addEventListener('load', testFontDisplayStrategy);
+    </script>
+</body>
+</html>

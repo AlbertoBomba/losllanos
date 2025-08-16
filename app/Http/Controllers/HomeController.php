@@ -108,4 +108,9 @@ class HomeController extends Controller
     {
         return view('frontend.palomas');
     }
+
+    public function showCotoCazaIntensivo()
+    {
+        return view('frontend.coto-de-caza-intensiva');
+    }
 }
