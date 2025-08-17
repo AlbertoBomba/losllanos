@@ -6,6 +6,30 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Los Llanos - Bienvenido')</title>
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('description', 'Club de Tiro Los Llanos - Toledo. Coto de caza, tiradas deportivas, alquiler de instalaciones. Tu lugar para la caza y el tiro deportivo.')">
+    <meta name="keywords" content="@yield('keywords', 'club tiro, coto caza, Toledo, tiradas deportivas, perdices, faisanes, codornices, caza menor')">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Club de Tiro Los Llanos">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Los Llanos - Club de Tiro y Caza')">
+    <meta property="og:description" content="@yield('description', 'Club de Tiro Los Llanos - Toledo. Tu destino para la caza y el tiro deportivo.')">
+    <meta property="og:image" content="{{ asset('images/general/og-image.jpg') }}">
+    <meta property="og:site_name" content="Club de Tiro Los Llanos">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'Los Llanos - Club de Tiro y Caza')">
+    <meta property="twitter:description" content="@yield('description', 'Club de Tiro Los Llanos - Toledo. Tu destino para la caza y el tiro deportivo.')">
+    <meta property="twitter:image" content="{{ asset('images/general/og-image.jpg') }}">
+    
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

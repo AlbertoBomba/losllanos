@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Newsletter;
+use App\Helpers\NewsletterHelper;
 use Livewire\Component;
 
 class NewsletterHero extends Component
@@ -21,6 +22,15 @@ class NewsletterHero extends Component
         'email.unique' => 'Este email ya está suscrito a nuestro newsletter.'
     ];
 
+    public function mount()
+    {
+        // Verificar si el usuario ya está suscrito al cargar el componente
+        $this->isSubscribed = NewsletterHelper::isUserSubscribed();
+        if ($this->isSubscribed) {
+            $this->message = 'Ya estás suscrito a nuestras newsletters.';
+        }
+    }
+
     public function subscribe()
     {
         $this->validate();
@@ -30,6 +40,9 @@ class NewsletterHero extends Component
             'subscribed_at' => now()
         ]);
 
+        // Marcar usuario como suscrito usando el helper
+        NewsletterHelper::markUserAsSubscribed($this->email);
+
         $this->isSubscribed = true;
         $this->message = '¡Gracias por suscribirte! Recibirás nuestras últimas noticias en tu email.';
         $this->email = '';
@@ -38,6 +51,9 @@ class NewsletterHero extends Component
             'email' => $this->email,
             'message' => $this->message
         ]);
+
+        // Emitir evento JavaScript para marcar la suscripción
+        $this->dispatch('newsletter-subscribed');
     }
 
     public function render()

@@ -5,6 +5,34 @@
 
     RewriteEngine On
 
+    # REDIRECTS 301 PARA URLs DUPLICADAS DE GOOGLE SEARCH CONSOLE
+    # Manejo de URLs específicas reportadas como duplicadas
+    
+    # Redirect de index.html a la raíz
+    RewriteRule ^index\.html$ / [R=301,L]
+    
+    # Redirect de galería antigua a la home
+    RewriteRule ^Galeria/index\.php$ / [R=301,L]
+    
+    # Redirects para URLs con espacios codificados
+    RewriteRule ^Coto%20Intensivo/index\.html$ /productos/aves-de-caza/codornices [R=301,L]
+    
+    # Redirects para archivos PHP antiguos
+    RewriteRule ^Tiradas/index\.php$ /productos/sueltas [R=301,L]
+    RewriteRule ^TiradasPro/Sueltas\.php$ /productos/sueltas [R=301,L]
+    RewriteRule ^Noticias/verNoticiaWEB\.php$ /blog-de-caza [R=301,L]
+    RewriteRule ^Socios/WebSocios\.php$ /contacto [R=301,L]
+    RewriteRule ^Mercadillo/AltaAnuncio\.php$ /contacto [R=301,L]
+    
+    # Redirects para archivos HTML antiguos
+    RewriteRule ^ventacazamenor/index\.html$ /productos/aves-de-caza [R=301,L]
+    RewriteRule ^Contacto/contact\.html$ /contacto [R=301,L]
+    RewriteRule ^Instalaciones/index\.html$ /quienes-somos [R=301,L]
+
+    # Forzar HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -22,4 +50,18 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+# HEADERS PARA SEO Y PERFORMANCE
+<IfModule mod_headers.c>
+    # Headers de seguridad para SEO
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Cache headers para recursos estáticos
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
 </IfModule>

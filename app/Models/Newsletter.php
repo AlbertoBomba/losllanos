@@ -15,7 +15,9 @@ class Newsletter extends Model
         'is_active',
         'unsubscribed_at',
         'unsubscribe_token',
-        'unsubscribe_reason'
+        'unsubscribe_reason',
+        'ip_address',
+        'browser_fingerprint'
     ];
 
     protected $casts = [

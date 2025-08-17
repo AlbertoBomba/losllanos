@@ -25,3 +25,48 @@
         </form>
     @endif
 </div>
+
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('newsletter-subscribed', () => {
+            // Función para marcar suscripción usando múltiples métodos
+            function markSubscription() {
+                const currentDate = new Date().toISOString();
+                
+                // Método 1: localStorage (persistente)
+                try {
+                    localStorage.setItem('newsletter_subscribed', 'true');
+                    localStorage.setItem('newsletter_subscribed_date', currentDate);
+                } catch(e) {
+                    console.log('localStorage no disponible:', e);
+                }
+                
+                // Método 2: Cookie (persistente, funciona si localStorage falla)
+                function setCookie(name, value, days) {
+                    const expires = new Date();
+                    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+                    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+                }
+                
+                setCookie('newsletter_subscribed', 'true', 30);
+                setCookie('newsletter_subscribed_date', currentDate, 30);
+                
+                // Método 3: sessionStorage (para esta sesión)
+                try {
+                    sessionStorage.setItem('newsletter_subscribed_session', 'true');
+                } catch(e) {
+                    console.log('sessionStorage no disponible:', e);
+                }
+            }
+            
+            markSubscription();
+            
+            // Cerrar cualquier modal abierto relacionado con newsletters
+            const calendarModal = document.getElementById('calendarioModal');
+            if (calendarModal && !calendarModal.classList.contains('hidden')) {
+                calendarModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+</script>

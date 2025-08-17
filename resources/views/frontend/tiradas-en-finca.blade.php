@@ -1,13 +1,13 @@
 @extends('layouts.frontend')
 
-@section('title', 'Coto de caza intensivo | Los Llanos Toledo')
+@section('title', '[cazar perdices y faisanes] - Los Llanos Toledo')
 @section('description', 'Temporada de caza. Nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. 
 Además coto de caza intensivo de codornices.')
 
 @section('content')
 
     <!-- Hero Section -->
-    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
+    <section class="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3] p-2 sm:p-4">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="{{asset('images/general/finca.webp')}}" 
@@ -20,15 +20,15 @@ Además coto de caza intensivo de codornices.')
         
         <!-- Content -->
         <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-20">
-            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
-                Coto de caza codornices y suelta de perdices y faisan en finca
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
+               Cazar perdices y faisanes.
             </h1>
-            <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
-                <em class="font-display text-2xl md:text-3xl">Tu temporada de caza perfectamente planificada</em><br><br>
-                Organiza tus <strong>jornadas en nuestro coto de caza, en nuestra finca</strong> durante toda la temporada. 
+            <!--description short-->
+            <p class="hidden sm:block text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
+                Organiza tus <strong>jornadas en nuestro coto de caza de perdices y faisanes,</strong> 
             </p>
             <!-- Quick Stats -->
-            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+            <div class="hidden sm:flex flex-col sm:flex-row gap-8 justify-center items-center">
                 <div class="text-center">
                     <div class="text-3xl font-display font-bold text-[#8b5e3c] mb-1">6</div>
                     <div class="text-gray-200 font-sans text-sm">Meses disponibles</div>
@@ -41,6 +41,19 @@ Además coto de caza intensivo de codornices.')
                     <div class="text-3xl font-display font-bold text-[#8b5e3c] mb-1">100%</div>
                     <div class="text-gray-200 font-sans text-sm">Garantizado</div>
                 </div>
+            </div>
+             <!-- CTA Button -->
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center p-4">
+                <button onclick="window.open('tel:+34608910639', '_self')" 
+                        class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                    <i class="fas fa-phone mr-2"></i>
+                    Reservar
+                </button>
+                <button onclick="window.open('https://wa.me/34608910639?text=Hola,%20me%20interesa%20información%20sobre%20codornices%20comunes', '_blank')" 
+                        class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    WhatsApp
+                </button>
             </div>
         </div>
     </section>
@@ -57,73 +70,48 @@ Además coto de caza intensivo de codornices.')
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-dark mb-4 uppercase tracking-wide font-display">
-                    Temporada Mes a Mes
+                    Tipo de sueltas
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-sans leading-relaxed">
+                 <!-- Description type suelta -->
+                <p class="hidden sm:block text-xl text-gray-600 max-w-3xl mx-auto font-sans leading-relaxed">
                     Cada mes de la temporada ofrece condiciones únicas y oportunidades excepcionales. 
-                    Planifica tus tiradas según las mejores características de cada período.
+                    Planifica tus tiradas según las mejores características de cada período, 
+                    y el tipo de animal que deseas cazar.
                 </p>
             </div>
 
             <!-- Months Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                {{-- Octubre Card --}}
-                {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                {{-- coto intensivo codorniz Card --}}
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
                   
                     <div class="relative h-64 overflow-hidden">
-                        <img src="{{asset('images/general/cazador-perdiz-2.webp')}}" 
-                             alt="Tiradas en Octubre" 
+                        <img src="{{asset('images/general/codornices.webp')}}" 
+                             alt="Codornices en la cebabada" 
                              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
-                        
-                        
                         <div class="absolute top-4 left-4 bg-[#8b5e3c] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
-                            Octubre
+                            Coto intensivo
                         </div>
-                        
-                        
                         <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#8b5e3c] px-3 py-1 rounded-full font-display font-bold text-xs">
-                            Templado
+                            Codorniz
                         </div>
-                        
-                        
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
-                    
-                   
                     <div class="p-6">
                         <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
-                            Octubre
+                            Codornices
                         </h3>
-                        
                         <p class="text-gray-600 font-sans text-sm mb-4 leading-relaxed">
-                            <strong>Inicio de temporada</strong> con temperaturas agradables y aves en excelente forma. 
-                            Condiciones ideales para comenzar la temporada.
+                            <strong>Amplias parcelas sembradas de cereal</strong> perfectas para disfrutar de una buena jornada.
                         </p>
-                        
-                        
-                        <div class="space-y-2 mb-6">
-                            <div class="flex items-center text-sm">
-                                <i class="fas fa-thermometer-half text-[#8b5e3c] mr-2"></i>
-                                <span class="text-gray-700 font-sans">Temperaturas suaves</span>
-                            </div>
-                            <div class="flex items-center text-sm">
-                                <i class="fas fa-leaf text-[#8b5e3c] mr-2"></i>
-                                <span class="text-gray-700 font-sans">Vegetación otoñal</span>
-                            </div>
-                            <div class="flex items-center text-sm">
-                                <i class="fas fa-star text-[#8b5e3c] mr-2"></i>
-                                <span class="text-gray-700 font-sans">Aves en forma óptima</span>
-                            </div>
+                        <div class="flex items-center justify-center w-full">
+                            <a href="{{route('productos.Sueltas.coto-de-caza-intensiva')}}" class="w-full text-center bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                                <i class="fas fa-calendar mr-2"></i>
+                                Consultar 
+                            </a>
                         </div>
-                        
-                        
-                        <button onclick="window.open('tel:+34608910639', '_self')" 
-                                class="w-full bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
-                            <i class="fas fa-phone mr-2"></i>
-                            Consultar Octubre
-                        </button>
                     </div>
-                </div> --}}
+                </div>
 
                 <!-- Noviembre Card -->
                 {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
@@ -410,10 +398,6 @@ Además coto de caza intensivo de codornices.')
                     </div>
                 </div> --}}
             </div>
-            <div>
-                <p class="text-center font-bold text-2xl">Aun no disponemos de calendario para la temporada de 2024 - 2025.</p>
-                <p class="text-center font-bold text-2xl">Suscríbete a nuestras newsletters, para estar informado sobre todas nuestras novedades.</p>
-            </div>
         </div>
     </section>
 
@@ -476,29 +460,90 @@ Además coto de caza intensivo de codornices.')
         </div>
     </section>
 
-    <!-- Testimonial Section -->
-    <section class="relative min-h-[60vh] w-full overflow-hidden flex items-center justify-center">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="{{asset('images/general/finca.webp')}}" 
-                 alt="Cliente satisfecho tiradas mensuales" 
-                 class="w-full h-full object-cover">
-        </div>
+    <!-- Modal de Aviso -->
+    <div id="calendarioModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
         
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
-        
-        <!-- Content -->
-        <div class="relative z-20 container mx-auto px-6">
-            <div class="text-center max-w-4xl mx-auto">
-                <p class="text-2xl md:text-3xl text-white font-display leading-loose md:leading-loose font-medium italic tracking-wide mb-8">
-                    "Planificar las tiradas mes a mes con Los Llanos ha transformado mi temporada de caza. 
-                    Cada mes ofrece experiencias únicas y todas han sido memorables."
-                </p>
-                <div class="text-gray-300 font-sans">
-                    - Rafael M., Cliente Habitual desde 2015
+        <!-- Modal Content -->
+        <div class="flex min-h-full items-center justify-center p-4">
+            <div class="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full mx-4 transform transition-all">
+                <!-- Header -->
+                <div class=" bg-gray-900 p-6 rounded-t-2xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                        </div>
+                        <button onclick="closeModal()" class="text-white hover:text-yellow-300 transition-colors">
+                            <i class="fas fa-times text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Body -->
+                <div class=" bg-gray-900">
+                    <div class="container mx-auto px-2">
+                        <div class="max-w-4xl mx-auto text-center">
+                            <h2 class="text-4xl font-display font-bold text-white mb-4 uppercase tracking-wide">
+                                Calendario no disponible
+                            </h2>
+                            <p class="text-xl text-gray-200 mb-8 font-sans leading-relaxed">
+                                Aun no tenemos las fechas confirmadas, para la temporada 25/26. Si quieres recibir en su mail
+                                nuestro calendario, suscríbete
+                            </p>
+                            <div class="max-w-2xl mx-auto">
+                                @livewire('newsletter-hero')
+                                <p class="text-gray-300 text-sm mt-4 font-sans">
+                                    * No compartimos tu información. Puedes darte de baja en cualquier momento.
+                                </p> 
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                    <!-- Botones de acción -->
+                    <div class="space-y-3 p-4">
+                        <button onclick="closeModal()" 
+                                class="w-full border-2 border-gray-300 text-white hover:bg-gray-50 py-2 px-6 rounded-lg font-semibold tracking-wide transition-all duration-300">
+                            Cerrar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <script>
+        // Funciones del modal
+        function openModal() {
+            document.getElementById('calendarioModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+        
+        function closeModal() {
+            document.getElementById('calendarioModal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restaurar scroll del body
+        }
+        
+        // Cerrar modal al hacer clic fuera de él
+        document.getElementById('calendarioModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Abrir modal automáticamente al cargar la página (después de 1.5 segundos)
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                openModal();
+            }, 1500);
+        });
+    </script>
+
 @endsection

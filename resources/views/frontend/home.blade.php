@@ -49,10 +49,10 @@ parque temático. Un lugar para prácticar la caza en españa')
             
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                <a href="{{ route('productos.aves-de-caza') }}" title="Ir a la sección de aves de caza" class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de aves de caza" class="bg-[#8b5e3c] hover:bg-[#4b5d3a] text-white px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                     Sueltas o cacerías
                 </a>
-                 <a href="{{ route('productos.sueltas') }}" title="Ir a la sección de tiradas en finca" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                 <a href="{{ route('productos.aves-de-caza') }}" title="Ir a la sección de tiradas en finca" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-action font-bold text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
                     Venta de aves de caza
                 </a>
             </div>
@@ -617,6 +617,16 @@ parque temático. Un lugar para prácticar la caza en españa')
     <!-- Reviews Section -->
     @livewire('reviews-section')
     
+    <!-- CTA Flotante usando componente -->
+    <x-floating-cta 
+        text="Temp. 25/26"
+        year="Perdides y Faisanes"
+        url="{{route('productos.sueltas')}}"
+        position="bottom-right"
+        icon="fas fa-bullseye"
+        newLabel="Tiradas en finca!"
+        tooltip="Reserva tu tirada para 2025" />
+
     <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="fixed bottom-8 right-8 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white w-12 h-12 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
         <i class="fas fa-chevron-up"></i>

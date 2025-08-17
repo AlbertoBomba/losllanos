@@ -103,6 +103,7 @@ class GenerateSitemap extends Command
             ['route' => 'productos.aves-de-caza.codornices', 'name' => 'Codornices', 'priority' => '0.8'],
             ['route' => 'productos.aves-de-caza.palomas', 'name' => 'Palomas', 'priority' => '0.8'],
             ['route' => 'productos.sueltas', 'name' => 'Tiradas y Sueltas', 'priority' => '0.7'],
+            ['route' => 'productos.Sueltas.coto-de-caza-intensiva', 'name' => 'Coto de Caza Intensiva', 'priority' => '0.8'],
         ];
 
         foreach ($productPages as $page) {
@@ -152,7 +153,7 @@ class GenerateSitemap extends Command
         
         // Get published posts
         try {
-            $posts = Post::where('status', 'published')
+            $posts = Post::where('published', 1)
                         ->orderBy('created_at', 'desc')
                         ->get();
             

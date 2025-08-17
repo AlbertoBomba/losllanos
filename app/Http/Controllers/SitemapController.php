@@ -486,6 +486,14 @@ class SitemapController extends Controller
                 'priority' => '1.0'
             ],
             
+            // Blog de caza
+            [
+                'url' => '/blog-de-caza',
+                'lastmod' => $this->getLastBlogUpdate(),
+                'changefreq' => 'daily',
+                'priority' => '0.9'
+            ],
+            
             // Productos principales
             [
                 'url' => '/productos',
@@ -498,6 +506,20 @@ class SitemapController extends Controller
                 'lastmod' => $baseDate,
                 'changefreq' => 'weekly',
                 'priority' => '0.9'
+            ],
+            [
+                'url' => '/productos/sueltas',
+                'lastmod' => $baseDate,
+                'changefreq' => 'weekly',
+                'priority' => '0.9'
+            ],
+            
+            // Coto de caza intensiva
+            [
+                'url' => '/productos/Sueltas/coto-de-caza-intensiva',
+                'lastmod' => $baseDate,
+                'changefreq' => 'weekly',
+                'priority' => '0.8'
             ],
             
             // Páginas de aves específicas
@@ -526,46 +548,48 @@ class SitemapController extends Controller
                 'priority' => '0.8'
             ],
             
-            // Tiradas en finca
+            // Páginas institucionales
             [
-                'url' => '/productos/sueltas',
+                'url' => '/quienes-somos',
                 'lastmod' => $baseDate,
-                'changefreq' => 'weekly',
-                'priority' => '0.8'
+                'changefreq' => 'monthly',
+                'priority' => '0.7'
             ],
             
-            // Blog principal
+            // Reseñas
             [
-                'url' => '/blog-de-caza',
-                'lastmod' => $this->getLastBlogUpdate(),
-                'changefreq' => 'daily',
-                'priority' => '0.8'
-            ],
-
-            // Páginas legales
-            [
-                'url' => '/politica-de-privacidad',
+                'url' => '/reseñas',
                 'lastmod' => $baseDate,
-                'changefreq' => 'yearly',
-                'priority' => '0.3'
+                'changefreq' => 'weekly',
+                'priority' => '0.6'
             ],
             [
-                'url' => '/terminos-y-condiciones',
+                'url' => '/reseñas/escribir',
                 'lastmod' => $baseDate,
-                'changefreq' => 'yearly',
-                'priority' => '0.3'
+                'changefreq' => 'monthly',
+                'priority' => '0.5'
             ],
-            [
-                'url' => '/politica-de-cookies',
-                'lastmod' => $baseDate,
-                'changefreq' => 'yearly',
-                'priority' => '0.3'
-            ],
+            
+            // Contacto
             [
                 'url' => '/contacto',
                 'lastmod' => $baseDate,
                 'changefreq' => 'monthly',
                 'priority' => '0.6'
+            ],
+            
+            // Páginas legales (URLs corregidas)
+            [
+                'url' => '/politica-privacidad',
+                'lastmod' => $baseDate,
+                'changefreq' => 'yearly',
+                'priority' => '0.3'
+            ],
+            [
+                'url' => '/terminos-condiciones',
+                'lastmod' => $baseDate,
+                'changefreq' => 'yearly',
+                'priority' => '0.3'
             ],
         ];
     }

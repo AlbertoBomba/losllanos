@@ -71,8 +71,22 @@ Route::view('/terminos-condiciones', 'frontend.terminos-condiciones')->name('ter
 
 // REDIRECCIONES DE LA WEB ANTIGUA
 // Estas rutas redirigen URLs antiguas a las nuevas ubicaciones
-Route::redirect('/Coto%20Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
-Route::redirect('/Coto Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
+
+// Redirecciones principales de URLs duplicadas reportadas por Google Search Console
+Route::redirect('/index.html', '/', 301);
+Route::redirect('/Galeria/index.php', '/', 301);
+Route::redirect('/Coto%20Intensivo/index.html', '/productos/aves-de-caza/codornices', 301);
+Route::redirect('/Coto Intensivo/index.html', '/productos/aves-de-caza/codornices', 301);
+Route::redirect('/Tiradas/index.php', '/productos/sueltas', 301);
+Route::redirect('/ventacazamenor/index.html', '/productos/aves-de-caza', 301);
+Route::redirect('/Contacto/contact.html', '/contacto', 301);
+Route::redirect('/Instalaciones/index.html', '/quienes-somos', 301);
+Route::redirect('/TiradasPro/Sueltas.php', '/productos/sueltas', 301);
+Route::redirect('/Mercadillo/AltaAnuncio.php', '/contacto', 301);
+Route::redirect('/Noticias/verNoticiaWEB.php', '/blog-de-caza', 301);
+Route::redirect('/Socios/WebSocios.php', '/contacto', 301);
+
+// Redirecciones adicionales comunes
 Route::redirect('/producto', '/productos', 301);
 Route::redirect('/product', '/productos', 301);
 Route::redirect('/products', '/productos', 301);
@@ -90,6 +104,11 @@ Route::redirect('/tiradas', '/productos/sueltas', 301);
 Route::redirect('/sueltas', '/productos/sueltas', 301);
 Route::redirect('/blog', '/blog-de-caza', 301);
 Route::redirect('/noticias', '/blog-de-caza', 301);
+
+// Redirecciones para variaciones comunes con y sin extensión
+Route::redirect('/home', '/', 301);
+Route::redirect('/inicio', '/', 301);
+Route::redirect('/main', '/', 301);
 
 // RUTAS DE SITEMAP Y SEO
 Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
