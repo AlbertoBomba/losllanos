@@ -47,6 +47,24 @@
                     @enderror
                 </div>
 
+                <!-- Video de YouTube -->
+                <div>
+                    <label for="youtube_url" class="block text-sm font-medium text-gray-700 mb-2">
+                        Video de YouTube (Opcional)
+                    </label>
+                    <input type="url" 
+                           wire:model="youtube_url" 
+                           id="youtube_url"
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                           placeholder="https://www.youtube.com/watch?v=...">
+                    @error('youtube_url') 
+                        <span class="text-red-500 text-sm">{{ $message }}</span> 
+                    @enderror
+                    <p class="text-sm text-gray-500 mt-1">
+                        Pega la URL completa del video de YouTube que quieres incluir en el post
+                    </p>
+                </div>
+
                 <!-- Imagen destacada -->
                 @if($existing_image)
                     <div>

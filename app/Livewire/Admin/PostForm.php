@@ -18,6 +18,7 @@ class PostForm extends Component
     public $title = '';
     public $content = '';
     public $excerpt = '';
+    public $youtube_url = '';
     public $published = false;
     public $featured_image;
     public $existing_image;
@@ -26,6 +27,7 @@ class PostForm extends Component
         'title' => 'required|min:3|max:255',
         'content' => 'required|min:10',
         'excerpt' => 'nullable|max:500',
+        'youtube_url' => 'nullable|url',
         'published' => 'boolean',
         'featured_image' => 'nullable|image|max:2048', // 2MB Max
     ];
@@ -35,6 +37,7 @@ class PostForm extends Component
         'title.min' => 'El título debe tener al menos 3 caracteres.',
         'content.required' => 'El contenido es obligatorio.',
         'content.min' => 'El contenido debe tener al menos 10 caracteres.',
+        'youtube_url.url' => 'Debe ser una URL válida.',
         'featured_image.image' => 'El archivo debe ser una imagen.',
         'featured_image.max' => 'La imagen no puede superar los 2MB.',
     ];
@@ -46,6 +49,7 @@ class PostForm extends Component
             $this->title = $post->title;
             $this->content = $post->content;
             $this->excerpt = $post->excerpt;
+            $this->youtube_url = $post->youtube_url;
             $this->published = $post->published;
             $this->existing_image = $post->featured_image;
         } elseif ($post && !($post instanceof Post)) {
@@ -54,6 +58,7 @@ class PostForm extends Component
             $this->title = $this->post->title;
             $this->content = $this->post->content;
             $this->excerpt = $this->post->excerpt;
+            $this->youtube_url = $this->post->youtube_url;
             $this->published = $this->post->published;
             $this->existing_image = $this->post->featured_image;
         } else {
@@ -76,6 +81,25 @@ class PostForm extends Component
         $this->validateOnly('featured_image');
     }
 
+    public function updatedYoutubeUrl()
+    {
+        if (!empty($this->youtube_url)) {
+            // Validar que sea una URL válida
+            if (!filter_var($this->youtube_url, FILTER_VALIDATE_URL)) {
+                $this->addError('youtube_url', 'Debe ser una URL válida.');
+                return;
+            }
+            
+            // Validar que sea de YouTube
+            if (!preg_match('/(?:youtube\.com|youtu\.be)/', $this->youtube_url)) {
+                $this->addError('youtube_url', 'Debe ser una URL válida de YouTube.');
+                return;
+            }
+        }
+        
+        $this->resetErrorBag('youtube_url');
+    }
+
     public function save()
     {
         $this->validate();
@@ -85,6 +109,7 @@ class PostForm extends Component
             'slug' => Str::slug($this->title),
             'content' => $this->content,
             'excerpt' => $this->excerpt,
+            'youtube_url' => $this->youtube_url,
             'published' => $this->published,
             'user_id' => Auth::id(),
         ]);

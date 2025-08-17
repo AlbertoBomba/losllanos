@@ -15,6 +15,7 @@ class Post extends Model
         'content',
         'excerpt',
         'featured_image',
+        'youtube_url',
         'published',
         'user_id'
     ];
@@ -88,5 +89,43 @@ class Post extends Model
     public function getApprovedCommentsCountAttribute()
     {
         return $this->comments()->approved()->count();
+    }
+
+    /**
+     * Extraer ID de video de YouTube desde URL
+     */
+    public function getYoutubeVideoIdAttribute()
+    {
+        if (!$this->youtube_url) {
+            return null;
+        }
+
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/';
+        if (preg_match($pattern, $this->youtube_url, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
+    }
+
+    /**
+     * Obtener URL embebida de YouTube
+     */
+    public function getYoutubeEmbedUrlAttribute()
+    {
+        $videoId = $this->youtube_video_id;
+        if (!$videoId) {
+            return null;
+        }
+
+        return "https://www.youtube.com/embed/{$videoId}";
+    }
+
+    /**
+     * Verificar si el post tiene video de YouTube
+     */
+    public function getHasYoutubeVideoAttribute()
+    {
+        return !empty($this->youtube_url);
     }
 }

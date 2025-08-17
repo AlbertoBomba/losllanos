@@ -82,6 +82,22 @@
                     {!! nl2br(e($post->content)) !!}
                 </div>
 
+                <!-- Video de YouTube -->
+                @if($post->has_youtube_video)
+                    <div class="my-8">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe 
+                                src="{{ $post->youtube_embed_url }}" 
+                                title="Video de YouTube" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen
+                                class="w-full h-96 rounded-lg shadow-lg">
+                            </iframe>
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Footer -->
                 <footer class="mt-8 pt-6 border-t border-gray-200">
                     <div class="flex items-center justify-between">

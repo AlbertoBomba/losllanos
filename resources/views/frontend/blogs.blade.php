@@ -99,7 +99,6 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
                     @foreach($posts as $post)
                         <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 blog-card">
                             <div class="relative">
-                                
                                 @if($post->featured_image)
                                     <img src="{{ $post->featured_image_url }}" 
                                     alt="{{ $post->title }}" 
@@ -107,6 +106,14 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
                                 @else
                                     <div class="w-full h-48 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
                                         <span class="text-white text-lg font-semibold">Los Llanos</span>
+                                    </div>
+                                @endif
+                                
+                                <!-- Video Indicator -->
+                                @if($post->has_youtube_video)
+                                    <div class="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                        <i class="fab fa-youtube mr-1"></i>
+                                        Video
                                     </div>
                                 @endif
                             </div>

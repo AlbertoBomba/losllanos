@@ -94,6 +94,22 @@
                                    {!! nl2br(e($post->content)) !!}
                                 </p>
                             </div>
+
+                            <!-- Video de YouTube -->
+                            @if($post->has_youtube_video)
+                                <div class="my-8">
+                                    <div class="relative w-full" style="padding-bottom: 56.25%; height: 0;">
+                                        <iframe 
+                                            src="{{ $post->youtube_embed_url }}" 
+                                            title="Video de YouTube" 
+                                            frameborder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                            allowfullscreen
+                                            class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg">
+                                        </iframe>
+                                    </div>
+                                </div>
+                            @endif
                             <!-- Tags -->
                             {{-- <div class="mt-12 pt-8 border-t border-gray-200">
                                 <h4 class="font-action font-semibold text-gray-800 mb-4">Etiquetas:</h4>
