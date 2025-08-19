@@ -1,53 +1,44 @@
 @extends('layouts.frontend')
 
-@section('title', 'Política de Privacidad | Los Llanos Toledo')
-@section('description', 'Política de privacidad y protección de datos de Los Llanos Toledo. Información sobre el tratamiento de datos personales conforme al RGPD.')
+@section('title', 'Política de Privacidad y Cookies - Los Llanos')
+@section('description', 'Conoce nuestra política de privacidad y el uso de cookies en el Club de Tiro Los Llanos. Transparencia total sobre el tratamiento de tus datos.')
 
 @section('content')
+<section class="pt-32 pb-20 bg-[#f5f1e3]">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl lg:text-5xl font-display font-bold text-dark mb-4 uppercase tracking-wide">
+                    🔒 Política de Privacidad y Cookies
+                </h1>
+                <p class="text-xl text-gray-600 font-sans leading-relaxed">
+                    En Los Llanos respetamos tu privacidad y somos transparentes sobre cómo utilizamos tus datos
+                </p>
+                <div class="text-sm text-gray-500 mt-4">
+                    Última actualización: {{ date('d/m/Y') }}
+                </div>
+            </div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-[#f5f1e3]">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="{{asset('images/general/finca.webp')}}" 
-                 alt="Política de Privacidad Los Llanos" 
-                 class="w-full h-full object-cover">
-        </div>
-        
-        <!-- Dark overlay -->
-        <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
-        
-        <!-- Content -->
-        <div class="relative z-20 text-center text-white px-6 max-w-4xl mx-auto pt-20">
-            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight tracking-wide uppercase">
-                Política de Privacidad
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed font-medium">
-                <strong>Tu privacidad es importante para nosotros.</strong> 
-                Conoce cómo tratamos y protegemos tus datos personales.
-            </p>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
+            <!-- Content -->
+            <div class="bg-white rounded-xl shadow-lg p-8 lg:p-12 space-y-8">
                 
-                <!-- Introduction -->
-                <div class="mb-12">
-                    <div class="bg-[#f5f1e3] rounded-2xl p-8 mb-8">
-                        <h2 class="text-2xl font-display font-bold text-dark mb-4 uppercase tracking-wide">
-                            Información General
-                        </h2>
-                        <div class="prose prose-lg max-w-none text-gray-700">
-                            <p class="mb-4">
-                                En <strong>Los Llanos Toledo</strong>, respetamos tu privacidad y estamos comprometidos con la protección de tus datos personales. Esta Política de Privacidad explica cómo recopilamos, utilizamos, almacenamos y protegemos tu información personal cuando visitas nuestro sitio web o utilizas nuestros servicios.
-                            </p>
-                            <p class="mb-4">
-                                <strong>Última actualización:</strong> Agosto 2025<br>
-                                <strong>Responsable del tratamiento:</strong> Los Llanos Toledo<br>
-                                <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 608 910 639
+                <!-- Información General -->
+                <section>
+                    <h2 class="text-2xl font-display font-bold text-dark mb-4 flex items-center">
+                        <span class="mr-3">ℹ️</span>
+                        Información General
+                    </h2>
+                    <div class="prose prose-lg max-w-none font-sans text-gray-700 leading-relaxed">
+                        <p>
+                            <strong>Club de Tiro Los Llanos</strong> (en adelante, "nosotros", "nuestro" o "la empresa") 
+                            se compromete a proteger y respetar tu privacidad. Esta política explica cómo recopilamos, 
+                            utilizamos y protegemos tu información personal cuando visitas nuestro sitio web.
+                        </p>
+                        <p class="mb-4">
+                            <strong>Responsable del tratamiento:</strong> Los Llanos Toledo<br>
+                            <strong>Contacto:</strong> att@clubdetiro-losllanos.es | 608 910 639
                             </p>
                         </div>
                     </div>

@@ -8,6 +8,15 @@ Disallow: /login
 Disallow: /storage/
 Disallow: /vendor/
 Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+
+# Disallow legal and privacy pages
+Disallow: /politica-privacidad
+Disallow: /terminos-condiciones
+Disallow: /aviso-legal
+Disallow: /cookies
+
 
 # Allow important files
 Allow: /sitemap*.xml
@@ -20,8 +29,6 @@ Allow: *.jpg
 Allow: *.png
 Allow: *.gif
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
 
 # Sitemaps
 Sitemap: https://clubdetiro-losllanos.es/sitemap_index.xml

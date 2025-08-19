@@ -155,9 +155,14 @@
         <!-- Footer Bottom -->
         <div class="border-t border-gray-700 mt-12 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center font-sans">
-                <div class="flex space-x-6 mb-4 md:mb-0">
+                <div class="flex flex-wrap justify-center md:justify-start space-x-6 mb-4 md:mb-0">
                     <a href="{{asset('politica-privacidad')}}" title="Ir a la página de Política de Privacidad" class="text-gray-300 hover:text-[#4b5d3a] transition">Política de Privacidad</a>
                     <a href="{{asset('terminos-condiciones')}}" title="Ir a la página de Términos y Condiciones" class="text-gray-300 hover:text-[#4b5d3a] transition">Términos y Condiciones</a>
+                    <button onclick="window.cookieManager?.showSettingsModal()" 
+                            title="Gestionar preferencias de cookies"
+                            class="text-gray-300 hover:text-[#4b5d3a] transition cursor-pointer underline">
+                        🍪 Gestionar Cookies
+                    </button>
                 </div>
                 <p class="text-gray-400">©Copyright 2025, Todos los Derechos Reservados. 
                     <a href="https://bycolor.es/dise%C3%B1o-web-en-toledo" title="Información sobre la empresa de desarrollo" class="text-gray-300 hover:text-[#4b5d3a] transition">
