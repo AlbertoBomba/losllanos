@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Gestión de Reseñas')
+@section('title', '✔️ Gestión de Reseñas')
 
 @section('content')
 <div class="container mx-auto px-4 py-6">

@@ -27,8 +27,8 @@ class RedirectOldUrls
             'Galeria/index.php' => '/',
             
             // URLs con espacios y caracteres especiales
-            'Coto%20Intensivo/index.html' => '/productos/aves-de-caza/codornices',
-            'Coto Intensivo/index.html' => '/productos/aves-de-caza/codornices',
+            'Coto%20Intensivo/index.html' => '/productos/Sueltas/coto-de-caza-intensiva',
+            'Coto Intensivo/index.html' => '/productos/Sueltas/coto-de-caza-intensiva',
             
             // Archivos PHP antiguos
             'Tiradas/index.php' => '/productos/sueltas',

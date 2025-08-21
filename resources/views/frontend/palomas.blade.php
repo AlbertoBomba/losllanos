@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Venta de palomas | Los Llanos Toledo')
+@section('title', '✔️ Venta de palomas | Los Llanos Toledo')
 @section('description', 'Venta de palomas para sueltas deportivas. Vuelo rápido y adaptabilidad excelente. Certificados sanitarios, transporte especializado desde Toledo.')
 
 @section('content')

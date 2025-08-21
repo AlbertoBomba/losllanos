@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Venta de faisanes | Los Llanos Toledo')
+@section('title', '✔️ Venta de faisanes | Los Llanos Toledo')
 @section('description', 'Venta de faisanes comunes de gran porte para sueltas. Vuelo potente y directo, ideales para fincas y cotos. Certificados sanitarios, transporte especializado desde Toledo.')
 
 @section('content')

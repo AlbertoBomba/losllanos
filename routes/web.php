@@ -10,6 +10,16 @@ use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Models\Post;
 
+
+// Deshabilitar registro - redirigir a login
+Route::get('/register', function () {
+    return redirect('/login')->with('error', 'Registro no disponible');
+});
+
+Route::post('/register', function () {
+    return redirect('/login')->with('error', 'Registro no disponible');
+});
+
 // RUTAS PÚBLICAS
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog-de-caza', [HomeController::class, 'showBlogs'])->name('blog-de-caza');
@@ -25,7 +35,7 @@ Route::get('/productos/aves-de-caza/codornices', [HomeController::class, 'codorn
 Route::get('/productos/aves-de-caza/palomas', [HomeController::class, 'palomas'])->name('productos.aves-de-caza.palomas');
 
 // PÁGINAS INSTITUCIONALES
-Route::view('/quienes-somos', 'frontend.quienes-somos')->name('quienes-somos');
+Route::redirect('/quienes-somos', '/', 301)->name('quienes-somos');
 
 // RESEÑAS
 Route::get('/reseñas', [ReviewController::class, 'index'])->name('reviews.index');
@@ -65,9 +75,12 @@ Route::post('/reseñas', [ReviewController::class, 'store'])->name('reviews.stor
 Route::get('/contacto', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store');
 
-// PÁGINAS LEGALES
+// PÁGINAS LEGALES 
 Route::view('/politica-privacidad', 'frontend.politica-privacidad')->name('politica-privacidad');
+Route::view('/politica-de-privacidad', 'frontend.politica-privacidad')->name('politica-de-privacidad');
 Route::view('/terminos-condiciones', 'frontend.terminos-condiciones')->name('terminos-condiciones');
+Route::view('/terminos-y-condiciones', 'frontend.terminos-condiciones')->name('terminos-y-condiciones');
+Route::view('/politica-de-cookies', 'frontend.cookies')->name('politica-de-cookies');
 
 // REDIRECCIONES DE LA WEB ANTIGUA
 // Estas rutas redirigen URLs antiguas a las nuevas ubicaciones
@@ -75,8 +88,8 @@ Route::view('/terminos-condiciones', 'frontend.terminos-condiciones')->name('ter
 // Redirecciones principales de URLs duplicadas reportadas por Google Search Console
 Route::redirect('/index.html', '/', 301);
 Route::redirect('/Galeria/index.php', '/', 301);
-Route::redirect('/Coto%20Intensivo/index.html', '/productos/aves-de-caza/codornices', 301);
-Route::redirect('/Coto Intensivo/index.html', '/productos/aves-de-caza/codornices', 301);
+Route::redirect('/Coto%20Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
+Route::redirect('/Coto Intensivo/index.html', '/productos/Sueltas/coto-de-caza-intensiva', 301);
 Route::redirect('/Tiradas/index.php', '/productos/sueltas', 301);
 Route::redirect('/ventacazamenor/index.html', '/productos/aves-de-caza', 301);
 Route::redirect('/Contacto/contact.html', '/contacto', 301);

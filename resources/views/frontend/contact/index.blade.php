@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Contacto - Los Llanos')
+@section('title', '✔️ Contacto - Los Llanos')
 @section('description', 'Contacta con Los Llanos para consultas sobre nuestros servicios de caza: perdiz, faisán, codorniz, 
 tiradas en finca y venta de aves. Te respondemos rápidamente.')
 

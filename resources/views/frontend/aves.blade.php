@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Aves de Caza  | Los Llanos')
+@section('title', '✔️ Aves de Caza  | Los Llanos')
 @section('description', 'Venta de aves de caza de máxima calidad: perdices, faisanes, codornices y palomas. Certificados sanitarios incluidos, transporte especializado. Más de 30 años de experiencia.')
 
 @section('content')

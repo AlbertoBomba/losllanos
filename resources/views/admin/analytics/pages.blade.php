@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Análisis de Páginas')
+@section('title', '✔️ Análisis de Páginas')
 
 @section('content')
 <div class="container-fluid">

@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Reseñas de Cazadores - Los Llanos')
+@section('title', '✔️ Reseñas de Cazadores - Los Llanos')
 @section('description', 'Lee las opiniones y experiencias de otros cazadores que han disfrutado de nuestras cacerías de perdiz, faisán, codorniz y paloma en Los Llanos, Toledo.')
 
 @section('content')

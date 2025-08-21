@@ -158,6 +158,7 @@
                 <div class="flex flex-wrap justify-center md:justify-start space-x-6 mb-4 md:mb-0">
                     <a href="{{asset('politica-privacidad')}}" title="Ir a la página de Política de Privacidad" class="text-gray-300 hover:text-[#4b5d3a] transition">Política de Privacidad</a>
                     <a href="{{asset('terminos-condiciones')}}" title="Ir a la página de Términos y Condiciones" class="text-gray-300 hover:text-[#4b5d3a] transition">Términos y Condiciones</a>
+                    <a href="{{ route('politica-de-cookies') }}" title="Ir a la página de Política de Cookies" class="text-gray-300 hover:text-[#4b5d3a] transition">Política de Cookies</a>
                     <button onclick="window.cookieManager?.showSettingsModal()" 
                             title="Gestionar preferencias de cookies"
                             class="text-gray-300 hover:text-[#4b5d3a] transition cursor-pointer underline">

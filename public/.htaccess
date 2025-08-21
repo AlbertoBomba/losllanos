@@ -15,7 +15,7 @@
     RewriteRule ^Galeria/index\.php$ / [R=301,L]
     
     # Redirects para URLs con espacios codificados
-    RewriteRule ^Coto%20Intensivo/index\.html$ /productos/aves-de-caza/codornices [R=301,L]
+    RewriteRule ^Coto%20Intensivo/index\.html$ /productos/Sueltas/coto-de-caza-intensiva [R=301,L]
     
     # Redirects para archivos PHP antiguos
     RewriteRule ^Tiradas/index\.php$ /productos/sueltas [R=301,L]

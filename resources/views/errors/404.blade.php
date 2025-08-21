@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Página no encontrada - Web Reestructurada | Los Llanos Toledo')
+@section('title', '✔️ Página no encontrada - Web Reestructurada | Los Llanos Toledo')
 @section('description', 'La página que buscas ha cambiado de ubicación. Hemos reestructurado nuestra web para ofrecerte una mejor experiencia. Descubre nuestros productos y servicios.')
 
 @section('content')
