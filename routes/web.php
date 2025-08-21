@@ -23,6 +23,7 @@ Route::post('/register', function () {
 // RUTAS PÚBLICAS
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog-de-caza', [HomeController::class, 'showBlogs'])->name('blog-de-caza');
+//RUTA CREADA PARA QUITAR ERROR 404 GOOGLE SEARCH CONTROL
 Route::get('/blog-de-caza/temporada-caza-2024-2025', [HomeController::class, 'showBlogs'])->name('blog-de-caza.temporada-caza-2024-2025');
 Route::get('/blog-de-caza/{slug}', [HomeController::class, 'showBlog'])->name('blog-de-caza.show');
 

@@ -20,7 +20,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', 'Los Llanos - Club de Tiro y Caza')">
     <meta property="og:description" content="@yield('description', 'Club de Tiro Los Llanos - Toledo. Tu destino para la caza y el tiro deportivo.')">
-    <meta property="og:image" content="{{ asset('images/general/og-image.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/general/cazador-perdiz.webp') }}">
     <meta property="og:site_name" content="Club de Tiro Los Llanos">
     
     <!-- Twitter -->
@@ -28,7 +28,7 @@
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', 'Los Llanos - Club de Tiro y Caza')">
     <meta property="twitter:description" content="@yield('description', 'Club de Tiro Los Llanos - Toledo. Tu destino para la caza y el tiro deportivo.')">
-    <meta property="twitter:image" content="{{ asset('images/general/og-image.jpg') }}">
+    <meta property="twitter:image" content="{{ asset('images/general/cazador-perdiz.webp') }}">
     
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
