@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Error del servidor - Los Llanos Toledo')
-@section('description', 'Ha ocurrido un error temporal en el servidor. Estamos trabajando para solucionarlo.')
+@section('title', ' Error del servidor - Los Llanos Toledo ✔️')
+@section('description', '⭐Ha ocurrido un error temporal en el servidor. Estamos trabajando para solucionarlo.')
 
 @section('content')
 

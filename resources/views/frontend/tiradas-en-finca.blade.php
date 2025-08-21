@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ [cazar perdices y faisanes] - Los Llanos Toledo')
-@section('description', 'Temporada de caza. Nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. 
+@section('title', '[ cazar perdices y faisanes ] Los Llanos Toledo ✔️')
+@section('description', '⭐ Temporada de caza. Nuestras tiradas en finca mes a mes: Octubre, Noviembre, Diciembre, Enero, Febrero y Marzo. 
 Además coto de caza intensivo de codornices.')
 
 @section('content')

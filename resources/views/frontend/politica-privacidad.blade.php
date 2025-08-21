@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Política de Privacidad y Cookies - Los Llanos')
-@section('description', 'Conoce nuestra política de privacidad y el uso de cookies en el Club de Tiro Los Llanos. Transparencia total sobre el tratamiento de tus datos.')
+@section('title', ' Política de Privacidad y Cookies - Los Llanos ✔️')
+@section('description', '⭐Conoce nuestra política de privacidad y el uso de cookies en el Club de Tiro Los Llanos. Transparencia total sobre el tratamiento de tus datos.')
 
 @section('content')
 <section class="pt-32 pb-20 bg-[#f5f1e3]">

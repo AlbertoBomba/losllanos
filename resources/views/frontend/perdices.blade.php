@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Venta de perdices | Los Llanos Toledo')
-@section('description', 'Venta de perdices rojas de máxima calidad para sueltas. Criadas en semi-libertad, certificados sanitarios incluidos, transporte especializado. Más de 30 años de experiencia en Toledo.')
+@section('title', '[ Venta de perdices ] Los Llanos Toledo ✔️')
+@section('description', '⭐ Venta de perdices rojas de máxima calidad para sueltas. Criadas en semi-libertad, certificados sanitarios incluidos, transporte especializado. Más de 30 años de experiencia en Toledo.')
 
 @section('content')
 

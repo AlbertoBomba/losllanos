@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ test home- Los llanos')
-@section('description', 'Bienvenido a Los Llanos. Un lugar condonde el cazados en cuentra su particular 
+@section('title', ' test home- Los llanos ✔️')
+@section('description', '⭐Bienvenido a Los Llanos. Un lugar condonde el cazados en cuentra su particular 
 parque temático. Un lugar para prácticar la caza en españa')
 
 @section('content')

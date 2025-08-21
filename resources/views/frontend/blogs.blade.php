@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Blog de caza - los llanos')
-@section('description', 'Blog de caza, destinado a tener a todos nuestro usuarios 
+@section('title', '[ Blog de caza ] Los llanos Toledo ✔️')
+@section('description', '⭐ Blog de caza, destinado a tener a todos nuestro usuarios 
 informado sobre las últimas noticias y tendencias en el mundo de la caza.')
 
 @section('content')

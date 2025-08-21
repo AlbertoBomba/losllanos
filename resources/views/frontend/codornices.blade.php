@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Venta de codornices | Los Llanos Toledo')
-@section('description', 'Venta de codornices comunes de gran calidad para sueltas. Vuelo rápido y ágil, 
+@section('title', '[ Venta de codornices ] Los Llanos Toledo ✔️')
+@section('description', '⭐ Venta de codornices comunes de gran calidad para sueltas. Vuelo rápido y ágil, 
 ideales para fincas y cotos. Certificados sanitarios, transporte especializado desde Toledo.')
 
 @section('content')

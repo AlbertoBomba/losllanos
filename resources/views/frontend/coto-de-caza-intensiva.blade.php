@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ [ Coto de caza intensiva ] - Los Llanos Toledo')
-@section('description', 'Coto de caza intensiva en parcelas de gran tamaño sembradas de trigo. 
+@section('title', ' [ Coto de caza intensiva ] Los Llanos Toledo ✔️')
+@section('description', '⭐ Coto de caza intensiva en parcelas de gran tamaño sembradas de trigo. 
 Disfruta de una experiencia de caza única y exclusiva.')
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Escribe tu Reseña - Los Llanos')
-@section('description', 'Comparte tu experiencia de caza con otros cazadores. Escribe una reseña sobre nuestras cacerías de perdiz, faisán, codorniz y paloma.')
+@section('title', '[⭐ Escribe tu Reseña ⭐] Los Llanos Toledo ✔️')
+@section('description', '⭐Comparte tu experiencia de caza con otros cazadores. Escribe una reseña sobre nuestras cacerías de perdiz, faisán, codorniz y paloma.')
 
 @section('content')
 

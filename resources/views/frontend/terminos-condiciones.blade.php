@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ Términos y Condiciones | Los Llanos Toledo')
-@section('description', 'Términos y condiciones de uso de los servicios de Los Llanos Toledo. Condiciones de venta, entrega y políticas comerciales.')
+@section('title', ' Términos y Condiciones | Los Llanos Toledo ✔️')
+@section('description', '⭐Términos y condiciones de uso de los servicios de Los Llanos Toledo. Condiciones de venta, entrega y políticas comerciales.')
 
 @section('content')
 

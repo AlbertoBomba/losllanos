@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', '✔️ venta codornices para suelta - los llanos')
-@section('description', 'Venta codornices, perdices, faisanes y palomas para suelta.
+@section('title', '[ Venta codornices para suelta ] los llanos Toledo ✔️')
+@section('description', '⭐ Venta codornices, perdices, faisanes y palomas para suelta.
 Todos los certificados sanitarios. Nos encargamos del transporte.')
 
 @section('content')
