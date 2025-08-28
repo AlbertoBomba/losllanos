@@ -31,6 +31,8 @@ Route::get('/productos', [HomeController::class, 'products'])->name('productos')
 Route::get('/productos/aves-de-caza', [HomeController::class, 'showAvesCaza'])->name('productos.aves-de-caza');
 Route::get('/productos/sueltas', [HomeController::class, 'showTiradas'])->name('productos.sueltas');
 Route::get('/productos/Sueltas/coto-de-caza-intensiva', [HomeController::class, 'showCotoCazaIntensivo'])->name('productos.Sueltas.coto-de-caza-intensiva');
+Route::get('/productos/sueltas/suelta-de-perdices', [HomeController::class, 'showSueltaPerdices'])->name('productos.Sueltas.suelta-de-perdices');
+Route::get('/productos/sueltas/suelta-de-faisanes', [HomeController::class, 'showSueltaFaisanes'])->name('productos.Sueltas.suelta-de-faisanes');
 Route::get('/productos/aves-de-caza/perdices', [HomeController::class, 'perdices'])->name('productos.aves-de-caza.perdices');
 Route::get('/productos/aves-de-caza/faisanes', [HomeController::class, 'faisanes'])->name('productos.aves-de-caza.faisanes');
 Route::get('/productos/aves-de-caza/codornices', [HomeController::class, 'codornices'])->name('productos.aves-de-caza.codornices');

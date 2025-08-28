@@ -45,12 +45,12 @@ Además coto de caza intensivo de codornices.')
              <!-- CTA Button -->
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center p-4">
                 <button onclick="window.open('tel:+34608910639', '_self')" 
-                        class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                        class="bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 shadow-lg">
                     <i class="fas fa-phone mr-2"></i>
-                    Reservar
+                    Reservar puesto
                 </button>
                 <button onclick="window.open('https://wa.me/34608910639?text=Hola,%20me%20interesa%20información%20sobre%20codornices%20comunes', '_blank')" 
-                        class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300 hover:scale-105">
+                        class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-action font-bold text-base sm:text-lg tracking-wide uppercase transition-all duration-300">
                     <i class="fab fa-whatsapp mr-2"></i>
                     WhatsApp
                 </button>
@@ -83,12 +83,12 @@ Además coto de caza intensivo de codornices.')
             <!-- Months Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {{-- coto intensivo codorniz Card --}}
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 group">
                   
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{asset('images/general/codornices.webp')}}" 
                              alt="Codornices en la cebabada" 
-                             class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
+                             class="w-full h-full object-cover object-top transition-transform duration-500">
                         <div class="absolute top-4 left-4 bg-[#8b5e3c] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
                             Coto intensivo
                         </div>
@@ -105,7 +105,7 @@ Además coto de caza intensivo de codornices.')
                             <strong>Amplias parcelas sembradas de cereal</strong> perfectas para disfrutar de una buena jornada.
                         </p>
                         <div class="flex items-center justify-center w-full">
-                            <a href="{{route('productos.Sueltas.coto-de-caza-intensiva')}}" class="w-full text-center bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 hover:scale-105 shadow-lg">
+                            <a href="{{route('productos.Sueltas.coto-de-caza-intensiva')}}" class="w-full text-center bg-[#8b5e3c] hover:bg-[#7a5235] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 shadow-lg">
                                 <i class="fas fa-calendar mr-2"></i>
                                 Consultar 
                             </a>
@@ -113,7 +113,95 @@ Además coto de caza intensivo de codornices.')
                     </div>
                 </div>
 
-                <!-- Noviembre Card -->
+                {{-- Sueltas de Perdices Card --}}
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="{{asset('images/general/cazador-perdiz-2.webp')}}" 
+                             alt="Sueltas de perdices Los Llanos" 
+                             class="w-full h-full object-cover object-center transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-[#4b5d3a] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
+                            Temporada
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#4b5d3a] px-3 py-1 rounded-full font-display font-bold text-xs">
+                            Oct-Mar
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
+                            Sueltas de Perdices
+                        </h3>
+                        <p class="text-gray-600 font-sans text-sm mb-4 leading-relaxed">
+                            <strong>Tiradas programadas en finca</strong> con perdices y faisanes. Jornadas completas con comida incluida.
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-calendar-alt text-[#4b5d3a] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Fechas programadas</span>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-utensils text-[#4b5d3a] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Comida incluida</span>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-users text-[#4b5d3a] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Hasta 23 puestos</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center w-full">
+                            <a href="{{route('productos.Sueltas.suelta-de-perdices')}}" class="w-full text-center bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 shadow-lg">
+                                <i class="fas fa-calendar mr-2"></i>
+                                Calendario y precios
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Sueltas de faisanes Card --}}
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="{{asset('images/general/cazador-faisan.webp')}}" 
+                             alt="Sueltas de faisanes Los Llanos" 
+                             class="w-full h-full object-cover object-center transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-[#f59e0b] text-white px-4 py-2 rounded-full font-action font-semibold text-sm tracking-wide uppercase">
+                            Temporada
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white bg-opacity-90 text-[#f59e0b] px-3 py-1 rounded-full font-display font-bold text-xs">
+                            Oct-Mar
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display font-bold text-dark mb-3 uppercase tracking-wide">
+                            Sueltas de faisanes
+                        </h3>
+                        <p class="text-gray-600 font-sans text-sm mb-4 leading-relaxed">
+                            <strong>Tiradas programadas en finca</strong> con faisanes de gran porte. Jornadas completas con comida incluida.
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-calendar-alt text-[#f59e0b] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Fechas programadas</span>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-utensils text-[#f59e0b] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Comida incluida</span>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <i class="fas fa-users text-[#f59e0b] mr-2"></i>
+                                <span class="text-gray-700 font-sans">Hasta 23 puestos</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center w-full">
+                            <a href="{{route('productos.Sueltas.suelta-de-faisanes')}}" class="w-full text-center bg-[#f59e0b] hover:bg-[#d97706] text-white py-3 px-4 rounded-lg font-action font-semibold tracking-wide uppercase transition-all duration-300 shadow-lg">
+                                <i class="fas fa-calendar mr-2"></i>
+                                Calendario y precios
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
                 {{-- <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-105 group">
                    
                     <div class="relative h-64 overflow-hidden">
@@ -539,11 +627,11 @@ Además coto de caza intensivo de codornices.')
         });
         
         // Abrir modal automáticamente al cargar la página (después de 1.5 segundos)
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                openModal();
-            }, 1500);
-        });
+        //window.addEventListener('load', function() {
+        //    setTimeout(function() {
+        //        openModal();
+        //    }, 1500);
+        // });
     </script>
 
 @endsection

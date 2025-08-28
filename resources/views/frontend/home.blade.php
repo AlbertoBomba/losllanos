@@ -204,7 +204,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                     </div>
                 </div>
 
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
+                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
                     <img src="{{asset('images/general/cazador-perdiz-2.webp')}}"   
                          alt="cazador contra perdiz sobre el fondo campos de castilla" 
                          class="w-full h-48 object-cover object-top">
@@ -212,8 +212,7 @@ parque temático. Un lugar para prácticar la caza en españa')
                         <div class="flex justify-between items-start mb-3">
                             <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-sans font-medium">Aún no disponemos de calendario</span>
                             <div class="text-right">
-                                {{-- <div class="text-2xl font-display font-bold text-accent">Precio</div>
-                                <div class="text-gray-600 text-sm font-sans">a consultar</div> --}}
+                                
                             </div>
                         </div>
                         <h3 class="text-xl font-display font-bold text-dark mb-2 uppercase tracking-wide">Próximamente</h3>
@@ -227,58 +226,60 @@ parque temático. Un lugar para prácticar la caza en españa')
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <!-- Service Card 4 -->
-                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
+                <!-- Service suelta de perdices. -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="perdiz">
                     <img src="{{asset('images/general/cazador-perdiz-2.webp')}}"   
                          alt="cazador contra perdiz sobre el fondo campos de castilla" 
                          class="w-full h-48 object-cover object-top">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-sans font-medium">Máx 20 puestos</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-sans font-medium">Máx 23 puestos</span>
                             <div class="text-right">
                                 <div class="text-2xl font-display font-bold text-accent">Precio</div>
                                 <div class="text-gray-600 text-sm font-sans">a consultar</div>
                             </div>
                         </div>
-                        <h3 class="text-xl font-display font-bold text-dark mb-2 uppercase tracking-wide">Perdices</h3>
+                        <h3 class="text-xl font-display font-bold text-dark mb-2 uppercase tracking-wide">Tirada de Perdices</h3>
                         <div class="flex items-center text-gray-600 mb-4 font-sans">
                             <i class="far fa-calendar-alt mr-2"></i>
                             <span>Temporada: Oct - Mar</span>
                         </div>
                         <div class="flex w-full items-end justify-end">
-                            <a href="{{route('productos.sueltas')}}" title="Ir a la ficha de sueltas y cacerías" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                            <a href="{{route('productos.Sueltas.suelta-de-perdices')}}" title="Ir a la ficha de sueltas y cacerías de perdices" class="w-full text-center p-3 bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
                                 Consultar fecha y precio
                             </a>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
                 
 
-                <!-- Service Card 5 -->
-                {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="finca">
+                <!-- Service suelta faisanes -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="finca">
                    <img src="{{asset('images/general/cazador-faisan.webp')}}"   
                          alt="cazador contra paloma sobre un fondo de campos de castilla" class="w-full h-48 object-cover object-top">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-sans font-medium">Máx 20 puestos</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm font-sans font-medium">Máx 23 puestos</span>
                             <div class="text-right">
-                                <div class="text-2xl font-display font-bold text-accent">Precio</div>
+                                <div class="text-2xl font-display font-bold text-[#f59e0b]">Precio</div>
                                 <div class="text-gray-600 text-sm font-sans">a consultar</div>
                             </div>
                         </div>
                         <h3 class="text-xl font-display font-bold text-dark mb-2 uppercase tracking-wide">Faisanes</h3>
                         <div class="flex items-center text-gray-600 mb-4 font-sans">
-                            <i class="far fa-calendar-alt mr-2"></i>
+                            <i class="far fa-calendar-alt mr-2 text-[#f59e0b]"></i>
                             <span>Temporada: Oct - Mar</span>
                         </div>
-                        <button class="w-full bg-[#4b5d3a] hover:bg-[#3a4a2c] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
-                            Consultar fecha y precio
-                        </button>
+                        <div class="flex w-full items-end justify-end">
+                            <a href="{{route('productos.Sueltas.suelta-de-faisanes')}}" title="Ir a la ficha de sueltas y cacerías de faisanes" class="w-full text-center p-3 bg-[#f59e0b] hover:bg-[#d97706] text-white py-2 rounded-lg font-action font-semibold tracking-wide uppercase transition hover:scale-105">
+                                Consultar fecha y precio
+                            </a>
+                        </div>
                     </div>
-                </div> --}}
+                </div>
                 <!-- Service Card 7 -->
                 {{-- <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition" data-category="sueltas" data-type="premium">
                     <img src="{{asset('images/general/cazador-codorniz.webp')}}"   

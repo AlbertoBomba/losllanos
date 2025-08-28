@@ -113,4 +113,16 @@ class HomeController extends Controller
     {
         return view('frontend.coto-de-caza-intensiva');
     }
+
+    public function showSueltaPerdices()
+    {
+        return view('frontend.suelta-de-perdices');
+    }
+
+    
+
+    public function showSueltaFaisanes()
+    {
+        return view('frontend.suelta-de-faisanes');
+    }
 }
