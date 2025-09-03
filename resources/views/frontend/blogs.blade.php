@@ -144,6 +144,16 @@ informado sobre las últimas noticias y tendencias en el mundo de la caza.')
 
             
         </div>
+
+    <!-- CTA Flotante usando componente -->
+    <x-floating-cta 
+        text="Temp. 25/26"
+        year="Perdides y Faisanes"
+        url="{{route('productos.sueltas')}}"
+        position="bottom-right"
+        icon="fas fa-bullseye"
+        newLabel="Tiradas en finca!"
+        tooltip="Reserva tu tirada para 2025" />
     </section>
 
 @endsection

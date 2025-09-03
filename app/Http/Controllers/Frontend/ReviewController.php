@@ -57,7 +57,7 @@ class ReviewController extends Controller
             'rating' => 'required|integer|between:1,5',
             'service_type' => 'required|in:caza_perdiz,caza_faisan,caza_codorniz,caza_paloma,tiradas_finca,venta_aves',
             'title' => 'required|string|max:255',
-            'content' => 'required|string|min:50'
+            'content' => 'required|string|min:10'
         ], [
             'reviewer_name.required' => 'El nombre es obligatorio.',
             'reviewer_name.string' => 'El nombre debe ser un texto válido.',
@@ -77,7 +77,7 @@ class ReviewController extends Controller
             'title.max' => 'El título no puede tener más de 255 caracteres.',
             'content.required' => 'El contenido de la reseña es obligatorio.',
             'content.string' => 'El contenido debe ser un texto válido.',
-            'content.min' => 'El contenido debe tener al menos 50 caracteres para ser útil.'
+            'content.min' => 'El contenido debe tener al menos 10 caracteres para ser útil.'
         ]);
 
         Review::create([

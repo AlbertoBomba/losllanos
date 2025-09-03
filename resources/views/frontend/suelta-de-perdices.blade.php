@@ -1,8 +1,8 @@
 @extends('layouts.frontend')
 
 @section('title', ' [ suelta de perdices ] Los Llanos Toledo ✔️')
-@section('description', '⭐ Realizamos suelta de perdices en nuestra finca. Jornada completa de caza, con almuerzo y comida en nuestro
-restaurante privado. Más de 30 años realizando sueltas...')
+@section('description', '⭐ Realizamos suelta de perdices en nuestra finca. Disfruta de nuestras tiradas de perdiz en una jornada completa, 
+con almuerzo y comida en nuestro restaurante privado.')
 
 @section('content')
 
@@ -21,11 +21,11 @@ restaurante privado. Más de 30 años realizando sueltas...')
         <div class="relative z-20 text-center text-white px-3 sm:px-6 max-w-5xl mx-auto pt-16 sm:pt-20 lg:pt-24">
             
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold mb-4 sm:mb-6 leading-tight tracking-wide uppercase">
-                Calendario de suelta de perdices  en Finca los llanos
+                Suelta de perdices. ¡Ven a nuestras típicas tiradas de perdiz!
             </h1>
             <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium">
                 <em class="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl">Disponemos de 23 puestos.</em><br class="hidden sm:block"><br class="hidden sm:block">
-                <strong>Realizamos sueltas para empresas privada.</strong> Tú pones la fecha, y nosotros nos encargamos del resto.
+                <strong>Realizamos tiradas de perdiz para empresas privadas.</strong> Tú pones la fecha, y nosotros nos encargamos del resto.
             </p>
             
             <!-- CTA Button -->
@@ -84,8 +84,8 @@ restaurante privado. Más de 30 años realizando sueltas...')
                             <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                             </svg>
-                            <span class="ml-1 font-medium text-gray-500 md:ml-2 hidden sm:inline">Perdices</span>
-                            <span class="ml-1 font-medium text-gray-500 md:ml-2 sm:hidden">Perdices</span>
+                            <span class="ml-1 font-medium text-gray-500 md:ml-2 hidden sm:inline">Tiradas de perdiz</span>
+                            <span class="ml-1 font-medium text-gray-500 md:ml-2 sm:hidden">Perdiz</span></span>
                         </div>
                     </li>
                 </ol>
@@ -618,7 +618,7 @@ restaurante privado. Más de 30 años realizando sueltas...')
                             </span>
                         </div>
                         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-dark mb-3 sm:mb-4 uppercase tracking-wide leading-tight">
-                           Tiradas privadas perdices
+                           Tirada de perdiz privada
                         </h2>
                         <div class="flex flex-col sm:flex-row sm:items-center mb-4 sm:mb-6">
                             <div class="text-2xl sm:text-3xl font-display font-bold text-[#4b5d3a] mb-1 sm:mb-0 sm:mr-4">Precio a consultar</div>
@@ -654,7 +654,7 @@ restaurante privado. Más de 30 años realizando sueltas...')
                                 Disponemos de granja propia de perdices lo que <strong>nos permite ser los más competivivos en los precios.</strong><br />
                                 <br />
                                 Nuestro restaurante privado da a nuestro clientes una nota de bienestar in igualable. Sentarse a la chimenea en una fría jornada de caza no tiene comparación.<br />
-                                Llevamos más de 30 años organizando tiradas de perdices y faisanes con gran éxito entre nuestros clientes, siendo un refente en la zona de Toledo.<br />
+                                Llevamos más de 30 años organizando tiradas de perdiz y faisan con gran éxito entre nuestros clientes, siendo un refente en la zona de Toledo.<br />
                                 <br />
                                 Organizamos jornadas privadas para empresas o particulares. Si quieres organizar una tirada para tus clientes, con buena comida y buenos tiros no lo dudes...
                             </p>
