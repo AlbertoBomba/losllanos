@@ -306,3 +306,45 @@ Route::get('/test-update-sitemap', function() {
         ], 500);
     }
 })->name('test.update.sitemap');
+
+// RUTAS PARA SISTEMA DE CARTAS DE RESTAURANTE
+use App\Http\Controllers\MenuManagementController;
+use App\Http\Controllers\MenuDisplayController;
+
+// Gestión de cartas (público, sin login)
+Route::prefix('menu-management')->name('menu-management.')->group(function () {
+    Route::get('/', [MenuManagementController::class, 'index'])->name('index');
+    
+    // Gestión de restaurantes
+    Route::get('/restaurant/create', [MenuManagementController::class, 'createRestaurant'])->name('restaurant.create');
+    Route::post('/restaurant', [MenuManagementController::class, 'storeRestaurant'])->name('restaurant.store');
+    Route::get('/restaurant/{restaurant}', [MenuManagementController::class, 'showRestaurant'])->name('restaurant');
+    
+    // Gestión de categorías
+    Route::get('/restaurant/{restaurant}/category/create', [MenuManagementController::class, 'createCategory'])->name('category.create');
+    Route::post('/restaurant/{restaurant}/category', [MenuManagementController::class, 'storeCategory'])->name('category.store');
+    Route::delete('/category/{category}', [MenuManagementController::class, 'deleteCategory'])->name('category.delete');
+    
+    // Gestión de elementos del menú
+    Route::get('/restaurant/{restaurant}/category/{category}/item/create', [MenuManagementController::class, 'createItem'])->name('item.create');
+    Route::post('/restaurant/{restaurant}/category/{category}/item', [MenuManagementController::class, 'storeItem'])->name('item.store');
+    Route::get('/restaurant/{restaurant}/item/{item}/edit', [MenuManagementController::class, 'editItem'])->name('item.edit');
+    Route::put('/restaurant/{restaurant}/item/{item}', [MenuManagementController::class, 'updateItem'])->name('item.update');
+    Route::delete('/item/{item}', [MenuManagementController::class, 'deleteItem'])->name('item.delete');
+    
+    // Gestión de menús diarios
+    Route::get('/restaurant/{restaurant}/daily-menu/create', [MenuManagementController::class, 'createDailyMenu'])->name('daily-menu.create');
+    Route::post('/restaurant/{restaurant}/daily-menu', [MenuManagementController::class, 'storeDailyMenu'])->name('daily-menu.store');
+    Route::get('/restaurant/{restaurant}/daily-menu/{dailyMenu}/edit', [MenuManagementController::class, 'editDailyMenu'])->name('daily-menu.edit');
+    Route::put('/restaurant/{restaurant}/daily-menu/{dailyMenu}', [MenuManagementController::class, 'updateDailyMenu'])->name('daily-menu.update');
+    Route::delete('/daily-menu/{dailyMenu}', [MenuManagementController::class, 'deleteDailyMenu'])->name('daily-menu.delete');
+    
+    // Actualizar orden
+    Route::post('/update-order', [MenuManagementController::class, 'updateOrder'])->name('update-order');
+});
+
+// Visualización pública de cartas (noindex)
+Route::prefix('carta')->name('menu.')->group(function () {
+    Route::get('/{restaurant}', [MenuDisplayController::class, 'show'])->name('show');
+    Route::get('/{restaurant}/pdf', [MenuDisplayController::class, 'pdf'])->name('pdf');
+});
